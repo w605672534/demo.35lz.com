@@ -1,0 +1,84 @@
+<ion-view view-title="仪表盘">
+  <ion-content>
+    <div class="list">
+		  <div class="item item-divider">
+		    生产概况（昨日）
+		  </div>
+		  <div class="item item-chart">
+		    <div class="row">
+				  <div class="col col-text">
+				  	<h2>原料气量</h2>
+				  	<div class="text-number balanced">60</div>
+				  	<p>10<sup>4</sup>m<sup>3</sup>/d</p>
+				  </div>
+				  <div class="col col-text">
+						<h2>外输气量</h2>
+				  	<div class="text-number balanced">50</div>
+				  	<p>10<sup>4</sup>m<sup>3</sup>/d</p>
+				  </div>
+				  <div class="col col-text">
+				  	<h2>轻烃产量</h2>
+				  	<div class="text-number assertive">150</div>
+				  	<p>10<sup>4</sup>m<sup>3</sup>/d</p>
+				  </div>
+				</div>
+		  </div>
+		  <div class="item item-divider">
+		    关键指标（昨日）
+		  </div>
+		  <div class="item item-chart">
+		    <div class="row">
+				  <div class="col col-25 col-text">
+				  	<h2>负荷率</h2>
+				  	<div class="text-number balanced">100</div>
+				  	<p>%</p>
+				  </div>
+				  <div class="col col-25 col-text">
+						<h2>开工率</h2>
+				  	<div class="text-number assertive">90</div>
+				  	<p>%</p>
+				  </div>
+				  <div class="col col-25 col-text">
+						<h2>产品率</h2>
+				  	<div class="text-number balanced">100</div>
+				  	<p>%</p>
+				  </div>
+				  <div class="col col-25 col-text">
+				  	<h2>轻烃收率</h2>
+				  	<div class="text-number balanced">100</div>
+				  	<p>t/10<sup>4</sup>Nm<sup>3</sup></p>
+				  </div>
+				</div>
+				<div class="row">
+				  <div class="col col-25 col-text">
+				  	<h2>参数控制率</h2>
+				  	<div class="text-number balanced">100</div>
+				  	<p>%</p>
+				  </div>
+				  <div class="col col-25 col-text">
+						<h2>电单耗</h2>
+				  	<div class="text-number balanced">100</div>
+				  	<p>kWh/10<sup>4</sup>m<sup>3</sup></p>
+				  </div>
+				  <div class="col col-25 col-text">
+				  	<h2>气单耗</h2>
+				  	<div class="text-number balanced">100</div>
+				  	<p>m<sup>3</sup>/10<sup>4</sup>m<sup>3</sup></p>
+				  </div>
+				  <div class="col col-25 col-text">
+				  	<h2>产品综合能耗</h2>
+				  	<div class="text-number balanced">100</div>
+				  	<p>千克煤/吨产品</p>
+				  </div>
+				</div>
+		  </div>
+		  <div class="item item-divider">
+		    生产趋势
+		  </div>
+		  <div class="item">
+		  	<div id="bar-chart1" style="height:150px;" ng-init="initCharts()"></div>
+		  </div>
+		</div>
+  </ion-content>
+</ion-view>
+

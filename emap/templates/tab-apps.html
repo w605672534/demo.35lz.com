@@ -1,0 +1,9 @@
+<ion-view view-title="应用">
+  <ion-content class="app-row">
+    <ion-item item-height="100" item-width="33.33%" collection-repeat="app in apps" href="#/app/{{app.id}}">
+      <img ng-src="{{app.face}}" width="54">
+      <h4>{{app.name}}</h4>
+      <span class="badge badge-assertive" ng-show="!!app.num">{{app.num}}</span>
+    </ion-item>
+  </ion-content>
+</ion-view>

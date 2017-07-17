@@ -1,0 +1,61 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{chat.name}}">
+  <ion-content class="padding">
+    <p class="hr-divider">30分钟前</p>
+    <div class="list card">
+      <ion-item class="item item-image" nav-direction="forward" href="#/post/{{firstItem.id}}">
+        <img class="full-image" src="img/expand1.jpg">
+        <h2>{{firstItem.lastText}}</h2>
+      </ion-item>
+      <ion-item class="item item-avatar" nav-direction="forward" ng-repeat="item in items" href="#/post/{{item.id}}">
+        <img ng-src="{{item.face}}">
+        <h2>{{item.lastText}}</h2>
+        <p>12-01</p>
+      </ion-item>
+    </div>
+    <p class="hr-divider">12 小时前</p>
+    <div class="list card">
+      <div class="item item-body" style="padding: 0;">
+        <div class="widget navy-bg no-padding">
+          <div class="p-m">
+            <h1 class="m-xs">150 t</h1>
+            <h3 class="font-bold no-margins">
+              轻烃产量
+            </h3>
+            <small>10日内轻烃产量趋势</small>
+          </div>
+          <div class="flot-chart">
+            <div class="flot-chart-content" id="flot-chart1" style="height:120px;" ng-init="initCharts()"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <p class="hr-divider">昨天</p>
+    <div class="list card">
+      <div class="item item-icon-left">
+        <i class="icon ion-android-checkmark-circle balanced"></i>
+        <h2>装置启动操作卡</h2>
+        <p>步骤：装置经理审批</p>
+      </div>
+      <div class="item item-body">
+        <p>
+          <strong class="text-label">申请人</strong> 张三<br>
+          <strong class="text-label">开始时间</strong> 2017年1月10日 12:01<br>
+          <strong class="text-label">结束时间</strong> 2017年1月10日 12:10<br>
+          <strong class="text-label">内容</strong> <br>
+        </p>
+      </div>
+      <div class="item button-bar bar-light" style="padding: 0;">
+        <a class="button button-clear button-positive" ng-click="pass(1)">同意</a>
+        <a class="button" ng-click="pass(0)">退回</a>
+        <a class="button">详情</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

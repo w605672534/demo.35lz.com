@@ -1,0 +1,55 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{post.name}}">
+  <ion-nav-buttons side="left">
+    <button class="button buttons button-clear header-item" ng-click="$ionicGoBack()">
+      <i class="icon ion-ios-arrow-back"></i>
+      <span class="back-text">
+        <span class="default-title">返回</span>
+      </span>
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="padding post">
+    <h3>{{post.lastText}}</h3>
+    <p class="post-divider">
+      <strong class="positive">{{post.name}}</strong>
+      <span class="item-note">
+        30分钟前
+      </span>
+    </p>
+    <article class="post-body">
+      <p>
+        <img class="full-image" src="img/expand2.jpg">
+      </p>
+      <h5>新闻出版行业各有关单位：</h5>
+      <p>
+  　　根据《科技部 中央宣传部 中国科协关于评选表彰全国科普工作先进集体和先进工作者的通知》（国科发政〔2016〕88号）的要求，为做好全国科普工作先进集体和先进工作者推荐工作，现将全国科普工作先进集体和先进工作者征集工作通知如下。</p>
+  <h5>一、申报要求</h5>
+      <p>
+  　　请各单位严格按照《科技部 中央宣传部 中国科协关于评选表彰全国科普工作先进集体和先进工作者的通知》中评选标准进行自审，确定申报集体、工作者，并按照要求准备申报材料。
+      </p>
+      <h5>二、工作程序</h5>
+      <p>
+  　　1.征集阶段<br>
+  　　各单位按照要求认真填写《全国科普工作先进集体推荐表》（附件1）、《全国科普工作先进工作者推荐表》（附件2），另附1000字以内的先进事迹介绍材料，并报送总局数字出版司。<br>
+  　　2.推荐阶段<br>
+  　　总局数字出版司对申报材料审核汇总后，择优确定推荐集体和工作者。被推荐集体和工作者填写正式推荐材料后，由总局推荐至科技部。
+      </p>
+      <h5>三、报送材料及时间要求</h5>
+      <p>
+  　　申报全国科普工作先进集体和先进工作者，分别填写《全国科普工作先进集体推荐表》（附件1）、《全国科普工作先进工作者推荐表》（附件2），另附1000字以内的先进事迹介绍材料，并于2016年4月12日前将申报材料（一份纸质材料及电子版）报送总局数字出版司，逾期不予受理。
+  </p>
+  <h5>四、联系方式</h5>
+  <p>
+  邮寄地址：北京市西城区宣武门外大街40号，100052　<br>
+  联 系 人：倪薇钧、康宝中<br>
+  联系电话：010-83138339、83138707<br>
+  E-mail：shuzihua2014@sina.com
+      </p> 
+    </article>
+  </ion-content>
+</ion-view>

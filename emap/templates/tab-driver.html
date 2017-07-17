@@ -1,0 +1,22 @@
+<ion-view view-title="网盘">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon" ng-click="doSomething()">
+      <i class="icon ion-upload"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right item-avatar-heigh" ng-repeat="node in nodes" type="item-text-wrap" href="#/tab/driver/{{node.id}}">
+        <img ng-src="{{node.face}}">
+        <h2>{{node.name}}</h2>
+        <p>{{node.lastText}}</p>
+        <span class="badge badge-assertive" ng-show="{{!!node.num}}">{{node.num}}</span>
+        <i class="icon ion-chevron-right icon-accessory" ng-show="{{node.face.indexOf('folder') != -1}}"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(node)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

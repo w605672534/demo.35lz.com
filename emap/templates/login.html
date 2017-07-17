@@ -1,0 +1,29 @@
+<ion-view view-title="用户登录" hide-nav-bar="true" class="login-view">
+  <ion-content class="padding" scroll="false">
+  	<div class="item item-avatar item-header">
+	    <img src="img/icons/logo.png">
+	    <h2>大庆油田天然气分公司</h2>
+	    <p>企业移动运营中心</p>
+	  </div>
+    <div class="list list-inset">
+		  <label class="item item-input">
+		    <input type="text" placeholder="中油邮箱、账号">
+		  </label>
+		  <label class="item item-input">
+		    <input type="password" placeholder="密码">
+		  </label>
+		  <li class="item item-toggle">
+		     记住密码
+		     <label class="toggle toggle-positive">
+		       <input type="checkbox" checked="checked">
+		       <div class="track">
+		         <div class="handle"></div>
+		       </div>
+		     </label>
+		  </li>
+		</div>
+		<button class="button button-block button-positive" ng-click="login()">
+		  登录
+		</button>
+  </ion-content>
+</ion-view>

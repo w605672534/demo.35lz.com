@@ -1,0 +1,38 @@
+<ion-view view-title="实时数据">
+	<ion-nav-buttons side="left">
+    <button class="button buttons button-clear header-item" ng-click="$ionicGoBack()">
+      <i class="icon ion-ios-arrow-back"></i>
+      <span class="back-text">
+        <span class="default-title">返回</span>
+      </span>
+    </button>
+  </ion-nav-buttons>
+	<div class="bar bar-subheader bar-positive">
+		<div class="button-bar bar-positive">
+			<a class="button activated">实时数据</a>
+	  	<a class="button">历史报警</a>
+		</div>
+	</div>
+  <ion-content class="has-subheader">
+    <table style="width:100%">
+			<thead>
+				<tr>
+					<th width="160">参数名称</th>
+					<th>操作范围</th>
+					<th style="text-align: right;">实时数据</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="tag in tags">
+					<td>
+						<div class="item-td" style="width:130px; font-weight: bold;" title="{{tag.name}}">
+							{{tag.name}}
+						</div>
+					</td>
+					<td>{{tag.range}}</td>
+					<td style="text-align: right;">{{tag.num}}</td>
+				</tr>
+			</tbody>
+    </table>
+  </ion-content>
+</ion-view>
