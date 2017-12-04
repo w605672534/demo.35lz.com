@@ -14,123 +14,11 @@
   <script>
     var DASHBOARD_APP_NAME = '正大汉鼎工程管理';
   </script>
-<link href=./static/css/app.9f1e50e221f01e3ae8e3682f4de48c65.css rel=stylesheet></head>
+<link href=./static/css/app.b603a03611cd7cec6c9ca3a439deb4bd.css rel=stylesheet></head>
 <body>
 <div id=app></div>
 
-<script type=text/javascript src=./static/js/manifest.69bec5bf45adfcfddc4f.js></script><script type=text/javascript src=./static/js/vendor.b50aa64e007afd63892a.js></script><script type=text/javascript src=./static/js/app.6eb40fa10bfa70b4f26f.js></script></body>
-<script type=x-template id=x-tpl-satisfaction>
-  <div style="text-align:center; margin:15px 0;" v-if="data.length">
-    <h5 class="panel-chart-name">办结率</h5>
-    <x-progress type="circle" :percentage="(data[0]['HANDLE_TOTAL_NUM']*100/data[0]['ACCEPT_TOTAL_NUM'])"></x-progress>
-    <div class="circle-progress-content">
-      总受理量 <span class="circle-progress-num">{{data[0]['ACCEPT_TODAY_NUM']}}</span> 件
-    </div>
-      <div class="circle-progress-content">
-      办结量 <span class="circle-progress-num">{{data[0]['HANDLE_TOTAL_NUM']}}</span> 件
-      </div>
-    </div>
-  </div>
-</script>
-<script type=x-template id=x-tpl-finish>
-  <div style="text-align:center;" v-if="data.length">
-    <h5 class="panel-chart-name">办结率</h5>
-    <x-progress type="circle" :percentage="(data[0]['HANDLE_TOTAL_NUM']*100/data[0]['ACCEPT_TOTAL_NUM'])"></x-progress>
-    <div class="circle-progress-content">总受理量 <span class="circle-progress-num">{{data[0]['ACCEPT_TOTAL_NUM']}}</span> 件</div>
-    <div class="circle-progress-content">办结量 <span class="circle-progress-num">{{data[0]['HANDLE_TOTAL_NUM']}}</span> 件</div>
-  </div>
-</script>
-<script type=x-template id=x-tpl-satisfied>
-  <div style="text-align:center;" v-if="data.length">
-    <h5 class="panel-chart-name">满意率</h5>
-    <x-progress type="circle" :percentage="(data[0]['HANDLE_TOTAL_NUM'] - data[0]['NOSATISFY_TOTAL_NUM'])/data[0]['HANDLE_TOTAL_NUM']*100" status="exception"></x-progress>
-    <div class="circle-progress-content">满意量 <span class="circle-progress-num">{{data[0]['HANDLE_TOTAL_NUM'] - data[0]['NOSATISFY_TOTAL_NUM']}}</span> 件</div>
-    <div class="circle-progress-content">不满意量 <span class="circle-progress-num">{{data[0]['NOSATISFY_TOTAL_NUM']}}</span> 件</div>
-  </div>
-</script>
-<script type=x-template id=x-tpl-recoveryrate>
-  <div style="text-align:center;" v-if="data.length">
-    <h5 class="panel-chart-name">回复率</h5>
-    <x-progress type="circle" :percentage="(backNum*100/data[0]['ACCEPT_NUM'])"></x-progress>
-    <div class="circle-progress-content">总受理量 <span class="circle-progress-num">{{data[0]['ACCEPT_NUM']}}</span> 件</div>
-    <div class="circle-progress-content">回复量 <span class="circle-progress-num">{{backNum}}</span> 件</div>
-  </div>
-</script>
-<script type=x-template id=x-tpl-overview>
-  <div class="col-center-top row"  v-if="data.length">
-    <div class="count-title col-md-4" style="display:none;">网格化管理
-      <p class="count-num"></p>
-      <div class="clearfix" style="padding:0 5px;">
-        <p class="float-left">
-            <!-- % -->
-        </p>
-        <p class="up float-right">
-          <!--<i class="iconfont icon-shangsheng" style="margin-right: 5px"></i>2.6-->
-        </p>
-      </div>
-    </div>
-    <div class="count-title col-md-12">民情服务热线
-      <p class="count-num">{{data[0]['ACCEPT_TOTAL_NUM']}}</p>
-      <!--<div class="clearfix" style="padding:0 5px;">-->
-        <!--<p class="float-left">-->
-            <!--{{data[0]['MQT_RATE']*100}}%-->
-        <!--</p>-->
-        <!--<p class="up float-right">-->
-          <!--&lt;!&ndash; <i class="iconfont icon-shangsheng" style="margin-right: 5px"></i>2.6 &ndash;&gt;-->
-        <!--</p>-->
-      <!--</div>-->
-    </div>
-    <!--<div class="count-title col-md-6">网民留言板-->
-      <!--<p class="count-num">{{data[0]['WMLY_NUM']}}</p>-->
-      <!--<div class="clearfix" style="padding:0 5px;">-->
-        <!--<p class="float-left">-->
-            <!--{{data[0]['WMLY_RATE']*100}}%-->
-        <!--</p>-->
-        <!--<p class="down float-right">-->
-           <!--<i class="iconfont icon-shangsheng-copy" style="margin-right: 5px"></i>2.6 -->
-        <!--</p>-->
-      <!--</div>-->
-    <!--</div>-->
-  </div>
-</script>
-<script type=x-template id=x-tpl-internet>
-  <div class="col-center-top row" v-if="data.length">
-    <div class="count-title col-md-12">网民留言板
-      <p class="count-num">{{data[0]['NUM']}}</p>
-    </div>
-  </div>
-</script>
-<script type=x-template id=x-tpl-realtimecount>
-  <div class="col-center-top row" v-if="data.length">
-    <div class="count-title col-md-4">诉求总量
-      <p class="count-num">{{data[0]['ACCEPT_TOTAL_NUM']}}</p>
-    </div>
-    <div class="count-title col-md-4">昨日
-      <p class="count-num">{{data[0]['ACCEPT_YESTODAY_NUM']}}</p>
-    </div>
-    <div class="count-title col-md-4">今日
-      <p class="count-num">{{data[0]['ACCEPT_TODAY_NUM']}}</p>
-    </div>
-  </div>
-</script>
-<script type=x-template id=x-tpl-conduct-feature>
-    <p v-if="data.length">
-      <span class="circle-progress-num">{{data[0]['MAX_NUM']}}</span>
-      <!--<span class="circle-progress-num">10</span> 点，-->
-      <!--<span class="circle-progress-num">15</span> 点 -->
-      诉求量大，
-      <span class="circle-progress-num">{{data[0]['NO_ONCE']*100}}%</span> 的人不止一次打过热线，
-      <span class="circle-progress-num">{{data[0]['FIVE_MIN']*100}}%</span> 的人在5分钟内结束。
-    </p>
-</script>
-<script type=x-template id=x-tpl-appeal-feature>
-    <p v-if="data.length">
-      转办成员单位处理：
-      <span class="circle-progress-num">{{data[0].JIAO_BAN*100}}% </span>,
-      反应{{data[0].EVENT_CLASS_NAME}}问题较多,占比：<span class="circle-progress-num">{{data[0].MAX_RATE*100}}%</span>,
-      涉及市级部门占比：<span class="circle-progress-num">{{data[0].CITY_RATE*100}}%</span>。
-    </p>
-</script>
+<script type=text/javascript src=./static/js/manifest.d0d08788907ceaebe20a.js></script><script type=text/javascript src=./static/js/vendor.b50aa64e007afd63892a.js></script><script type=text/javascript src=./static/js/app.6eb40fa10bfa70b4f26f.js></script></body>
 <script type=x-template id=x-tpl-progress-circle>
   <div class="row">
     <div class="col-md-3">
@@ -245,122 +133,92 @@
   </div>
 </script>
 <script type=x-template id=x-tpl-construction-project>
-  <div style="overflow-y: auto;height: 670px;padding-right: 15px">
-    <a class="row" href="#/page/project.detail" style="color: #fff;margin-bottom: 20px">
-      <div class="col-3">
-        <img src="static/image/logo.png">
-        <p style="color: rgba(255,255,255,.6);font-size: 14px;margin-top: 10px">2017-01-11</p>
+  <div style="overflow-y: auto;height: 670px;">
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;">襄阳食品厂</h5>
+        <p class="project-list-status float-right">
+          <i class="iconfont icon-yuan" style="color:#54bfc8"></i><span>进度</span>
+          <i class="iconfont icon-yuan" style="color:#ffa44f"></i><span>投资</span>
+          <i class="iconfont icon-yuan" style="color:#cf5ba4"></i><span>回报</span>
+        </p>
       </div>
-      <div class="col-6">
-        <h5 class="panel-chart-name">襄阳食品厂项目</h5>
+      <div class="container-fluid">
         <div class="row project-list">
-          <div class="col-md-6 project-list-item"><p><span>City: </span>Shanghai</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Manager: </span>Jamie</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Industry: </span>Commercial Property</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Cost(Planned): </span>2 million</p></div>
-          <div class="col-md-6 project-list-item"><p><span>ROI(Planned): </span>10%</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Revenue(Planned): </span>3 million</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> Shanghai</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-renyuan"></i> Jamie</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-icon"></i> Property</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-zijin"></i> 2 million</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 10%</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-shouru"></i> 3 million</p></div>
         </div>
-      </div>
-      <div class="col-3 project-list-status">
-        <p>Progress<i class="iconfont icon-yuan" style="color:#54bfc8"></i></p>
-        <p>Investment<i class="iconfont icon-yuan" style="color:#ffa44f"></i></p>
-        <p>Return<i class="iconfont icon-yuan" style="color:#cf5ba4"></i></p>
       </div>
     </a>
-    <a class="row" href="#/page/project.detail" style="color: #fff;margin-bottom: 20px">
-      <div class="col-3">
-        <img src="static/image/logo.png">
-        <p style="color: rgba(255,255,255,.6);font-size: 14px;margin-top: 10px">2017-01-11</p>
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;">襄阳食品厂</h5>
+        <p class="project-list-status float-right">
+          <i class="iconfont icon-yuan" style="color:#54bfc8"></i><span>进度</span>
+          <i class="iconfont icon-yuan" style="color:#ffa44f"></i><span>投资</span>
+          <i class="iconfont icon-yuan" style="color:#cf5ba4"></i><span>回报</span>
+        </p>
       </div>
-      <div class="col-6">
-        <h5 class="panel-chart-name">襄阳食品厂项目</h5>
+      <div class="container-fluid">
         <div class="row project-list">
-          <div class="col-md-6 project-list-item"><p><span>City: </span>Shanghai</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Manager: </span>Jamie</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Industry: </span>Commercial Property</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Cost(Planned): </span>2 million</p></div>
-          <div class="col-md-6 project-list-item"><p><span>ROI(Planned): </span>10%</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Revenue(Planned): </span>3 million</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> Shanghai</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-renyuan"></i> Jamie</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-icon"></i> Property</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-zijin"></i> 2 million</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 10%</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-shouru"></i> 3 million</p></div>
         </div>
-      </div>
-      <div class="col-3 project-list-status">
-        <p>Progress<i class="iconfont icon-yuan" style="color:#54bfc8"></i></p>
-        <p>Investment<i class="iconfont icon-yuan" style="color:#ffa44f"></i></p>
-        <p>Return<i class="iconfont icon-yuan" style="color:#cf5ba4"></i></p>
       </div>
     </a>
-    <a class="row" href="#/page/project.detail" style="color: #fff;margin-bottom: 20px">
-      <div class="col-3">
-        <img src="static/image/logo.png">
-        <p style="color: rgba(255,255,255,.6);font-size: 14px;margin-top: 10px">2017-01-11</p>
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;">襄阳食品厂</h5>
+        <p class="project-list-status float-right">
+          <i class="iconfont icon-yuan" style="color:#54bfc8"></i><span>进度</span>
+          <i class="iconfont icon-yuan" style="color:#ffa44f"></i><span>投资</span>
+          <i class="iconfont icon-yuan" style="color:#cf5ba4"></i><span>回报</span>
+        </p>
       </div>
-      <div class="col-6">
-        <h5 class="panel-chart-name">襄阳食品厂项目</h5>
+      <div class="container-fluid">
         <div class="row project-list">
-          <div class="col-md-6 project-list-item"><p><span>City: </span>Shanghai</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Manager: </span>Jamie</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Industry: </span>Commercial Property</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Cost(Planned): </span>2 million</p></div>
-          <div class="col-md-6 project-list-item"><p><span>ROI(Planned): </span>10%</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Revenue(Planned): </span>3 million</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> Shanghai</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-renyuan"></i> Jamie</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-icon"></i> Property</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-zijin"></i> 2 million</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 10%</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-shouru"></i> 3 million</p></div>
         </div>
-      </div>
-      <div class="col-3 project-list-status">
-        <p>Progress<i class="iconfont icon-yuan" style="color:#54bfc8"></i></p>
-        <p>Investment<i class="iconfont icon-yuan" style="color:#ffa44f"></i></p>
-        <p>Return<i class="iconfont icon-yuan" style="color:#cf5ba4"></i></p>
       </div>
     </a>
-    <a class="row" href="#/page/project.detail" style="color: #fff;margin-bottom: 20px">
-      <div class="col-3">
-        <img src="static/image/logo.png">
-        <p style="color: rgba(255,255,255,.6);font-size: 14px;margin-top: 10px">2017-01-11</p>
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;">襄阳食品厂</h5>
+        <p class="project-list-status float-right">
+          <i class="iconfont icon-yuan" style="color:#54bfc8"></i><span>进度</span>
+          <i class="iconfont icon-yuan" style="color:#ffa44f"></i><span>投资</span>
+          <i class="iconfont icon-yuan" style="color:#cf5ba4"></i><span>回报</span>
+        </p>
       </div>
-      <div class="col-6">
-        <h5 class="panel-chart-name">襄阳食品厂项目</h5>
+      <div class="container-fluid">
         <div class="row project-list">
-          <div class="col-md-6 project-list-item"><p><span>City: </span>Shanghai</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Manager: </span>Jamie</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Industry: </span>Commercial Property</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Cost(Planned): </span>2 million</p></div>
-          <div class="col-md-6 project-list-item"><p><span>ROI(Planned): </span>10%</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Revenue(Planned): </span>3 million</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> Shanghai</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-renyuan"></i> Jamie</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-icon"></i> Property</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-zijin"></i> 2 million</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 10%</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-shouru"></i> 3 million</p></div>
         </div>
-      </div>
-      <div class="col-3 project-list-status">
-        <p>Progress<i class="iconfont icon-yuan" style="color:#54bfc8"></i></p>
-        <p>Investment<i class="iconfont icon-yuan" style="color:#ffa44f"></i></p>
-        <p>Return<i class="iconfont icon-yuan" style="color:#cf5ba4"></i></p>
-      </div>
-    </a>
-    <a class="row" href="#/page/project.detail" style="color: #fff;margin-bottom: 20px">
-      <div class="col-3">
-        <img src="static/image/logo.png">
-        <p style="color: rgba(255,255,255,.6);font-size: 14px;margin-top: 10px">2017-01-11</p>
-      </div>
-      <div class="col-6">
-        <h5 class="panel-chart-name">襄阳食品厂项目</h5>
-        <div class="row project-list">
-          <div class="col-md-6 project-list-item"><p><span>City: </span>Shanghai</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Manager: </span>Jamie</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Industry: </span>Commercial Property</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Cost(Planned): </span>2 million</p></div>
-          <div class="col-md-6 project-list-item"><p><span>ROI(Planned): </span>10%</p></div>
-          <div class="col-md-6 project-list-item"><p><span>Revenue(Planned): </span>3 million</p></div>
-        </div>
-      </div>
-      <div class="col-3 project-list-status">
-        <p>Progress<i class="iconfont icon-yuan" style="color:#54bfc8"></i></p>
-        <p>Investment<i class="iconfont icon-yuan" style="color:#ffa44f"></i></p>
-        <p>Return<i class="iconfont icon-yuan" style="color:#cf5ba4"></i></p>
       </div>
     </a>
   </div>
 </script>
 <script type=x-template id=x-tpl-detail-milepost>
-  <div>
-    <div class="row" style="background-color:#54bfc8;width:100%;position: relative;height: 40px;line-height: 40px;top: 80px;left: 15px">
+  <div style="padding: 0 30px">
+    <div class="row" style="background-color:#526ac1;width:100%;position: relative;height: 40px;line-height: 40px;top: 80px;left: 15px">
       <div style="position: absolute;top: -70px;left: 2%">
         <p style="font-size: 12px;line-height: 1rem;margin-bottom: 0">里程碑<br><span style="color: rgba(255,255,255,.6)">Jan 1</span></p>
         <i class="iconfont icon-icon-life-flag" style="font-size: 28px;color:#54bfc8 "></i>
@@ -373,17 +231,17 @@
         <p style="font-size: 12px;line-height: 1rem;margin-bottom: 0">里程碑<br><span style="color: rgba(255,255,255,.6)">Aug 18</span></p>
         <i class="iconfont icon-icon-life-flag" style="font-size: 28px;color:#54bfc8 "></i>
       </div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">Jan</div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">Feb</div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">Mar</div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">Apr</div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">May</div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">Jun</div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">Jul</div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">Aug</div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">Sep</div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">Oct</div>
-      <div class="col-md-1" style="font-size: 12px;border-right:1px solid #3c8c99">Nov</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">Jan</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">Feb</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">Mar</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">Apr</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">May</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">Jun</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">Jul</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">Aug</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">Sep</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">Oct</div>
+      <div class="col-md-1" style="font-size: 12px;border-right:1px solid rgb(56, 74, 138)">Nov</div>
       <div class="col-md-1" style="font-size: 12px">Dec</div>
       <div style="width: 70%;height: 10%;background-color: #cf5ba4;position: absolute;z-index: 1;bottom:0;display: block"></div>
       <p style="position: absolute;left: 0;top: 40px;color: rgba(255,255,255,.8)">2016</p>
