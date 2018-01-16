@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <meta http-equiv=X-UA-Compatible content="IE=edge">
+  <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>中国石油甘肃销售公司加油站服务评价分析</title>
+  <!--[if lt IE 9]>
+  <script>
+    window.location = '/static/browers.html';
+  </script>
+  <![endif]-->
+  <script></script>
+  <script>
+    var DASHBOARD_APP_NAME = '中国石油甘肃销售公司加油站服务评价分析';
+  </script>
+<link href=./static/css/app.6a5895c98b41d59756a4c84ec57a1ba7.css rel=stylesheet></head>
+<body>
+<div id=app></div>
+
+<script type=text/javascript src=./static/js/manifest.c99f6ee987f0b156d7ad.js></script><script type=text/javascript src=./static/js/vendor.b50aa64e007afd63892a.js></script><script type=text/javascript src=./static/js/app.6a1e021954c7ec5124aa.js></script></body>
+<script type=x-template id=x-tpl-progress-circle>
+  <div style="display: flex;justify-content:space-around;">
+    <div class="progress-circle" style="background-color:#54bfc8;">
+      <span class="progress-number">113</span>
+    </div>
+    <div class="progress-circle" style="background-color:#cf5ba4;">
+      <span class="progress-number">184</span>
+    </div>
+    <div class="progress-circle" style="background-color:#526ac1;">
+      <span class="progress-number">135</span>
+    </div>
+    <div class="progress-circle" style="background-color:#ffa44f;">
+      <span class="progress-number">107</span>
+    </div>
+    <div class="progress-circle" style="background-color:#306083;">
+      <span class="progress-number">107</span>
+    </div>
+  </div>
+</script>
+<script type=x-template id=x-tpl-detail-carousel>
+  <div>
+    <div class="block">
+      <el-carousel trigger="click" height="220px">
+        <el-carousel-item>
+          <img src="static/image/banner.jpg" width="100%" height="100%">
+        </el-carousel-item>
+        <el-carousel-item>
+          <img src="static/image/banner1.jpg" width="100%" height="100%">
+        </el-carousel-item>
+        <el-carousel-item>
+          <img src="static/image/banner2.jpg" width="100%" height="100%">
+        </el-carousel-item>
+      </el-carousel>
+    </div>
+  </div>
+</script>
+<script type=x-template id=x-tpl-tanker-star>
+  <div style="text-align: center">
+    <img src="/static/image/star-face.png" style="width: 120px;height: 120px;border-radius: 50%">
+    <h6 style="padding: 10px 0;margin-bottom: 0">马冬梅<i class="iconfont icon-nv" style="margin-left: 10px"></i></h6>
+    <p style="font-size: 14px;margin-top: 0;color: rgba(255,255,255,.8)">中国石油甘肃销售公司加油站</p>
+    <el-rate
+      :value=4.9
+      disabled
+      show-score
+      text-color="#ff9900"
+      score-template="{value}">
+    </el-rate>
+  </div>
+</script>
+<script type=x-template id=x-tpl-detail-status>
+  <div class="col-md-12" style="margin:15px 0;">
+    <div class="row">
+      <div class="circle-stable col-md-4">
+        <img src="/static/image/tanker.png">
+        <h5 class="tanker-fraction panel-chart-name">4.5 <span style="opacity: .4">分</span></h5>
+        <h5 class="tanker-type panel-chart-name">90#</h5>
+        <p class="tanker-num">001</p>
+      </div>
+      <div class="circle-stable col-md-4">
+        <img src="/static/image/tanker.png">
+        <h5 class="tanker-fraction panel-chart-name">4 <span style="opacity: .4">分</span></h5>
+        <h5 class="tanker-type panel-chart-name">93#</h5>
+        <p class="tanker-num">002</p>
+      </div>
+      <div class="circle-stable col-md-4">
+        <img src="/static/image/tanker.png">
+        <h5 class="tanker-fraction panel-chart-name">4.6 <span style="opacity: .4">分</span></h5>
+        <h5 class="tanker-type panel-chart-name">97#</h5>
+        <p class="tanker-num">003</p>
+      </div>
+      <div class="circle-stable col-md-4">
+        <img src="/static/image/tanker.png">
+        <h5 class="tanker-fraction panel-chart-name">4.5 <span style="opacity: .4">分</span></h5>
+        <h5 class="tanker-type panel-chart-name">90#</h5>
+        <p class="tanker-num">004</p>
+      </div>
+      <div class="circle-stable col-md-4">
+        <img src="/static/image/tanker.png">
+        <h5 class="tanker-fraction panel-chart-name">4.8 <span style="opacity: .4">分</span></h5>
+        <h5 class="tanker-type panel-chart-name">93#</h5>
+        <p class="tanker-num">005</p>
+      </div>
+      <div class="circle-stable col-md-4">
+        <img src="/static/image/tanker.png">
+        <h5 class="tanker-fraction panel-chart-name">4.9 <span style="opacity: .4">分</span></h5>
+        <h5 class="tanker-type panel-chart-name">97#</h5>
+        <p class="tanker-num">006</p>
+      </div>
+      <div class="circle-stable col-md-4">
+        <img src="/static/image/tanker.png">
+        <h5 class="tanker-fraction panel-chart-name">4 <span style="opacity: .4">分</span></h5>
+        <h5 class="tanker-type panel-chart-name">90#</h5>
+        <p class="tanker-num">007</p>
+      </div>
+      <div class="circle-stable col-md-4">
+        <img src="/static/image/tanker.png">
+        <h5 class="tanker-fraction panel-chart-name">5 <span style="opacity: .4">分</span></h5>
+        <h5 class="tanker-type panel-chart-name">93#</h5>
+        <p class="tanker-num">008</p>
+      </div>
+      <div class="circle-stable col-md-4">
+        <img src="/static/image/tanker.png">
+        <h5 class="tanker-fraction panel-chart-name">4.7 <span style="opacity: .4">分</span></h5>
+        <h5 class="tanker-type panel-chart-name">97#</h5>
+        <p class="tanker-num">009</p>
+      </div>
+    </div>
+  </div>
+</script>
+<script type=x-template id=x-tpl-detail-info>
+  <div class="row">
+    <div class="col-md-12" style="margin-bottom: 10px">
+      <h5 class="panel-chart-name">
+        甘肃销售公司加油站
+        <!--<a href="" style="float: right;font-size: 12px;color:#54bfc8;line-height: 19px">项目明细</a>-->
+      </h5>
+    </div>
+    <div class="col-md-6 circle-progress-content" style="text-align: left;padding-left: 35px">
+      <img src="static/image/face-cover2.png" class="rounded-circle" style="width: 30px;height: 30px">
+      <p class="circle-progress-num" style="margin-left: 0">张三</p>
+    </div>
+    <div class="col-md-6 circle-progress-content">
+      <i class="iconfont icon-bankuaibiaoqian"></i>
+      <span>总公司</span>
+      <p class="circle-progress-num">中国石油</p>
+    </div>
+    <div class="col-md-6 circle-progress-content">
+      <i class="iconfont icon-hrrq-sjbk"></i>
+      <span>建筑面积</span>
+      <p class="circle-progress-num">186.5 m²</p>
+    </div>
+    <div class="col-md-6 circle-progress-content">
+      <i class="iconfont icon-yonghushuliang"></i>
+      <span>工作人员(人)</span>
+      <p class="circle-progress-num">20</p>
+    </div>
+    <div class="col-md-6 circle-progress-content">
+      <i class="iconfont icon-touzi"></i>
+      <span>投资(万元)</span>
+      <p class="circle-progress-num">200000</p>
+    </div>
+    <div class="col-md-6 circle-progress-content">
+      <i class="iconfont icon-zijin"></i>
+      <span>年收入(万元)</span>
+      <p class="circle-progress-num">1000000</p>
+    </div>
+    <div class="col-md-6 circle-progress-content">
+      <i class="iconfont icon-diqu"></i>
+      <span>地区</span>
+      <p class="circle-progress-num">兰州市</p>
+    </div>
+    <div class="col-md-6 circle-progress-content">
+      <i class="iconfont icon-pingfen"></i>
+      <span>评分</span>
+      <p class="circle-progress-num">5</p>
+    </div>
+  </div>
+</script>
+<script type=x-template id=x-tpl-construction-project>
+  <div style="overflow-y: auto;height: 670px;">
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;width: 60%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;"><span><i class="iconfont icon-cnlonghubang" style="font-size: 18px;margin-right: 5px;color: rgb(218,178,115)"></i></span>费家营加油站</h5>
+        <p class="project-list-status float-right">
+          <el-rate
+            :value=4.5
+            disabled
+            show-score
+            text-color="#ff9900"
+            score-template="{value}">
+          </el-rate>
+        </p>
+      </div>
+      <div class="container-fluid">
+        <div class="row project-list">
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> 兰州市</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-yonghushuliang"></i> 30</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 58%</p></div>
+        </div>
+      </div>
+    </a>
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;width: 60%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;"><span><i class="iconfont icon-cnlonghubang" style="font-size: 18px;margin-right: 5px;color: rgb(192,192,192)"></i></span>华池县小天鹅艺术幼儿园北</h5>
+        <p class="project-list-status float-right">
+          <el-rate
+            :value=4.5
+            disabled
+            show-score
+            text-color="#ff9900"
+            score-template="{value}">
+          </el-rate>
+        </p>
+      </div>
+      <div class="container-fluid">
+        <div class="row project-list">
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> 庆阳市</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-yonghushuliang"></i> 35</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 49%</p></div>
+        </div>
+      </div>
+    </a>
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;width: 60%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;"><span><i class="iconfont icon-cnlonghubang" style="font-size: 18px;margin-right: 5px;color: rgb(184,115,51)"></i></span>天生场村</h5>
+        <p class="project-list-status float-right">
+          <el-rate
+            :value=4
+            disabled
+            show-score
+            text-color="#ff9900"
+            score-template="{value}">
+          </el-rate>
+        </p>
+      </div>
+      <div class="container-fluid">
+        <div class="row project-list">
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> 酒泉市</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-yonghushuliang"></i> 20</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 71%</p></div>
+        </div>
+      </div>
+    </a>
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;width: 60%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;"><span>4、</span>王岘西路</h5>
+        <p class="project-list-status float-right">
+          <el-rate
+            :value=3.6
+            disabled
+            show-score
+            text-color="#ff9900"
+            score-template="{value}">
+          </el-rate>
+        </p>
+      </div>
+      <div class="container-fluid">
+        <div class="row project-list">
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> 白银市</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-yonghushuliang"></i> 15</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 68%</p></div>
+        </div>
+      </div>
+    </a>
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;width: 60%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;"><span>5、</span>东大街</h5>
+        <p class="project-list-status float-right">
+          <el-rate
+            :value=3.5
+            disabled
+            show-score
+            text-color="#ff9900"
+            score-template="{value}">
+          </el-rate>
+        </p>
+      </div>
+      <div class="container-fluid">
+        <div class="row project-list">
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> 武威市</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-yonghushuliang"></i> 26</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 46%</p></div>
+        </div>
+      </div>
+    </a>
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;width: 60%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;"><span>6、</span>香泉小学东</h5>
+        <p class="project-list-status float-right">
+          <el-rate
+            :value=3.5
+            disabled
+            show-score
+            text-color="#ff9900"
+            score-template="{value}">
+          </el-rate>
+        </p>
+      </div>
+      <div class="container-fluid">
+        <div class="row project-list">
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> 陇南市</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-yonghushuliang"></i> 23</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 56%</p></div>
+        </div>
+      </div>
+    </a>
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;width: 60%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;"><span>7、</span>山丹育才中学东南</h5>
+        <p class="project-list-status float-right">
+          <el-rate
+            :value=3.4
+            disabled
+            show-score
+            text-color="#ff9900"
+            score-template="{value}">
+          </el-rate>
+        </p>
+      </div>
+      <div class="container-fluid">
+        <div class="row project-list">
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> 张掖市</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-yonghushuliang"></i> 20</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 40%</p></div>
+        </div>
+      </div>
+    </a>
+    <a href="#/page/project.detail" class="project-item">
+      <div class="clearfix">
+        <h5 class="panel-chart-name float-left" style="margin-bottom: 10px;width: 60%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;"><span>8、</span>孟家塬加油站</h5>
+        <p class="project-list-status float-right">
+          <el-rate
+            :value=3.4
+            disabled
+            show-score
+            text-color="#ff9900"
+            score-template="{value}">
+          </el-rate>
+        </p>
+      </div>
+      <div class="container-fluid">
+        <div class="row project-list">
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-diqu"></i> 天水市</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-yonghushuliang"></i> 30</p></div>
+          <div class="col-md-4 project-list-item"><p><i class="iconfont icon-touzi"></i> 50%</p></div>
+        </div>
+      </div>
+    </a>
+  </div>
+</script>
+</html>
