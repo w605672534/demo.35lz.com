@@ -1,0 +1,23 @@
+define({
+	name:'kop',
+	params:{},
+	views:[
+		{
+			id:'1',
+			title:'原料',
+			column:4,
+			height:564
+		},
+		{
+			id:'2',
+			title:'库存趋势',
+			column:8,
+			height:200
+		},
+		{
+			id:'3',
+			title:'原料罐区',
+			height:300
+		}
+	]
+});

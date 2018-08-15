@@ -1,0 +1,98 @@
+body{
+	background-color:#0E447C;
+	color: #E3E9F0;
+}
+
+a{
+	color:#FFFF00;
+}
+.cb-slideshow-overlay {
+  background-color: #0E447C;
+}
+a:hover{
+	color:#FFFF00;
+}
+.text-primary {
+	color: #00DDDD;
+}
+.text-success {
+	color: #00DD00;
+}
+.text-warning {
+	color: #DDDD00;
+}
+.text-danger {
+	color: #DD0000;
+}
+.bg-info {
+	background-color: #456E99;
+}
+.progress {
+	background-color: #8FA7C1;
+}
+.progress-bar-success {
+	background-color: #00DD00;
+}
+.progress-bar-warning {
+	background-color: #DDDD00;
+}
+.progress-bar-danger {
+	background-color: #DD0000;
+}
+.view-link:hover{
+	background-color: #255688!important;
+}
+.navbar-default {
+	background-color: #0B3663;
+	border-color: #0A315A;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #B5C2D0;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	color: #FFF;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+	color: #F9FF02;
+	background-color: #082B4E;
+}
+
+.panel {
+	background-color: #255688;
+	border: 1px solid transparent;
+	border-radius: 0;
+}
+
+.panel-default>.panel-heading {
+	color: #456E99;
+	background-color: #255688;
+	border-color: #6083A7;
+	border-radius: 0;
+}
+
+.table>thead>tr>th {
+	border-color: #4D749D;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+	border-color: #4D749D;
+}
+
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+	background-color: #456E99;
+}
+
+.modal-content {
+	background-color: #0E447C;
+}
+
+.modal-header {
+	border-color: #4D749D;
+}
+
+.modal-footer {
+	border-color: #4D749D;
+}

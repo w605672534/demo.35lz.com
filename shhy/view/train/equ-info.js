@@ -1,0 +1,27 @@
+define({
+	widget:'webkit/table',
+	dataset:'Train/TRAIN/bas_equ_qry',
+	series:[
+		{
+			name:'装置',
+			data:'UNIT_NAME',
+			rowspan:true,
+			attributes:{
+				style:'vertical-align: middle;',
+				'class':'hidden-xs'
+			}
+		},
+		{
+			name:'设备',
+			data:'EQU_NAME'
+		},
+		{
+			name:'设备类型',
+			data:'EQU_TYPE'
+		},
+		{
+			name:'序号',
+			data:'EQU_SORT'
+		}
+	]
+});

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>EAD Designer Dashboard</title>
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body style="padding-top: 50px;font-size:13px;">
+    <div id="document-container" class="container"></div>
+
+    <!--Application Templates-->
+    <script type="text/template" id="tpl-doc">
+      <h1><%=title%></h1>
+      <hr>
+    </script>
+    <script type="text/template" id="tpl-case">
+      <h4><%=编码%><%=编号%>_<%=用例%></h4>
+      <table class="table table-condensed table-bordered">
+        <tbody>
+          <tr>
+            <th width="25%" class="active"><strong>用例名称</strong></th>
+            <td colspan="3"><%=用例%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>模块</strong></th>
+            <td><%=模块%></td>
+            <th width="15%" class="active"><strong>编码</strong></th>
+            <td width="30%"><%=编码%><%=编号%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>图例</strong></th>
+            <td colspan="3"></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>数据项</strong></th>
+            <td colspan="3"><%=数据%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>数据源</strong></th>
+            <td colspan="3"><%=数据源.replace(/\n/g,'<br/>')%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>数据频率</strong></th>
+            <td><%=数据频率%></td>
+            <th class="active"><strong>等级</strong></th>
+            <td><%=等级%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>数据集</strong></th>
+            <td colspan="3"><%=数据集%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>交互说明</strong></th>
+            <td colspan="3"><%=交互说明.replace(/\n/g,'<br/>')%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>数据项说明</strong></th>
+            <td colspan="3"><%=数据项说明.replace(/\n/g,'<br/>')%></td>
+          </tr>
+        </tbody>
+      </table>
+    </script>
+    <script type="text/template" id="tpl-dataset">
+      <h4><%=_index+1%>、<%=描述%></h4>
+      <table class="table table-condensed table-bordered">
+        <tbody>
+          <tr>
+            <th width="25%" class="active"><strong>数据集名称</strong></th>
+            <td colspan="3"><%=数据集名称%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>模块</strong></th>
+            <td><%=模块%></td>
+            <th width="15%" class="active"><strong>数据范围</strong></th>
+            <td width="30%"><%=数据范围%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>参数列表</strong></th>
+            <td colspan="3"><%=参数名称.replace(/\n/g,'<br/>')%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>参数说明</strong></th>
+            <td colspan="3"><%=参数说明.replace(/\n/g,'<br/>')%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>视图用例模块</strong></th>
+            <td colspan="3"><%=用例模块%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>数据源</strong></th>
+            <td colspan="3"><%=数据源%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>表/视图/库</strong></th>
+            <td colspan="3"><%=数据来源.replace(/\n/g,'<br/>')%></td>
+          </tr>
+          <tr>
+            <th class="active"><strong>数据来源描述</strong></th>
+            <td colspan="3"><%=数据来源描述.replace(/\n/g,'<br/>')%></td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+    </script>
+
+    <script src="lib/require.js"></script>
+    <script>
+      // 路径配置
+      require.config({
+        paths: {
+          echarts: 'lib/echarts',
+          underscore: 'lib/underscore-min',
+          backbone: 'lib/backbone-min',
+          jquery: 'lib/jquery.min',
+          bootstrap:'bootstrap/js/bootstrap.amd'
+        },
+        config:{
+
+        }
+      });
+      require(['document/main'],function(app){});
+    </script>
+  </body>
+</html>

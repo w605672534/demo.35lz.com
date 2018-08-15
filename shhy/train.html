@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>SHHY Dashboard</title>
+    <!-- CSS -->
+    <!-- CSS-Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/theme/default.css" rel="stylesheet" id="theme-link">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="lib/html5shiv.min.js"></script>
+      <script src="lib/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body style="padding-top: 70px;">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="box-shadow: 0 2px 2px rgba(0,0,0,.05);">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="pull-left" href="#/welcome" title="上海华谊集团" style="margin-top:5px; margin-right:20px;">
+            <img src="./images/logo/logo-hd.png" border="0" height="43" class="pull-left" alt="上海华谊集团">
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#/train">培训</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right hidden-xs">
+            <!--<li><a href="javascript:void(0);" title="主页"><span class="glyphicon glyphicon-home"></span></a></li>-->
+            <li><a id="dashboard-fullscreen-btn" style="display:none;" href="javascript:void(0);" title="全屏"><span class="glyphicon glyphicon-fullscreen"></span></a></li>
+            <li><a id="dashboard-exit-fullscreen-btn" style="display:none;" href="javascript:void(0);" title="退出全屏"><span class="glyphicon glyphicon-resize-small"></span></a></li>
+            <li><a id="dashboard-refresh-btn" href="javascript:void(0);" title="刷新"><span class="glyphicon glyphicon-refresh"></span></a></li>
+            <li><a id="dashboard-setting-btn" href="javascript:void(0);" title="设置"><span class="glyphicon glyphicon-cog"></span></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <!--Dashboard Container-->
+    <div id="db-container" class="container-fluid"></div>
+
+    <!--Application Templates-->
+    <script type="text/template" id="tpl-setting-box">
+      <div class="row setting-box">
+        <div class="col-xs-12 col-sm-4" data-name="default">
+          <div class="setting-box-item" style="background-color:#FFF;">
+            <h5>默认</h5>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4" data-name="blue">
+          <div class="setting-box-item" style="background-color:#0E447C;">
+            <h5>蓝色</h5>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4" data-name="dark">
+          <div class="setting-box-item" style="background-color:#333;">
+            <h5>黑色</h5>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-layout-column">
+      <div class="col-xs-12 dashboard-view"></div>
+    </script>
+
+    <script type="text/template" id="tpl-view-panel">
+      <div class="panel panel-default dashboard-panel">
+        <div class="panel-heading">
+          <strong class="text-primary"><%=title%></strong>
+          <span class="glyphicon glyphicon-info-sign pull-right text-muted" style="display:none;"></span>
+        </div>
+        <div class="panel-body dashboard-panel-body" style="height:<%=height%>px">
+        </div>
+      </div>
+    </script>
+    
+    <script type="text/template" id="tpl-grid-unit">
+      <div class="panel <%= (UNIT_STATE_VALUE == '1') ? 'panel-success' : 'panel-danger'%> unit-box text-center" data-toggle="tooltip" data-placement="top" data-original-title="<%=UNIT_NAME%>">
+        <div class="panel-heading <%//= (UNIT_STATE_VALUE == '1') ? '' : 'bg-danger'%>">
+          <p style="font-size:12px;"><%=UNIT_NAME%></p>
+          <div class="progress" style="margin:4px;height:3px;">
+            <div class="progress-bar <%= (load > 50) ? 'progress-bar-success' : 'progress-bar-danger'%>" role="progressbar" aria-valuenow="<%=load%>" aria-valuemin="0" aria-valuemax="100" style="width: <%=load%>%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-grid-tank">
+      <div class="grid-tank">
+        <span class="glyphicon glyphicon-home pull-right text-muted hidden"></span>
+        <div class="tank tank-<%=status%>">
+          <div class="tank-inner">
+            <div class="tank-header"></div>
+            <div class="tank-body"></div>
+          </div>
+          <div class="tank-footer"></div>
+          <div class="tank-outer"></div>
+          <div class="tank-value"><%=value%></div>
+        </div>
+        <p style="font-size:12px; margin: 5px;white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;"><%=BLOCK_NAME%></p>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-grid-energy">
+      <div style="padding:5px 15px; margin:0 5px; border: 1px solid #ddd;">
+        <h3 style="margin:5px 0;text-align:center;"><%=ENERGY_NAME%> <small><%=UNIT%></small></h3>
+        <p style="margin:0"><strong>本日值</strong> <span class="pull-right"><%=CURRENT%></span></p>
+        <p style="margin:0"><strong>月累计</strong> <span class="pull-right"><%=MTD%></span></p>
+        <p style="margin:0"><strong>年累计</strong> <span class="pull-right"><%=YTD%></span></p>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-block-column">
+      <div class="block-view"></div>
+    </script>
+
+    <script type="text/template" id="tpl-block-view">
+      <div class="block-view-body dashboard-panel-body" style="height:<%=height%>px">
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title"><%=title%></h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-unit-detail">
+      <table class="table">
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>装置名称</th>
+          <td><%=UNIT_NAME%></td>
+        </tr>
+        <tr>
+          <th>公司名称</th>
+          <td><%=FACTORY_NAME%></td>
+        </tr>
+        <tr style="display:none;">
+          <th>月累计停机时长</th>
+          <td><strong class="text-danger">10小时</span></td>
+        </tr>
+        <tr>
+          <th>实时状态</th>
+          <td data-toggle="tooltip" title="状态位号：<%=UNIT_STATE_TAG%>">
+            <% if(UNIT_STATE_VALUE == 1) { %>
+            <span class="glyphicon glyphicon-ok text-success"> 运行</span>
+            <% } else { %>
+            <span class="glyphicon glyphicon-ban-circle text-danger"> 停车</span>
+            <% } %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </script>
+
+    <script type="text/template" id="tpl-equ-detail">
+      <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>设备名称</th>
+          <td><%=EQU_NAME%></td>
+        </tr>
+        <tr>
+          <th>装置名称</th>
+          <td><%=UNIT_NAME%></td>
+        </tr>
+        <tr>
+          <th>公司名称</th>
+          <td><%=FACTORY_NAME%></td>
+        </tr>
+        <tr style="display:none;">
+          <th>月累计停机时长</th>
+          <td><strong class="text-danger">10小时</span></td>
+        </tr>
+        <tr>
+          <th>实时状态</th>
+          <td data-toggle="tooltip" title="状态位号：">
+            <% if(EQU_STATE_VALUE == 1) { %>
+            <span class="glyphicon glyphicon-ok text-success"> 运行</span>
+            <% } else { %>
+            <span class="glyphicon glyphicon-ban-circle text-danger"> 停车</span>
+            <% } %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </script>
+
+    <script type="text/template" id="tpl-tank-detail">
+      <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>储罐/仓位</th>
+          <td>V19102甲醇储罐</td>
+        </tr>
+        <tr>
+          <th>温度</th>
+          <td>30</td>
+        </tr>
+        <tr class="info">
+          <th>压力</th>
+          <td>60</td>
+        </tr>
+        <tr>
+          <th>液位</th>
+          <td>1120</td>
+        </tr>
+      </tbody>
+    </table>
+    </script>
+
+    <script type="text/template" id="tpl-onoff-count">
+      <h5 style="font-size:16px; padding-left:8px; margin:0;">
+        <strong>年度累计停机统计</strong>
+      </h5>
+      <hr style="margin: 10px 0;">
+      <table class="table">
+      <thead>
+        <tr>
+          <th>类型</th>
+          <th class="text-right"><div>总时长</div></th>
+          <th class="text-right"><div>计划</div></th>
+          <th class="text-right"><div>非计划</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="text-primary"><div>装置</th>
+          <td class="text-right"><div>365</div></td>
+          <td class="text-right"><div>100</div></td>
+          <td class="text-right"><div>165</div></td>
+        </tr>
+        <tr>
+          <th class="text-primary">设备</th>
+          <td class="text-right"><div>378</div></td>
+          <td class="text-right"><div>178</div></td>
+          <td class="text-right"><div>278</div></td>
+        </tr>
+      </tbody>
+    </table>
+    </script>
+
+    <script type="text/template" id="tpl-welcome">
+    <div style="position:relative;">
+      <div class="cb-slideshow-overlay"></div>
+      <ul class="cb-slideshow">
+        <li><span>Image 01</span><div><h3></h3></div></li>
+        <li><span>Image 02</span><div><h3></h3></div></li>
+        <li><span>Image 03</span><div><h3></h3></div></li>
+        <li><span>Image 04</span><div><h3></h3></div></li>
+        <li><span>Image 05</span><div><h3></h3></div></li>
+        <li><span>Image 06</span><div><h3></h3></div></li>
+      </ul>
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <div class="center-block" style="width:80%;">
+            <div class="page-header">
+              <h4 style="color:#fff;">总览导航 <small></small></h4>
+            </div>
+            <p>
+              <a class="btn btn-primary btn-lg btn-block" href="#/pm">生产绩效</a>
+            </p>
+            <p>
+              <a class="btn btn-primary btn-lg btn-block" href="#/rm">原料库存</a>
+            </p>
+            <p>
+              <a class="btn btn-primary btn-lg btn-block" href="#/uom">运行监控</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="center-block" style="width:80%;">
+            <div class="page-header">
+              <h4 style="color:#fff;">新能源 <small></small></h4>
+            </div>
+            <p>
+              <a class="btn btn-danger btn-lg btn-block" href="#/com/3">华谊能源</a>
+            </p>
+            <p>
+              <a class="btn btn-danger btn-lg btn-block" href="#/com/9">安徽华谊</a>
+            </p>
+            <div class="page-header">
+              <h4 style="color:#fff;">精细化工 <small></small></h4>
+            </div>
+            <p>
+              <a class="btn btn-warning btn-lg btn-block" href="#/com/4">丙烯酸</a>
+            </p>
+            <p>
+              <a class="btn btn-warning btn-lg btn-block" href="#/com/11">精细化工</a>
+            </p>
+            <div class="page-header">
+              <h4 style="color:#fff;">绿色轮胎 <small></small></h4>
+            </div>
+            <p>
+              <a class="btn btn-success btn-lg btn-block" href="#/com/7">双钱集团</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="center-block" style="width:80%;">
+            <div class="page-header">
+              <h4 style="color:#fff;">新材料 <small></small></h4>
+            </div>
+            <p>
+              <a class="btn btn-info btn-lg btn-block" href="#/com/2">氯碱化工</a>
+            </p>
+            <p>
+              <a class="btn btn-info btn-lg btn-block" href="#/com/5">三爱富</a>
+            </p>
+            <p>
+              <a class="btn btn-info btn-lg btn-block" href="#/com/16">氯碱天原</a>
+            </p>
+            <p>
+              <a class="btn btn-info btn-lg btn-block" href="#/com/8">氯碱华胜</a>
+            </p>
+            <p>
+              <a class="btn btn-info btn-lg btn-block" href="#/com/10">聚合物</a>
+            </p>
+            <div class="page-header">
+              <h4 style="color:#fff;">其它 <small></small></h4>
+            </div>
+            <p>
+              <a class="btn btn-default btn-lg btn-block" href="#/com/12">天原集团</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </script>
+    <script type="text/template" id="tpl-svg">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+          xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="7.65117in" height="4.2384in"
+          viewBox="0 0 550.884 305.165" xml:space="preserve" color-interpolation-filters="sRGB" class="st16" style="margin:-20px -15px;">
+        <v:documentProperties v:langID="2052" v:metric="true" v:viewMarkup="false">
+          <v:userDefs>
+            <v:ud v:nameU="msvNoAutoConnect" v:val="VT0(1):26"/>
+          </v:userDefs>
+        </v:documentProperties>
+
+        <style type="text/css">
+        <![CDATA[
+          .st1 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+          .st2 {fill:#262626;font-family:Arial Unicode MS;font-size:0.833336em}
+          .st3 {marker-end:url(#mrkr5-13);stroke:#595959;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+          .st4 {fill:#595959;fill-opacity:1;stroke:#595959;stroke-opacity:1;stroke-width:0.22935779816514}
+          .st5 {fill:#f4f4f4;stroke:#a5a5a5;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+          .st6 {fill:#17355d;font-family:Arial Unicode MS;font-size:1.00001em;font-weight:bold}
+          .st7 {font-size:1em}
+          .st8 {stroke:#bfbfbf;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+          .st9 {fill:#00cc00;stroke:#7f7f7f;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+          .st10 {fill:#595959;font-family:Arial Unicode MS;font-size:0.833336em}
+          .st11 {fill:#ff0000;font-family:Arial Unicode MS;font-size:0.666664em}
+          .st12 {fill:#00b050;font-family:Arial Unicode MS;font-size:0.666664em}
+          .st13 {marker-start:url(#mrkr5-338);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+          .st14 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.22935779816514}
+          .st15 {stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+          .st16 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+        ]]>
+        </style>
+
+        <defs id="Markers">
+          <g id="lend5">
+            <path d="M 2 1 L 0 0 L 1.98117 -0.993387 C 1.67173 -0.364515 1.67301 0.372641 1.98465 1.00043 " style="stroke:none"/>
+          </g>
+          <marker id="mrkr5-13" class="st4" v:arrowType="5" v:arrowSize="2" v:setback="7.63" refX="-7.63" orient="auto"
+              markerUnits="strokeWidth" overflow="visible">
+            <use xlink:href="#lend5" transform="scale(-4.36,-4.36) "/>
+          </marker>
+          <marker id="mrkr5-338" class="st14" v:arrowType="5" v:arrowSize="2" v:setback="7.15" refX="7.15" orient="auto"
+              markerUnits="strokeWidth" overflow="visible">
+            <use xlink:href="#lend5" transform="scale(4.36) "/>
+          </marker>
+        </defs>
+        <g v:mID="4" v:index="1" v:groupContext="foregroundPage">
+          <title>Page-1</title>
+          <v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+              v:shadowOffsetY="-8.50394"/>
+          <g id="shape68-1" v:mID="68" v:groupContext="shape" transform="translate(432.856,-40.8478)">
+            <title>工作表.68</title>
+            <desc>CO</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="17.1178" cy="296.582" width="34.24" height="17.1654"/>
+            <rect x="0" y="288" width="34.2356" height="17.1654" class="st1"/>
+            <text x="9.62" y="299.58" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>CO</text>    </g>
+          <g id="shape70-4" v:mID="70" v:groupContext="shape" transform="translate(379.718,-214.212)">
+            <title>工作表.70</title>
+            <desc>粗甲醇</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="19.6691" cy="295.165" width="39.34" height="20"/>
+            <rect x="0" y="285.165" width="39.3382" height="20" class="st1"/>
+            <text x="4.67" y="298.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>粗甲醇</text>   </g>
+          <g id="group71-7" transform="translate(378.913,-217.472)" v:mID="71" v:groupContext="group">
+            <title>工作表.71</title>
+            <g id="shape72-8" v:mID="72" v:groupContext="shape">
+              <title>工作表.72</title>
+              <path d="M0 305.17 L43.89 305.17" class="st3"/>
+            </g>
+          </g>
+          <g id="group40-14" transform="translate(327.402,-19.4642)" v:mID="40" v:groupContext="group">
+            <title>工作表.40</title>
+            <g id="shape41-15" v:mID="41" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="256.976" width="102.047" height="48.189" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape42-17" v:mID="42" v:groupContext="shape" transform="translate(10.9843,-15.9689)">
+              <title>工作表.42</title>
+              <desc>CO装置</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="37.0276" cy="298.079" width="74.06" height="14.1732"/>
+              <rect x="0" y="290.992" width="74.0551" height="14.1732" class="st1"/>
+              <text x="16.02" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>CO装置</text>     </g>
+          </g>
+          <g id="shape81-20" v:mID="81" v:groupContext="shape" transform="translate(479.576,-218.527)">
+            <title>工作表.81</title>
+            <desc>甲醇</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="18.0551" cy="295.165" width="36.12" height="20"/>
+            <rect x="0" y="285.165" width="36.1102" height="20" class="st1"/>
+            <text x="8.06" y="298.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>甲醇</text>    </g>
+          <g id="shape55-23" v:mID="55" v:groupContext="shape" transform="translate(194.501,-148.699)">
+            <title>工作表.55</title>
+            <desc>合成气</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="19.6691" cy="295.165" width="39.34" height="20"/>
+            <rect x="0" y="285.165" width="39.3382" height="20" class="st1"/>
+            <text x="4.67" y="298.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>合成气</text>   </g>
+          <g id="group3-26" transform="translate(62.9783,-200.534)" v:mID="3" v:groupContext="group">
+            <title>工作表.3</title>
+            <g id="shape5-27" v:mID="5" v:groupContext="shape" transform="translate(3.74388,5.68434E-014)">
+              <title>工作表.5</title>
+              <desc>工业用氧气</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="20.2302" cy="295.165" width="40.47" height="20"/>
+              <rect x="0" y="285.165" width="40.4603" height="20" class="st1"/>
+              <text x="5.23" y="292.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>工业用<tspan
+                    x="10.23" dy="1.2em" class="st7">氧气</tspan></text>      </g>
+          </g>
+          <g id="group6-31" transform="translate(61.8252,-196.381)" v:mID="6" v:groupContext="group">
+            <title>工作表.6</title>
+            <g id="shape7-32" v:mID="7" v:groupContext="shape">
+              <title>工作表.7</title>
+              <path d="M0 305.17 L45.3 305.17" class="st3"/>
+            </g>
+          </g>
+          <g id="group46-37" transform="translate(191.063,-151.281)" v:mID="46" v:groupContext="group">
+            <title>工作表.46</title>
+            <g id="shape49-38" v:mID="49" v:groupContext="shape">
+              <title>工作表.49</title>
+              <path d="M0 305.17 L47.8 305.17" class="st3"/>
+            </g>
+          </g>
+          <g id="shape47-43" v:mID="47" v:groupContext="shape" transform="translate(419.277,20.7747) rotate(90)">
+            <title>工作表.47</title>
+            <path d="M0 305.17 L264.96 305.17" class="st8"/>
+          </g>
+          <g id="group2-46" transform="translate(328.136,-146.747)" v:mID="2" v:groupContext="group">
+            <title>工作表.2</title>
+            <g id="shape20-47" v:mID="20" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="166.834" width="48.189" height="138.331" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape21-49" v:mID="21" v:groupContext="shape" transform="translate(4.42857,-34.0157)">
+              <title>工作表.21</title>
+              <desc>45万吨甲醇</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.4272" cy="268.315" width="22.86" height="73.7008"/>
+              <rect x="0" y="231.464" width="22.8543" height="73.7008" class="st1"/>
+              <text x="4.75" y="243.11" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>45<tspan x="5.42"
+                    dy="1.2em" class="st7">万</tspan><tspan x="5.42" dy="1.2em" class="st7">吨</tspan><tspan x="5.42"
+                    dy="1.2em" class="st7">甲</tspan><tspan x="5.42" dy="1.2em" class="st7">醇</tspan></text>     </g>
+            <g id="shape28-56" v:mID="28" v:groupContext="shape" transform="translate(24.8183,-46.0236)">
+              <title>工作表.28</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="10.4449" cy="300.165" width="20.89" height="10"/>
+              <rect x="0" y="295.165" width="20.8898" height="10" class="st1"/>
+              <text x="4.88" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>      </g>
+            <g id="shape30-59" v:mID="30" v:groupContext="shape" transform="translate(29.4089,-79.3701)">
+              <title>圆形.47</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="shape53-61" v:mID="53" v:groupContext="shape" transform="translate(56.0769,-179.874)">
+            <title>工作表.53</title>
+            <desc>44500m³</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="28.2043" cy="296.339" width="56.41" height="17.6531"/>
+            <rect x="0" y="287.512" width="56.4087" height="17.6531" class="st1"/>
+            <text x="12.94" y="299.34" class="st10" v:langID="2052"><v:paragraph v:horizAlign="2"/><v:tabList/>44500m³</text>   </g>
+          <g id="shape56-64" v:mID="56" v:groupContext="shape" transform="translate(97.3062,373.97) scale(1,-1)">
+            <title>工作表.56</title>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+            <image x="0" y="293.915" width="8.25" height="11.25" preserveAspectRatio="none" xlink:href="data:image/png;base64,iV
+                  BORw0KGgoAAAANSUhEUgAAAAsAAAAPCAYAAAAyPTUwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAc
+                  dvqGQAAACFSURBVChT5ZHRCYAwEEMDnUEQCi7hDP1yqoLgJI7hl9u4RL3YHrRHxQH8CC3kJVyvSCmhEeASsItG67Ugg0AUyQ2HyNUB2x
+                  oKSJiKfRjwYl4GZiBoIDfnOc8OSJgFnpzC2wuo47DIsXX5ADWwEh5EU5Ea9cmyx7fb6MFz+0D9mLwuq//AN8bmcN0w/dPzAAAAAElFTk
+                  SuQmCC"/>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+          </g>
+          <g id="shape57-68" v:mID="57" v:groupContext="shape" transform="translate(71.8769,-220.534)">
+            <title>工作表.57</title>
+            <desc>-140</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="12.4882" cy="295.165" width="24.98" height="20"/>
+            <rect x="0" y="285.165" width="24.9764" height="20" class="st1"/>
+            <text x="4.48" y="297.57" class="st11" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>-140</text>   </g>
+          <g id="shape60-71" v:mID="60" v:groupContext="shape" transform="translate(73.7008,-91.2388)">
+            <title>工作表.60</title>
+            <desc>水煤浆</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="19.1339" cy="299.381" width="38.27" height="11.5689"/>
+            <rect x="0" y="293.596" width="38.2677" height="11.5689" class="st1"/>
+            <text x="4.13" y="302.38" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>水煤浆</text>   </g>
+          <g id="shape63-74" v:mID="63" v:groupContext="shape" transform="translate(77.9528,-75.8902)">
+            <title>工作表.63</title>
+            <desc>140t</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="14.0311" cy="300.591" width="28.07" height="9.14921"/>
+            <rect x="0" y="296.016" width="28.0622" height="9.14921" class="st1"/>
+            <text x="4.3" y="303.59" class="st10" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>140t</text>    </g>
+          <g id="shape73-77" v:mID="73" v:groupContext="shape" transform="translate(90.8356,492.991) scale(1,-1)">
+            <title>工作表.73</title>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+            <image x="0" y="293.915" width="8.25" height="11.25" preserveAspectRatio="none" xlink:href="data:image/png;base64,iV
+                  BORw0KGgoAAAANSUhEUgAAAAsAAAAPCAYAAAAyPTUwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAc
+                  dvqGQAAAB3SURBVChTY/j//z8DDDPMZPiPBRvD5UcVz2RAhAYwqESBWA6KsQWdN1weyABxsClCF2sBRwhQcTsBDYeB8swwxcxADkgAmw
+                  2vgOLSYEORoloaKAiSQNfgiiu6XdEUN6IkB2QO1P2NUA17Qe4kpBjk/qVALIFuEACcP0g5WuXoxAAAAABJRU5ErkJggg=="/>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+          </g>
+          <g id="shape64-81" v:mID="64" v:groupContext="shape" transform="translate(70.8661,-99.1339)">
+            <title>工作表.64</title>
+            <desc>+9</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="12.4882" cy="295.165" width="24.98" height="20"/>
+            <rect x="0" y="285.165" width="24.9764" height="20" class="st1"/>
+            <text x="7.93" y="297.57" class="st12" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>+9</text>   </g>
+          <g id="shape65-84" v:mID="65" v:groupContext="shape" transform="translate(192.756,-136.535)">
+            <title>工作表.65</title>
+            <desc>45000m³</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="23.9524" cy="299.173" width="47.91" height="11.9839"/>
+            <rect x="0" y="293.181" width="47.9048" height="11.9839" class="st1"/>
+            <text x="4.44" y="302.17" class="st10" v:langID="2052"><v:paragraph v:horizAlign="2"/><v:tabList/>45000m³</text>    </g>
+          <g id="shape74-87" v:mID="74" v:groupContext="shape" transform="translate(222.937,433.127) scale(1,-1)">
+            <title>工作表.74</title>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+            <image x="0" y="293.915" width="8.25" height="11.25" preserveAspectRatio="none" xlink:href="data:image/png;base64,iV
+                  BORw0KGgoAAAANSUhEUgAAAAsAAAAPCAYAAAAyPTUwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAc
+                  dvqGQAAACFSURBVChT5ZHRCYAwEEMDnUEQCi7hDP1yqoLgJI7hl9u4RL3YHrRHxQH8CC3kJVyvSCmhEeASsItG67Ugg0AUyQ2HyNUB2x
+                  oKSJiKfRjwYl4GZiBoIDfnOc8OSJgFnpzC2wuo47DIsXX5ADWwEh5EU5Ea9cmyx7fb6MFz+0D9mLwuq//AN8bmcN0w/dPzAAAAAElFTk
+                  SuQmCC"/>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+          </g>
+          <g id="shape75-91" v:mID="75" v:groupContext="shape" transform="translate(196.89,-161.376)">
+            <title>工作表.75</title>
+            <desc>-450</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="12.4882" cy="295.165" width="24.98" height="20"/>
+            <rect x="0" y="285.165" width="24.9764" height="20" class="st1"/>
+            <text x="4.48" y="297.57" class="st11" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>-450</text>   </g>
+          <g id="shape79-94" v:mID="79" v:groupContext="shape" transform="translate(385.292,-198.379)">
+            <title>工作表.79</title>
+            <desc>144t</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="14.1732" cy="296.339" width="28.35" height="17.6531"/>
+            <rect x="0" y="287.512" width="28.3465" height="17.6531" class="st1"/>
+            <text x="4.88" y="299.34" class="st10" v:langID="2052"><v:paragraph v:horizAlign="2"/><v:tabList/>144t</text>   </g>
+          <g id="shape82-97" v:mID="82" v:groupContext="shape" transform="translate(402.554,366.275) scale(1,-1)">
+            <title>工作表.82</title>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+            <image x="0" y="293.915" width="8.25" height="11.25" preserveAspectRatio="none" xlink:href="data:image/png;base64,iV
+                  BORw0KGgoAAAANSUhEUgAAAAsAAAAPCAYAAAAyPTUwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAc
+                  dvqGQAAAB3SURBVChTY/j//z8DDDPMZPiPBRvD5UcVz2RAhAYwqESBWA6KsQWdN1weyABxsClCF2sBRwhQcTsBDYeB8swwxcxADkgAmw
+                  2vgOLSYEORoloaKAiSQNfgiiu6XdEUN6IkB2QO1P2NUA17Qe4kpBjk/qVALIFuEACcP0g5WuXoxAAAAABJRU5ErkJggg=="/>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+          </g>
+          <g id="shape83-101" v:mID="83" v:groupContext="shape" transform="translate(382.457,-226.89)">
+            <title>工作表.83</title>
+            <desc>+8</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="12.4882" cy="295.165" width="24.98" height="20"/>
+            <rect x="0" y="285.165" width="24.9764" height="20" class="st1"/>
+            <text x="7.93" y="297.57" class="st12" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>+8</text>   </g>
+          <g id="shape84-104" v:mID="84" v:groupContext="shape" transform="translate(478.977,-200.891)">
+            <title>工作表.84</title>
+            <desc>140t</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="19.7004" cy="296.339" width="39.41" height="17.6531"/>
+            <rect x="0" y="287.512" width="39.4008" height="17.6531" class="st1"/>
+            <text x="9.97" y="299.34" class="st10" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>140t</text>   </g>
+          <g id="shape85-107" v:mID="85" v:groupContext="shape" transform="translate(501.513,359.884) scale(1,-1)">
+            <title>工作表.85</title>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+            <image x="0" y="293.915" width="8.25" height="11.25" preserveAspectRatio="none" xlink:href="data:image/png;base64,iV
+                  BORw0KGgoAAAANSUhEUgAAAAsAAAAPCAYAAAAyPTUwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAc
+                  dvqGQAAAB3SURBVChTY/j//z8DDDPMZPiPBRvD5UcVz2RAhAYwqESBWA6KsQWdN1weyABxsClCF2sBRwhQcTsBDYeB8swwxcxADkgAmw
+                  2vgOLSYEORoloaKAiSQNfgiiu6XdEUN6IkB2QO1P2NUA17Qe4kpBjk/qVALIFuEACcP0g5WuXoxAAAAABJRU5ErkJggg=="/>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+          </g>
+          <g id="shape86-111" v:mID="86" v:groupContext="shape" transform="translate(479.371,-232.56)">
+            <title>工作表.86</title>
+            <desc>+4</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="12.4882" cy="295.165" width="24.98" height="20"/>
+            <rect x="0" y="285.165" width="24.9764" height="20" class="st1"/>
+            <text x="7.93" y="297.57" class="st12" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>+4</text>   </g>
+          <g id="shape87-114" v:mID="87" v:groupContext="shape" transform="translate(426.007,-20.4725)">
+            <title>工作表.87</title>
+            <desc>42000m³</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="28.2043" cy="296.339" width="56.41" height="17.6531"/>
+            <rect x="0" y="287.512" width="56.4087" height="17.6531" class="st1"/>
+            <text x="8.47" y="299.34" class="st10" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>42000m³</text>    </g>
+          <g id="shape88-117" v:mID="88" v:groupContext="shape" transform="translate(458.993,540.538) scale(1,-1)">
+            <title>工作表.88</title>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+            <image x="0" y="293.915" width="8.25" height="11.25" preserveAspectRatio="none" xlink:href="data:image/png;base64,iV
+                  BORw0KGgoAAAANSUhEUgAAAAsAAAAPCAYAAAAyPTUwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAc
+                  dvqGQAAACFSURBVChT5ZHRCYAwEEMDnUEQCi7hDP1yqoLgJI7hl9u4RL3YHrRHxQH8CC3kJVyvSCmhEeASsItG67Ugg0AUyQ2HyNUB2x
+                  oKSJiKfRjwYl4GZiBoIDfnOc8OSJgFnpzC2wuo47DIsXX5ADWwEh5EU5Ea9cmyx7fb6MFz+0D9mLwuq//AN8bmcN0w/dPzAAAAAElFTk
+                  SuQmCC"/>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+          </g>
+          <g id="shape89-121" v:mID="89" v:groupContext="shape" transform="translate(434.016,-53.965)">
+            <title>工作表.89</title>
+            <desc>-500</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="12.4882" cy="295.165" width="24.98" height="20"/>
+            <rect x="0" y="285.165" width="24.9764" height="20" class="st1"/>
+            <text x="4.48" y="297.57" class="st11" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>-500</text>   </g>
+          <g id="group18-124" transform="translate(430.646,-146.747)" v:mID="18" v:groupContext="group">
+            <title>工作表.18</title>
+            <g id="shape36-125" v:mID="36" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="166.834" width="48.189" height="138.331" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape37-127" v:mID="37" v:groupContext="shape" transform="translate(4.42857,-34.0157)">
+              <title>工作表.37</title>
+              <desc>50万吨精馏</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.4272" cy="268.315" width="22.86" height="73.7008"/>
+              <rect x="0" y="231.464" width="22.8543" height="73.7008" class="st1"/>
+              <text x="4.75" y="243.11" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>50<tspan x="5.42"
+                    dy="1.2em" class="st7">万</tspan><tspan x="5.42" dy="1.2em" class="st7">吨</tspan><tspan x="5.42"
+                    dy="1.2em" class="st7">精</tspan><tspan x="5.42" dy="1.2em" class="st7">馏</tspan></text>     </g>
+            <g id="shape38-134" v:mID="38" v:groupContext="shape" transform="translate(24.8183,-46.0236)">
+              <title>工作表.38</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="10.4449" cy="300.165" width="20.89" height="10"/>
+              <rect x="0" y="295.165" width="20.8898" height="10" class="st1"/>
+              <text x="4.88" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>      </g>
+            <g id="shape39-137" v:mID="39" v:groupContext="shape" transform="translate(29.4089,-79.3701)">
+              <title>圆形.47</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="shape51-139" v:mID="51" v:groupContext="shape" transform="translate(366.11,19.9859) rotate(90)">
+            <title>工作表.51</title>
+            <path d="M0 305.17 L266.43 305.17" class="st8"/>
+          </g>
+          <g id="shape91-142" v:mID="91" v:groupContext="shape" transform="translate(496.038,20.9246) rotate(90)">
+            <title>工作表.91</title>
+            <path d="M0 305.17 L264.81 305.17" class="st8"/>
+          </g>
+          <g id="shape52-145" v:mID="52" v:groupContext="shape" transform="translate(552.416,19.4546) rotate(90)">
+            <title>工作表.52</title>
+            <path d="M0 305.17 L266.28 305.17" class="st8"/>
+          </g>
+          <g id="group111-148" transform="translate(251.575,-237.011)" v:mID="111" v:groupContext="group">
+            <title>工作表.111</title>
+            <g id="shape112-149" v:mID="112" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="256.976" width="68.2744" height="48.189" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape113-151" v:mID="113" v:groupContext="shape" transform="translate(0.900942,-26.3217)">
+              <title>工作表.113</title>
+              <desc>1100#净化</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="33.3628" cy="298.079" width="66.73" height="14.1732"/>
+              <rect x="0" y="290.992" width="66.7256" height="14.1732" class="st1"/>
+              <text x="4.66" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>1100#净化</text>     </g>
+            <g id="shape114-154" v:mID="114" v:groupContext="shape" transform="translate(34.2586,-5.66929)">
+              <title>工作表.114</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+            <g id="shape115-157" v:mID="115" v:groupContext="shape" transform="translate(11.5815,-5.66929)">
+              <title>圆形.8</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="group116-159" transform="translate(251.575,-180.521)" v:mID="116" v:groupContext="group">
+            <title>工作表.116</title>
+            <g id="shape117-160" v:mID="117" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="256.976" width="68.2744" height="48.189" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape118-162" v:mID="118" v:groupContext="shape" transform="translate(0.900942,-26.3217)">
+              <title>工作表.118</title>
+              <desc>1000#净化</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="33.3628" cy="298.079" width="66.73" height="14.1732"/>
+              <rect x="0" y="290.992" width="66.7256" height="14.1732" class="st1"/>
+              <text x="4.66" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>1000#净化</text>     </g>
+            <g id="shape119-165" v:mID="119" v:groupContext="shape" transform="translate(34.2586,-5.66929)">
+              <title>工作表.119</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+            <g id="shape120-168" v:mID="120" v:groupContext="shape" transform="translate(11.5815,-5.66929)">
+              <title>圆形.8</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="group121-170" transform="translate(251.575,-124.03)" v:mID="121" v:groupContext="group">
+            <title>工作表.121</title>
+            <g id="shape122-171" v:mID="122" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="256.976" width="68.2744" height="48.189" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape123-173" v:mID="123" v:groupContext="shape" transform="translate(0.900942,-26.3217)">
+              <title>工作表.123</title>
+              <desc>700#净化</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="33.3628" cy="298.079" width="66.73" height="14.1732"/>
+              <rect x="0" y="290.992" width="66.7256" height="14.1732" class="st1"/>
+              <text x="8" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>700#净化</text>     </g>
+            <g id="shape124-176" v:mID="124" v:groupContext="shape" transform="translate(34.2586,-5.66929)">
+              <title>工作表.124</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+            <g id="shape125-179" v:mID="125" v:groupContext="shape" transform="translate(11.5815,-5.66929)">
+              <title>圆形.8</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="group126-181" transform="translate(251.575,-67.54)" v:mID="126" v:groupContext="group">
+            <title>工作表.126</title>
+            <g id="shape127-182" v:mID="127" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="256.976" width="68.2744" height="48.189" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape128-184" v:mID="128" v:groupContext="shape" transform="translate(0.900942,-26.3217)">
+              <title>工作表.128</title>
+              <desc>800#净化</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="33.3628" cy="298.079" width="66.73" height="14.1732"/>
+              <rect x="0" y="290.992" width="66.7256" height="14.1732" class="st1"/>
+              <text x="8" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>800#净化</text>     </g>
+            <g id="shape129-187" v:mID="129" v:groupContext="shape" transform="translate(34.2586,-5.66929)">
+              <title>工作表.129</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+            <g id="shape130-190" v:mID="130" v:groupContext="shape" transform="translate(11.5815,-5.66929)">
+              <title>圆形.8</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="shape62-192" v:mID="62" v:groupContext="shape" transform="translate(629.023,18.75) rotate(90)">
+            <title>工作表.62</title>
+            <path d="M0 305.17 L266.98 305.17" class="st8"/>
+          </g>
+          <g id="shape92-195" v:mID="92" v:groupContext="shape" transform="translate(430.512,-109.055)">
+            <title>工作表.92</title>
+            <path d="M0 305.17 L73.65 305.17" class="st3"/>
+          </g>
+          <g id="shape94-200" v:mID="94" v:groupContext="shape" transform="translate(431.718,-107.435)">
+            <title>工作表.94</title>
+            <desc>华林净化气</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="34.7794" cy="295.165" width="69.56" height="20"/>
+            <rect x="0" y="285.165" width="69.5588" height="20" class="st1"/>
+            <text x="9.78" y="298.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>华林净化气</text>   </g>
+          <g id="shape93-203" v:mID="93" v:groupContext="shape" transform="translate(437.174,-91.402)">
+            <title>工作表.93</title>
+            <desc>42000m³</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="28.2043" cy="296.339" width="56.41" height="17.6531"/>
+            <rect x="0" y="287.512" width="56.4087" height="17.6531" class="st1"/>
+            <text x="8.47" y="299.34" class="st10" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>42000m³</text>    </g>
+          <g id="shape131-206" v:mID="131" v:groupContext="shape" transform="translate(471.159,472.771) scale(1,-1)">
+            <title>工作表.131</title>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+            <image x="0" y="293.915" width="8.25" height="11.25" preserveAspectRatio="none" xlink:href="data:image/png;base64,iV
+                  BORw0KGgoAAAANSUhEUgAAAAsAAAAPCAYAAAAyPTUwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAc
+                  dvqGQAAACFSURBVChT5ZHRCYAwEEMDnUEQCi7hDP1yqoLgJI7hl9u4RL3YHrRHxQH8CC3kJVyvSCmhEeASsItG67Ugg0AUyQ2HyNUB2x
+                  oKSJiKfRjwYl4GZiBoIDfnOc8OSJgFnpzC2wuo47DIsXX5ADWwEh5EU5Ea9cmyx7fb6MFz+0D9mLwuq//AN8bmcN0w/dPzAAAAAElFTk
+                  SuQmCC"/>
+            <rect v:rectContext="foreign" x="0" y="293.915" width="8.25" height="11.25" class="st1"/>
+          </g>
+          <g id="shape132-210" v:mID="132" v:groupContext="shape" transform="translate(446.183,-121.732)">
+            <title>工作表.132</title>
+            <desc>-500</desc>
+            <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+            <v:textRect cx="12.4882" cy="295.165" width="24.98" height="20"/>
+            <rect x="0" y="285.165" width="24.9764" height="20" class="st1"/>
+            <text x="4.48" y="297.57" class="st11" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>-500</text>   </g>
+          <g id="group9-213" transform="translate(118.346,-246)" v:mID="9" v:groupContext="group">
+            <title>工作表.9</title>
+            <g id="shape17-214" v:mID="17" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="266.978" width="68.2744" height="38.1876" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape19-216" v:mID="19" v:groupContext="shape" transform="translate(4.14054,-19.8425)">
+              <title>工作表.19</title>
+              <desc>5#气化</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="29.4094" cy="298.079" width="58.82" height="14.1732"/>
+              <rect x="0" y="290.992" width="58.8189" height="14.1732" class="st1"/>
+              <text x="10.72" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>5#气化</text>     </g>
+            <g id="shape4-219" v:mID="4" v:groupContext="shape" transform="translate(34.2586,-4.92126)">
+              <title>工作表.4</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+            <g id="shape8-222" v:mID="8" v:groupContext="shape" transform="translate(11.5815,-4.25197)">
+              <title>圆形.8</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="group10-224" transform="translate(118.346,-200.848)" v:mID="10" v:groupContext="group">
+            <title>工作表.10</title>
+            <g id="shape11-225" v:mID="11" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="266.978" width="68.2744" height="38.1876" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape12-227" v:mID="12" v:groupContext="shape" transform="translate(4.14054,-19.8425)">
+              <title>工作表.12</title>
+              <desc>6#气化</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="29.4094" cy="298.079" width="58.82" height="14.1732"/>
+              <rect x="0" y="290.992" width="58.8189" height="14.1732" class="st1"/>
+              <text x="10.72" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>6#气化</text>     </g>
+            <g id="shape13-230" v:mID="13" v:groupContext="shape" transform="translate(34.2586,-4.92126)">
+              <title>工作表.13</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+            <g id="shape22-233" v:mID="22" v:groupContext="shape" transform="translate(11.5815,-4.25197)">
+              <title>圆形.8</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="group23-235" transform="translate(118.346,-155.494)" v:mID="23" v:groupContext="group">
+            <title>工作表.23</title>
+            <g id="shape24-236" v:mID="24" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="266.978" width="68.2744" height="38.1876" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape25-238" v:mID="25" v:groupContext="shape" transform="translate(4.14054,-19.8425)">
+              <title>工作表.25</title>
+              <desc>7#气化</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="29.4094" cy="298.079" width="58.82" height="14.1732"/>
+              <rect x="0" y="290.992" width="58.8189" height="14.1732" class="st1"/>
+              <text x="10.72" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>7#气化</text>     </g>
+            <g id="shape26-241" v:mID="26" v:groupContext="shape" transform="translate(34.2586,-4.92126)">
+              <title>工作表.26</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+            <g id="shape27-244" v:mID="27" v:groupContext="shape" transform="translate(11.5815,-4.25197)">
+              <title>圆形.8</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="group29-246" transform="translate(118.346,-110.14)" v:mID="29" v:groupContext="group">
+            <title>工作表.29</title>
+            <g id="shape31-247" v:mID="31" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="266.978" width="68.2744" height="38.1876" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape32-249" v:mID="32" v:groupContext="shape" transform="translate(4.14054,-19.8425)">
+              <title>工作表.32</title>
+              <desc>8#气化</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="29.4094" cy="298.079" width="58.82" height="14.1732"/>
+              <rect x="0" y="290.992" width="58.8189" height="14.1732" class="st1"/>
+              <text x="10.72" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>8#气化</text>     </g>
+            <g id="shape33-252" v:mID="33" v:groupContext="shape" transform="translate(34.2586,-4.92126)">
+              <title>工作表.33</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+            <g id="shape34-255" v:mID="34" v:groupContext="shape" transform="translate(11.5815,-4.25197)">
+              <title>圆形.8</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="group48-257" transform="translate(118.346,-64.7855)" v:mID="48" v:groupContext="group">
+            <title>工作表.48</title>
+            <g id="shape50-258" v:mID="50" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="266.978" width="68.2744" height="38.1876" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape54-260" v:mID="54" v:groupContext="shape" transform="translate(4.14054,-19.8425)">
+              <title>工作表.54</title>
+              <desc>9#气化</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="29.4094" cy="298.079" width="58.82" height="14.1732"/>
+              <rect x="0" y="290.992" width="58.8189" height="14.1732" class="st1"/>
+              <text x="10.72" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>9#气化</text>     </g>
+            <g id="shape66-263" v:mID="66" v:groupContext="shape" transform="translate(34.2586,-4.92126)">
+              <title>工作表.66</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+            <g id="shape67-266" v:mID="67" v:groupContext="shape" transform="translate(11.5815,-4.25197)">
+              <title>圆形.8</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="group101-268" transform="translate(118.346,-21.1311)" v:mID="101" v:groupContext="group">
+            <title>工作表.101</title>
+            <g id="shape102-269" v:mID="102" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="266.978" width="68.2744" height="38.1876" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape103-271" v:mID="103" v:groupContext="shape" transform="translate(4.14054,-19.8425)">
+              <title>工作表.103</title>
+              <desc>10#气化</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="29.4094" cy="298.079" width="58.82" height="14.1732"/>
+              <rect x="0" y="290.992" width="58.8189" height="14.1732" class="st1"/>
+              <text x="7.38" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>10#气化</text>     </g>
+            <g id="shape104-274" v:mID="104" v:groupContext="shape" transform="translate(34.2586,-4.92126)">
+              <title>工作表.104</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+            <g id="shape105-277" v:mID="105" v:groupContext="shape" transform="translate(11.5815,-4.25197)">
+              <title>圆形.8</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+          </g>
+          <g id="group1-279" transform="translate(18.24,-203.683)" v:mID="1" v:groupContext="group">
+            <title>工作表.1</title>
+            <g id="shape14-280" v:mID="14" v:groupContext="shape">
+              <title>框.14</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="224.66" width="38.4529" height="80.5048" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape15-282" v:mID="15" v:groupContext="shape" transform="translate(1.60252,-6.37795)">
+              <title>工作表.15</title>
+              <desc>空分5#</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="8.09229" cy="274.693" width="16.19" height="60.9449"/>
+              <rect x="0" y="244.22" width="16.1846" height="60.9449" class="st1"/>
+              <text x="4" y="256.69" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>空<tspan x="4"
+                    dy="1.2em" class="st7">分</tspan><tspan x="4.75" dy="1.2em" class="st7">5</tspan><tspan x="4.75"
+                    dy="1.2em" class="st7">#</tspan></text>     </g>
+            <g id="shape16-288" v:mID="16" v:groupContext="shape" transform="translate(21.445,-45.3543)">
+              <title>圆形.16</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+            <g id="shape95-290" v:mID="95" v:groupContext="shape" transform="translate(14.7285,-17.6772)">
+              <title>工作表.95</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+          </g>
+          <g id="group35-293" transform="translate(18.24,-112.407)" v:mID="35" v:groupContext="group">
+            <title>工作表.35</title>
+            <g id="shape76-294" v:mID="76" v:groupContext="shape">
+              <title>框.14</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="224.66" width="38.4529" height="80.5048" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape77-296" v:mID="77" v:groupContext="shape" transform="translate(1.60252,-6.37795)">
+              <title>工作表.77</title>
+              <desc>空分6#</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="8.09229" cy="274.693" width="16.19" height="60.9449"/>
+              <rect x="0" y="244.22" width="16.1846" height="60.9449" class="st1"/>
+              <text x="4" y="256.69" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>空<tspan x="4"
+                    dy="1.2em" class="st7">分</tspan><tspan x="4.75" dy="1.2em" class="st7">6</tspan><tspan x="4.75"
+                    dy="1.2em" class="st7">#</tspan></text>     </g>
+            <g id="shape78-302" v:mID="78" v:groupContext="shape" transform="translate(21.445,-45.3543)">
+              <title>圆形.16</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+            <g id="shape80-304" v:mID="80" v:groupContext="shape" transform="translate(14.7285,-17.6772)">
+              <title>工作表.80</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+          </g>
+          <g id="group96-307" transform="translate(18.24,-21.1311)" v:mID="96" v:groupContext="group">
+            <title>工作表.96</title>
+            <g id="shape97-308" v:mID="97" v:groupContext="shape">
+              <title>框.14</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="224.66" width="38.4529" height="80.5048" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape98-310" v:mID="98" v:groupContext="shape" transform="translate(1.60252,-6.37795)">
+              <title>工作表.98</title>
+              <desc>空分7#</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="8.09229" cy="274.693" width="16.19" height="60.9449"/>
+              <rect x="0" y="244.22" width="16.1846" height="60.9449" class="st1"/>
+              <text x="4" y="256.69" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>空<tspan x="4"
+                    dy="1.2em" class="st7">分</tspan><tspan x="4.75" dy="1.2em" class="st7">7</tspan><tspan x="4.75"
+                    dy="1.2em" class="st7">#</tspan></text>     </g>
+            <g id="shape99-316" v:mID="99" v:groupContext="shape" transform="translate(21.445,-45.3543)">
+              <title>圆形.16</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <path d="M0 299.5 A5.66929 5.66929 0 1 1 11.34 299.5 A5.66929 5.66929 0 0 1 0 299.5 Z" class="st9"/>
+            </g>
+            <g id="shape100-318" v:mID="100" v:groupContext="shape" transform="translate(14.7285,-17.6772)">
+              <title>工作表.100</title>
+              <desc>90</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="11.8622" cy="300.165" width="23.73" height="10"/>
+              <rect x="0" y="295.165" width="23.7244" height="10" class="st1"/>
+              <text x="6.3" y="303.17" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>90</text>     </g>
+          </g>
+          <g id="group69-321" transform="translate(429.518,-40.748)" v:mID="69" v:groupContext="group">
+            <title>工作表.69</title>
+            <g id="shape90-322" v:mID="90" v:groupContext="shape">
+              <title>工作表.90</title>
+              <path d="M0 305.17 L40.98 305.17" class="st3"/>
+            </g>
+          </g>
+          <g id="group45-327" transform="translate(478.87,-221.102)" v:mID="45" v:groupContext="group">
+            <title>工作表.45</title>
+            <g id="shape58-328" v:mID="58" v:groupContext="shape">
+              <title>工作表.58</title>
+              <path d="M0 305.17 L40.98 305.17" class="st3"/>
+            </g>
+          </g>
+          <g id="shape59-333" v:mID="59" v:groupContext="shape" transform="translate(114.112,521.577) rotate(180)">
+            <title>工作表.59</title>
+            <path d="M5.36 305.17 L5.72 305.17 L40.41 305.17" class="st13"/>
+          </g>
+          <g id="shape61-339" v:mID="61" v:groupContext="shape" transform="translate(378.866,216.684) rotate(90)">
+            <title>工作表.61</title>
+            <path d="M0 305.17 L69.68 305.17" class="st15"/>
+          </g>
+          <g id="group106-342" transform="translate(327.756,-83.2677)" v:mID="106" v:groupContext="group">
+            <title>工作表.106</title>
+            <g id="shape107-343" v:mID="107" v:groupContext="shape">
+              <title>框.17</title>
+              <v:userDefs>
+                <v:ud v:nameU="visVersion" v:val="VT0(14):26"/>
+              </v:userDefs>
+              <rect x="0" y="256.976" width="102.047" height="48.189" rx="2.83465" ry="2.83465" class="st5"/>
+            </g>
+            <g id="shape108-345" v:mID="108" v:groupContext="shape" transform="translate(2.48031,-17.3622)">
+              <title>工作表.108</title>
+              <desc>华林净化气装置</desc>
+              <v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+              <v:textRect cx="48.1004" cy="298.079" width="96.21" height="14.1732"/>
+              <rect x="0" y="290.992" width="96.2008" height="14.1732" class="st1"/>
+              <text x="6.08" y="301.68" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>华林净化气装置</text>     </g>
+          </g>
+        </g>
+      </svg>
+    </script>
+    <script type="text/template" id="tpl-template-process-bar">
+      <div class="clearfix">
+        <div class="pull-left" style="width:<%=width%>px; margin:0 -20px 0 30px;">
+          <div class="progress" style="margin:5px 5px 5px 0;height:10px;" title="<%=progress%>">
+            <div class="progress-bar <%=style%>" role="progressbar" aria-valuenow="<%=progress%>" aria-valuemin="0" aria-valuemax="<%=max%>" style="width:<%=progress%>%">
+              <span class="sr-only"><%=progress%>%</span>
+            </div>
+          </div>
+        </div>
+        <div class="pull-right"><%=progress%></div>
+      </div>
+    </script>
+
+    <script src="lib/echarts/echarts.js"></script>
+    <script>
+      // 路径配置
+      require.config({
+        paths: {
+          echarts: 'lib/echarts',
+          underscore: 'lib/underscore-min',
+          backbone: 'lib/backbone-min',
+          jquery: 'lib/jquery.min',
+          bootstrap:'bootstrap/js/bootstrap.amd',
+          main: location.hostname === 'localhost' ? 'main' : 'main-built'
+        },
+        config:{
+          'app/dataset':{
+            mode: location.hostname === '10.99.2.9' ? 
+              'product' : 
+              location.hostname === 'localhost' ? 
+                'develop' : 
+                'demo'
+          }
+        }
+      });
+      require(['main'],function(app){});
+    </script>
+  </body>
+</html>

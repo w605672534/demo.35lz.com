@@ -1,0 +1,13 @@
+define({
+	name:'home',
+	params:{},
+	views:[
+		{
+			id:'1',
+			title:'企业导航',
+			column:12,
+			height:600,
+			view:'view/welcome/index'
+		}
+	]
+});

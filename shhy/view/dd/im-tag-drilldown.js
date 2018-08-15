@@ -1,0 +1,23 @@
+define({
+	widget:'webkit/block',
+	series:[
+		{
+			id:'1',
+			column:7,
+			height:210,
+			view:'view/dd/tank-details'
+		},
+		{
+			id:'2',
+			column:5,
+			height:210,
+			view:'view/dd/im-tank-state'
+		},
+		{
+			id:'4',
+			height:180,
+			column:12,
+			view:'view/dd/tag-trend'
+		}
+	]
+});

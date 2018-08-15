@@ -1,0 +1,9 @@
+define({
+	defaults:{
+		width:60,
+		style:'progress-bar-success',
+		progress:100,
+		max:100
+	},
+	html:$('#tpl-template-process-bar').html()
+});

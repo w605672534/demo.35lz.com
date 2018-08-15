@@ -1,0 +1,28 @@
+define({
+	title:{
+		text:'标题',
+		subtext:'副标题'
+	},
+	refreshTime:0,
+	url:'',
+	widget:'webkit/block',
+	series:[
+		{
+			id:'1',
+			column:8,
+			height:400,
+			view:'view/uom/com-unit-operation'
+		},
+		{
+			id:'2',
+			column:4,
+			height:200,
+			view:'view/uom/com-onoff-count'
+		},
+		{
+			id:'3',
+			height:200,
+			view:'view/uom/com-onoff-year-count'
+		}
+	]
+});

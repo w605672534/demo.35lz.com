@@ -1,0 +1,19 @@
+define({
+	refreshTime:0,
+	url:'',
+	widget:'webkit/block',
+	series:[
+		{
+			id:'1',
+			column:12,
+			height:120,
+			view:'view/jh/new_c1_energy_daily'
+		},
+		{
+			id:'2',
+			column:12,
+			height:100,
+			view:'view/jh/new_c1_energy_10d'
+		},
+	]
+});

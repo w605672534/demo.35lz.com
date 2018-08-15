@@ -1,0 +1,11 @@
+define({
+	widget:'webkit/grid',
+	dataset:'HYMII/UOM/corp_equ_qry',
+  params:{
+    'EQU_ID':null
+  },
+  maxLength:1,
+	series:{
+		template:$('#tpl-equ-detail').html()
+	}
+});

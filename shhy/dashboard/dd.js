@@ -1,0 +1,27 @@
+define({
+	name:'im',
+	params:{},
+	views:[
+		{
+			id:'1',
+			title:'储罐实时数据位号下钻',
+			column:6,
+			height:420,
+			view:'view/dd/im-tag-drilldown'
+		},
+		{
+			id:'2',
+			title:'关键设备详情下钻',
+			column:6,
+			height:420,
+			view:'view/dd/uom-equ-drilldown'
+		},
+		{
+			id:'3',
+			title:'装置运行详情下钻',
+			column:12,
+			height:420,
+			view:'view/uom/unit-status-details'
+		}
+	]
+});
