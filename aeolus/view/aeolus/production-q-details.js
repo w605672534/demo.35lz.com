@@ -1,0 +1,12 @@
+define({
+	widget:'webkit/grid',
+	dataset:'AL/production',
+	params:{
+    '产品':null
+  },
+  tooltip:true,
+  maxLength:1,
+	series:{
+		template:$('#tpl-qdetail').html()
+	}
+});

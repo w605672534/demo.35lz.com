@@ -1,0 +1,19 @@
+define({
+	widget:'webkit/block',
+	series:[
+		{
+			id:'1',
+			title:'',
+			column:6,
+			height:175,
+			view:'view/aeolus/production-q-top3'
+		},
+		{
+			id:'2',
+			title:'',
+			column:6,
+			height:220,
+			view:'view/aeolus/production-q-top5'
+		}
+	]
+});

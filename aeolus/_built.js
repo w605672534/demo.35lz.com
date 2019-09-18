@@ -1,0 +1,1 @@
+r.js -o baseUrl=. paths.jquery=empty: paths.underscore=lib/underscore-min paths.backbone=lib/backbone-min paths.bootstrap=bootstrap/js/bootstrap.amd paths.bootstrapsubmenu=bootstrap/js/bootstrap-submenu.min paths.echarts=empty: name=main out=main-built.js

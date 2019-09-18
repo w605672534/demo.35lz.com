@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>Dashboard</title>
+    <!-- CSS -->
+    <!-- CSS-Bootstrap -->
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/dashboard.css" rel="stylesheet">
+    <link href="./css/theme/default.css" rel="stylesheet" id="theme-link">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="../../www/lib/html5shiv.min.js"></script>
+      <script src="../../www/lib/respond.min.js"></script>
+      <script src="../../www/lib/console-polyfill.js"></script>
+    <![endif]-->
+  </head>
+  <body style="padding-top: 20px;">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="box-shadow: 0 2px 2px rgba(0,0,0,.05);display:none;">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="pull-left" href="#/welcome" title="" style="margin-top:5px; margin-right:20px;">
+            <img id="logo-hd" src="../../www/images/logo/aeolus-logo.png" border="0" height="40" class="pull-left" alt="">
+            <img id="logo-bg-dark" src="../../www/images/logo/aeolus-dark-logo.png" border="0" height="40" class="pull-left" alt="">
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#/welcome">企业导航</a></li>
+            <li><a href="#/a-pm">生产运营</a></li>
+            <li><a href="#/a-qm">产品质量</a></li>
+            <li><a href="#/a-fsm">工段管理</a></li>
+            <li class="dropdown">
+              <a href="#/com" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">制造四部 <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#/a-fsm">密炼工段</a></li>
+                <li><a href="#/a-fsm">成型工段</a></li>
+                <li><a href="#/a-fsm">硫化工段</a></li>
+                <li><a href="#/a-fsm">物流配送</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right hidden-xs">
+            <li><a href="#/welcome" title="主页"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li><a id="dashboard-fullscreen-btn" href="javascript:void(0);" title="全屏"><span class="glyphicon glyphicon-fullscreen"></span></a></li>
+            <li><a id="dashboard-exit-fullscreen-btn" style="display:none;" href="javascript:void(0);" title="退出全屏"><span class="glyphicon glyphicon-resize-small"></span></a></li>
+            <li><a id="dashboard-refresh-btn" href="javascript:void(0);" title="刷新"><span class="glyphicon glyphicon-refresh"></span></a></li>
+            <li><a id="dashboard-setting-btn" href="javascript:void(0);" title="设置"><span class="glyphicon glyphicon-cog"></span></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <header style="display:none;">
+      <h4 class="text-center"></h4>
+      <hr>
+    </header>
+
+    <!--Dashboard Container-->
+    <div id="db-container" class="container-fluid"></div>
+
+    <!--Application Templates-->
+    <script type="text/template" id="tpl-setting-box">
+      <div class="row setting-box">
+        <div class="col-xs-12 col-sm-4" data-name="default">
+          <div class="setting-box-item" style="background-color:#FFF;">
+            <h5>默认</h5>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4" data-name="blue">
+          <div class="setting-box-item" style="background-color:#0E447C;">
+            <h5>蓝色</h5>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4" data-name="dark">
+          <div class="setting-box-item" style="background-color:#333;">
+            <h5>黑色</h5>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-layout-column">
+      <div class="col-xs-12 dashboard-view"></div>
+    </script>
+
+    <script type="text/template" id="tpl-view-panel">
+      <div class="panel panel-default dashboard-panel">
+        <div class="panel-heading">
+          <strong class="text-primary"><%=title%></strong>
+          <span class="glyphicon glyphicon-info-sign pull-right text-muted view-tips"></span>
+        </div>
+        <div class="panel-body dashboard-panel-body mobile-auto-height">
+        </div>
+      </div>
+    </script>
+    
+    <script type="text/template" id="tpl-grid-unit">
+      <div class="panel <%= (UNIT_STATE_VALUE == '1') ? 'panel-success' : 'panel-danger'%> unit-box text-center" data-toggle="tooltip" data-placement="top" data-original-title="<%=UNIT_NAME%>">
+        <div class="panel-heading <%//= (UNIT_STATE_VALUE == '1') ? '' : 'bg-danger'%>">
+          <p style="font-size:12px;"><%=UNIT_NAME%></p>
+          <div class="progress" style="margin:4px;height:3px;">
+            <div class="progress-bar <%= (load > 50) ? 'progress-bar-success' : 'progress-bar-danger'%>" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: <%=load%>%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-grid-tank">
+      <div class="grid-tank">
+        <span class="glyphicon glyphicon-home pull-right text-muted hidden"></span>
+        <div class="tank tank-<%=status%>">
+          <div class="tank-footer"></div>
+          <div class="tank-inner">
+            <div class="tank-header"></div>
+            <div class="tank-body"></div>
+          </div>
+          <div class="tank-outer"></div>
+          <div class="tank-value"><%=parseFloat(LEVEL_TAG1_VALUE ? LEVEL_TAG1_VALUE : LEVEL_TAG2_VALUE) .toFixed(3)%></div>
+        </div>
+        <p style="font-size:12px; margin: 5px;white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;"><%=BLOCK_NAME%></p>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-grid-energy">
+      <div style="padding:5px 15px; margin:0 5px; border: 1px solid #ddd;">
+        <h3 style="margin:5px 0;text-align:center;"><%=ENERGY_NAME%> <small><%=UNIT%></small></h3>
+        <p style="margin:0"><strong>本日值</strong> <span class="pull-right"><%=CURRENT%></span></p>
+        <p style="margin:0"><strong>月累计</strong> <span class="pull-right"><%=MTD%></span></p>
+        <p style="margin:0"><strong>年累计</strong> <span class="pull-right"><%=YTD%></span></p>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-block-column">
+      <div class="block-view"></div>
+    </script>
+
+    <script type="text/template" id="tpl-block-view">
+      <div class="block-view-body dashboard-panel-body mobile-auto-height">
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title"><%=title%></h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-unit-detail">
+      <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>装置名称</th>
+          <td><%=UNIT_NAME%></td>
+        </tr>
+        <tr>
+          <th>公司名称</th>
+          <td><%=FACTORY_NAME%></td>
+        </tr>
+        <tr style="display:none;">
+          <th>月累计停机时长</th>
+          <td><strong class="text-danger">10小时</span></td>
+        </tr>
+        <tr>
+          <th>状态位号</th>
+          <td><%=UNIT_STATE_TAG%></td>
+        </tr>
+        <tr>
+          <th>负荷位号</th>
+          <td><%=UNIT_LOAD_TAG%></td>
+        </tr>
+        <tr>
+          <th>实时状态</th>
+          <td data-toggle="tooltip" title="状态位号：<%=UNIT_STATE_TAG%>">
+            <% if(UNIT_STATE_VALUE == 1) { %>
+            <span class="status-round status-round-success"></span>
+            <% }else{%>
+            <span class="status-round status-round-danger"></span>
+            <% } %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </script>
+
+    <script type="text/template" id="tpl-equ-detail">
+      <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>设备名称</th>
+          <td><%=EQU_NAME%></td>
+        </tr>
+        <tr>
+          <th>装置名称</th>
+          <td><%=UNIT_NAME%></td>
+        </tr>
+        <tr>
+          <th>公司名称</th>
+          <td><%=FACTORY_NAME%></td>
+        </tr>
+        <tr style="display:none;">
+          <th>月累计停机时长</th>
+          <td><strong class="text-danger">10小时</span></td>
+        </tr>
+        <tr>
+          <th>状态位号</th>
+          <td><%=EQU_STATE_TAG%></td>
+        </tr>
+        <tr>
+          <th>实时状态</th>
+          <td data-toggle="tooltip" title="状态位号：">
+            <% if(EQU_STATE_VALUE == 1) { %>
+            <span class="status-round status-round-success"></span>
+            <% }else{%>
+            <span class="status-round status-round-danger"></span>
+            <% } %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </script>
+
+  <script type="text/template" id="tpl-tank-detail">
+      <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>储罐/仓位</th>
+          <td><%=BLOCK_NAME%></td>
+        </tr>
+        <tr data-tag="<%=TEMP_TAG%>">
+          <th>温度</th>
+          <td><%=parseFloat(TEMP_TAG_VALUE ? TEMP_TAG_VALUE : 0).toFixed(3)%></td>
+        </tr>
+        <tr data-tag="<%=PRESSURE_TAG%>">
+          <th>压力</th>
+          <td><%=parseFloat(PRESSURE_TAG_VALUE ? PRESSURE_TAG_VALUE : 0).toFixed(3)%></td>
+        </tr>
+        <tr data-tag="<%=LEVEL_TAG1%>">
+          <th>液位</th>
+          <td><%=parseFloat(LEVEL_TAG1_VALUE ? LEVEL_TAG1_VALUE : LEVEL_TAG2_VALUE).toFixed(3)%></td>
+        </tr>
+      </tbody>
+    </table>
+    </script>
+
+    <script type="text/template" id="tpl-onoff-count">
+      <h5 style="font-size:16px; padding-left:8px; margin:0;">
+        <strong>年度累计停机统计</strong>
+      </h5>
+      <hr style="margin: 10px 0;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>类型</th>
+            <th class="text-right"><div>总时长</div></th>
+            <th class="text-right"><div>计划</div></th>
+            <th class="text-right"><div>非计划</div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="text-primary">装置</th>
+            <td class="text-right"><div>365</div></td>
+            <td class="text-right"><div>100</div></td>
+            <td class="text-right"><div>165</div></td>
+          </tr>
+          <tr>
+            <th class="text-primary">设备</th>
+            <td class="text-right"><div>378</div></td>
+            <td class="text-right"><div>178</div></td>
+            <td class="text-right"><div>278</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </script>
+
+    <script type="text/template" id="tpl-top3">
+      <h5 class="text-center" style="margin:8px 0;font-size: 16px;"><strong>产品合格率 Top 3</strong></h5>
+      <div style="padding: 0 10px;">
+        <table class="table table-condensed" style="margin:0">
+          <thead style="display: none;">
+            <tr>
+              <th class="text-center">排名</th>
+              <th>产品</th>
+              <th class="text-right">合格率</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="text-primary text-center">
+                <span class="label label-success badges-round">1</span>
+              </th>
+              <td>L-3/G-2(斜交胎)</td>
+              <td class="text-success text-right">99%</td>
+            </tr>
+            <tr>
+              <th class="text-primary text-center">
+                <span class="label label-success badges-round">2</span>
+              </th>
+              <td>E-4/G-4D(斜交胎)</td>
+              <td class="text-success text-right">95%</td>
+            </tr>
+             <tr>
+              <th class="text-primary text-center">
+                <span class="label label-success badges-round">3</span>
+              </th>
+              <td>L-3/WL37(子午胎)</td>
+              <td class="text-success text-right">93%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </script>
+
+     <script type="text/template" id="tpl-top5">
+      <h5 class="text-center" style="margin:8px 0;font-size: 16px;"><strong>产品不合格率 Top 5</strong></h5>
+      <div style="padding: 0 10px;">
+        <table class="table table-condensed" style="margin:0">
+          <thead style="display: none;">
+            <tr>
+              <th class="text-center">排名</th>
+              <th>产品</th>
+              <th class="text-right">不合格率</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="text-danger text-center">
+                <span class="label label-danger badges-round">1</span>
+              </th>
+              <td>AM1(斜交胎)</td>
+              <td class="text-danger text-right">32%</td>
+            </tr>
+            <tr>
+              <th class="text-danger text-center">
+                <span class="label label-danger badges-round">2</span>
+              </th>
+              <td>ASR29</td>
+              <td class="text-danger text-right">22%</td>
+            </tr>
+             <tr>
+              <th class="text-danger text-center">
+                <span class="label label-danger badges-round">3</span>
+              </th>
+              <td>L-5/AL58(子午胎)</td>
+              <td class="text-danger text-right">19%</td>
+            </tr>
+            <tr>
+              <th class="text-danger text-center">
+                <span class="label label-danger badges-round">4</span>
+              </th>
+              <td>E-3/AE37/W737(子午胎)</td>
+              <td class="text-danger text-right">18%</td>
+            </tr>
+             <tr>
+              <th class="text-danger text-center">
+                <span class="label label-danger badges-round">5</span>
+              </th>
+              <td>L-3/G-14(斜交胎)</td>
+              <td class="text-danger text-right">13%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-qdetail">
+      <div class="row">
+        <div class="col-sm-6 col-xs-6" style="padding-left:30px;">
+          <h4 style="line-height:150%; margin:1px">周产量 
+          <br><span class="text-primary"><%=周产量%></span></h4>
+        </div>
+        <div class="col-sm-6 col-xs-6" style="padding-left:30px;">
+          <h4 style="line-height:150%; margin:1px">完成率 
+          <br><span class="text-primary"><%=完成率 * 100%>%</h4>
+        </div>
+        <div class="col-sm-6 col-xs-6" style="padding-left:30px;">
+          <h4 style="line-height:130%; margin:1px">合格数 
+          <br><span class="text-success"><%=合格数%></h4>
+        </div>
+        <div class="col-sm-6 col-xs-6" style="padding-left:30px;">
+          <h4 style="line-height:150%; margin:1px">合格率 
+          <br><span class="text-success"><%=合格率 * 100 %>%</h4>
+        </div>
+        <div class="col-sm-6 col-xs-6" style="padding-left:30px;">
+          <h4 style="line-height:150%; margin:1px">不合格数 
+          <br><span class="text-danger"><%=不合格数%></h4>
+        </div>
+        <div class="col-sm-6 col-xs-6" style="padding-left:30px;">
+          <h4 style="line-height:150%; margin:1px">不合格率 
+          <br><span class="text-danger"><%=不合格率 * 100%>%</h4>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-device-graph">
+      <div style="margin:8px;">
+        <div>
+          <table class="table table-bordered table-device">
+            <tbody>
+              <tr>
+                <td style="width:16.6%;">
+                    <button class="btn btn-success btn-sm">P1106A</button>
+                    <button class="btn btn-success btn-sm">P1106B</button>
+                    <button class="btn btn-success btn-sm">P1106C</button>
+                </td>
+                <td style="width:16.6%; text-align: center;">
+                    <button class="btn btn-success btn-sm">P1105A</button>
+                    <button class="btn btn-primary btn-sm">P1105B</button>
+                    <button class="btn btn-success btn-sm">P1105C</button>
+                </td>
+                <td style="width:16.6%;">
+                    <button class="btn btn-success btn-sm">P1104A</button>
+                    <button class="btn btn-danger btn-sm">P1104B</button>
+                    <button class="btn btn-success btn-sm">P1104C</button>
+                </td>
+                <td style="width:16.6%;">
+                    <button class="btn btn-success btn-sm">P1103A</button>
+                    <button class="btn btn-success btn-sm">P1103B</button>
+                    <button class="btn btn-warning btn-sm">P1103C</button>
+                </td>
+                <td style="width:16.6%;">
+                    <button class="btn btn-success btn-sm">P1102A</button>
+                    <button class="btn btn-success btn-sm">P1102B</button>
+                    <button class="btn btn-success btn-sm">P1102C</button>
+                </td>
+                <td style="width:16.6%;">
+                    <button class="btn btn-success btn-sm">P1101A</button>
+                    <button class="btn btn-success btn-sm">P1101B</button>
+                    <button class="btn btn-success btn-sm">P1101C</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="device-divder">中间过道</div>
+        <div>
+          <table class="table table-bordered table-device">
+            <tbody>
+              <tr>
+                <td>
+                  <button class="btn btn-success btn-sm">P1207A</button>
+                  <button class="btn btn-success btn-sm">P1207B</button>
+                  <button class="btn btn-success btn-sm">P1207C</button>
+                </td>
+                <td style="width:14%;">
+                  <button class="btn btn-success btn-sm">P1206</button>
+                </td>
+                <td style="width:14%;">
+                  <button class="btn btn-success btn-sm">P1205</button>
+                </td>
+                <td style="width:14%;">
+                  <button class="btn btn-success btn-sm">P1204</button>
+                </td>
+                <td style="width:14%;">
+                  <button class="btn btn-success btn-sm">P1203</button>
+                </td>
+                <td style="width:14%;">
+                  <button class="btn btn-success btn-sm">P1202</button>
+                </td>
+                <td style="width:14%;">
+                  <button class="btn btn-success btn-sm">P1201</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="device-divder">中间过道</div>
+        <div>
+          <table class="table table-bordered table-device">
+            <tbody>
+              <tr>
+                <td style="width:16.6%;">
+                  <button class="btn btn-success btn-sm">P1306A</button>
+                  <button class="btn btn-success btn-sm">P1306B</button>
+                  <button class="btn btn-success btn-sm">P1306C</button>
+                </td>
+                <td style="width:16.6%;">
+                  <button class="btn btn-success btn-sm">P1305</button>
+                </td>
+                <td style="width:16.6%;">
+                  <button class="btn btn-danger btn-sm">P1304</button>
+                </td>
+                <td style="width:16.6%;">
+                  <button class="btn btn-success btn-sm">P1303</button>
+                </td>
+                <td style="width:16.6%;">
+                  <button class="btn btn-success btn-sm">P1302</button>
+                </td>
+                <td style="width:16.6%;">
+                  <button class="btn btn-success btn-sm">P1301</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-device-status">
+      <div style="margin:8px; margin-top:15px;">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th width="100">状态</th>
+              <th class="text-center">统计</th>
+              <th width="100">状态</th>
+              <th class="text-center">统计</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <button class="btn btn-success btn-sm btn-block">正常</button>
+              </td>
+              <td class="text-center">31</td>
+              <td>
+                <button class="btn btn-primary btn-sm btn-block">品质停机</button>
+              </td>
+              <td class="text-center">1</td>
+            </tr>
+            <tr>
+              <td>
+                <button class="btn btn-fuchsia btn-sm btn-block">待料</button>
+              </td>
+              <td class="text-center">0</td>
+              <td>
+                <button class="btn btn-info btn-sm btn-block">精度点检</button>
+              </td>
+              <td class="text-center">0</td>
+            </tr>
+            <tr>
+              <td>
+                <button class="btn btn-warning btn-sm btn-block">其它待机</button>
+              </td>
+              <td class="text-center">1</td>
+              <td>
+                <button class="btn btn-danger btn-sm btn-block">故障</button>
+              </td>
+              <td class="text-center">2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-device-group">
+      <div style="margin:8px; margin-top:15px;">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>班次</th>
+              <th class="text-right">统计</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>早班</th>
+              <td class="text-right">350</td>
+            </tr>
+            <tr>
+              <th>中班</th>
+              <td class="text-right">200</td>
+            </tr>
+            <tr>
+              <th>晚班</th>
+              <td class="text-right">180</td>
+            </tr>
+            <tr>
+              <th>合计</th>
+              <td class="text-right">730</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-device-detail">
+      <div>
+        <h4 class="text-primary" style="font-size: 16px;" >机台设备基础信息</h4>
+        <table class="table table-condensed">
+          <tbody>
+            <tr>
+              <th width="15%">设备</th>
+              <td width="30%" class="text-right">P1201</td>
+              <td width="10%"></td>
+              <th width="15%">早班</th>
+              <td width="30%" class="text-right">18</td>
+            </tr>
+            <tr>
+              <th>工段</th>
+              <td class="text-right">成型工段</td>
+              <td></td>
+              <th>中班</th>
+              <td class="text-right">15</td>
+            </tr>
+            <tr>
+              <th>部门</th>
+              <td class="text-right">制造四部</td>
+              <td></td>
+              <th>晚班</th>
+              <td class="text-right">8</td>
+            </tr>
+            <tr>
+              <th>计划</th>
+              <td class="text-right">45</td>
+              <td></td>
+              <th>产量</th>
+              <td class="text-right">41</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-device-next">
+      <div>
+        <h4 class="text-primary" style="font-size: 16px;" >下游硫化工段负载</h4>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>设备</th>
+              <th class="text-right">计划</th>
+              <th class="text-right">产量</th>
+              <th class="text-center">状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Q1101</td>
+              <td class="text-right">15</td>
+              <td class="text-right">13</td>
+              <td class="text-success text-center">正常</td>
+            </tr>
+            <tr>
+              <td>Q1102</td>
+              <td class="text-right">12</td>
+              <td class="text-right">4</td>
+              <td class="text-fuchsia text-center">待料</td>
+            </tr>
+            <tr>
+              <td>Q1104</td>
+              <td class="text-right">12</td>
+              <td class="text-right">0</td>
+              <td class="text-danger text-center">故障</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </script>
+      
+    <script type="text/template" id="tpl-welcome">
+    <div style="position:relative;">
+      <div class="cb-slideshow-overlay"></div>
+      <ul class="cb-slideshow">
+        <li><span>Image 01</span><div><h3></h3></div></li>
+        <li><span>Image 02</span><div><h3></h3></div></li>
+        <li><span>Image 03</span><div><h3></h3></div></li>
+        <li><span>Image 04</span><div><h3></h3></div></li>
+        <li><span>Image 05</span><div><h3></h3></div></li>
+        <li><span>Image 06</span><div><h3></h3></div></li>
+      </ul>
+      <div class="row" style="margin-top:50px;">
+        <div class="col-xs-12 col-sm-4">
+          <div class="center-block" style="width:80%;">
+            <div class="page-header">
+              <h4 style="color:#fff;">总览导航 <small></small></h4>
+            </div>
+            <p>
+              <a class="btn btn-primary btn-lg btn-block" href="#/a-pm">生产经营</a>
+            </p>
+            <p>
+              <a class="btn btn-primary btn-lg btn-block" href="#/a-qm">产品质量</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="center-block" style="width:80%;">
+            <div class="page-header">
+              <h4 style="color:#fff;">制造二部 <small></small></h4>
+            </div>
+            <p>
+              <a class="btn btn-warning btn-lg btn-block" href="#/a-fsm">密炼工段</a>
+            </p>
+            <p>
+              <a class="btn btn-warning btn-lg btn-block" href="#/a-fsm">成型工段</a>
+            </p>
+            <p>
+              <a class="btn btn-warning btn-lg btn-block" href="#/a-fsm">硫化工段</a>
+            </p>
+            <p>
+              <a class="btn btn-warning btn-lg btn-block" href="#/a-fsm">物流配送</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="center-block" style="width:80%;">
+            <div class="page-header">
+              <h4 style="color:#fff;">制造四部 <small></small></h4>
+            </div>
+            <p>
+              <a class="btn btn-warning btn-lg btn-block" href="#/a-fsm">密炼工段</a>
+            </p>
+            <p>
+              <a class="btn btn-warning btn-lg btn-block" href="#/a-fsm">成型工段</a>
+            </p>
+            <p>
+              <a class="btn btn-warning btn-lg btn-block" href="#/a-fsm">硫化工段</a>
+            </p>
+            <p>
+              <a class="btn btn-warning btn-lg btn-block" href="#/a-fsm">物流配送</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </script>
+    <script type="text/template" id="tpl-template-process-bar">
+      <div class="clearfix">
+        <div class="pull-left" style="width:<%=width%>px; margin:0 -20px 0 30px;">
+          <div class="progress" style="margin:5px 5px 5px 0;height:10px;" title="<%=progress%>">
+            <div class="progress-bar <%=style%>" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="<%=max%>" style="width:<%=progress%>%">
+              <span class="sr-only"><%=progress%>%</span>
+            </div>
+          </div>
+        </div>
+        <div class="pull-right"><%=progress%></div>
+      </div>
+    </script>
+
+    <script type="text/template" id="tpl-template-status-onoff">
+      <% if(value == 1) { %>
+      <span class="status-round status-round-success"></span>
+      <% }else{%>
+      <span class="status-round status-round-danger"></span>
+      <% } %>
+    </script>
+
+    <script type="text/template" id="tpl-template-tank">
+      <div class="grid-tank">
+        <span class="glyphicon glyphicon-home pull-right text-muted hidden"></span>
+        <div class="tank tank-<%=status%>">
+          <div class="tank-footer"></div>
+          <div class="tank-inner">
+            <div class="tank-header"></div>
+            <div class="tank-body"></div>
+          </div>
+          <div class="tank-outer"></div>
+          <div class="tank-value"><%=value%></div>
+        </div>
+        <p style="font-size:12px; margin: 5px;white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;"><%=name%></p>
+      </div>
+    </script>
+
+    <script src="../../www/lib/echarts/echarts.js"></script>
+    <script>
+      // 路径配置
+      require.config({
+        urlArgs: 'bust=' + (new Date()).getTime(),
+        paths: {
+          app: '../../www/app',
+          echarts: '../../www/lib/echarts',
+          underscore: '../../www/lib/underscore-min',
+          backbone: '../../www/lib/backbone-min',
+          jquery: '../../www/lib/jquery.min',
+          bootstrap:'../../www/bootstrap/js/bootstrap.amd',
+          main: location.hostname === 'localhost' ? '../../www/main' : '../../www/main-built'
+        },
+        config:{
+          'app/dataset':{
+            mode: location.hostname === '10.99.2.9' || location.hostname === '10.99.2.11'? 'product'
+                :location.hostname === 'localhost' 
+                || location.hostname === '192.168.31.230'
+                || location.hostname === 'demo.xiyouqi.cn' 
+                ? 'develop' 
+                  :'demo'
+          },
+          'app/start':{
+            refreshTime:0
+          }
+        }
+      });
+      require(['main'],function(app){});
+    </script>
+  </body>
+</html>

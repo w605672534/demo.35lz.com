@@ -1,0 +1,34 @@
+define({
+	name:'pm',
+	params:[
+		{
+			name:'PRODUCT_ID',
+			title:'产品',
+			index:0,
+			value:10
+		}
+	],
+	views:[
+		{
+			id:'1',
+			title:'成型机运行状态电子沙盘',
+			column:9,
+			height:630,
+			view:'view/aeolus/device-map'
+		},
+		{
+			id:'2',
+			title:'生产统计',
+			column:3,
+			height:630,
+			view:'view/aeolus/production-sm',
+			url:{
+				view:'view/aeolus/device-overview',
+				height:'415',
+				title:'机台设备详情',
+				size:'modal-lg'
+			},
+			scroll:'auto'
+		}
+	]
+});

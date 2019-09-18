@@ -1,0 +1,15 @@
+define(function(require){
+	require('underscore');
+	require('bootstrap');
+	require('bootstrapsubmenu'); 
+	require('echarts/echarts');
+	require('app/widget');
+	require('app/widget/chart');
+	require('app/widget/echart');
+	require('app/widget/webkit');
+	require('app/widget/webkit/table');
+	require('app/widget/webkit/grid');
+	require('app/widget/webkit/block');
+	require('app/widget/webkit/iframe');
+	require('app/start');
+});

@@ -1,0 +1,108 @@
+body{
+	background-color:#262626;
+	color: #ddd;
+}
+#logo-hd {
+	display: none;
+}
+a{
+	color:#FFFF00;
+}
+.cb-slideshow-overlay {
+  background-color: #262626;
+}
+a:hover{
+	color:#FFFF00;
+}
+.text-primary {
+	color: #00DDDD;
+}
+.text-success {
+	color: #00DD00;
+}
+.text-warning {
+	color: #DDDD00;
+}
+.text-danger {
+	color: #DD0000;
+}
+.bg-info {
+	background-color: #595959;
+}
+.progress {
+	background-color: #444444;
+}
+.progress-bar-success {
+	background-color: #00DD00;
+}
+.progress-bar-warning {
+	background-color: #DDDD00;
+}
+.progress-bar-danger {
+	background-color: #DD0000;
+}
+.view-link:hover{
+	background-color: #444444!important;
+}
+.navbar-default {
+	background-color: #060606;
+	border-color: #303030;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #cdcdcd;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	color: #FFF;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+	color: #F9FF02;
+	background-color: #383838;
+}
+
+.panel {
+	background-color: #303030;
+	border: 1px solid transparent;
+	border-radius: 0;
+}
+
+.panel-default>.panel-heading {
+	color: #595959;
+	background-color: #393939;
+	border-color: #424242;
+	border-radius: 0;
+}
+
+.table>thead>tr>th {
+	border-color: #424242;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+	border-color: #424242;
+}
+
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+	background-color: #444444;
+}
+
+.table>thead>tr>td.info, .table>tbody>tr>td.info, .table>tfoot>tr>td.info, .table>thead>tr>th.info, .table>tbody>tr>th.info, .table>tfoot>tr>th.info, .table>thead>tr.info>td, .table>tbody>tr.info>td, .table>tfoot>tr.info>td, .table>thead>tr.info>th, .table>tbody>tr.info>th, .table>tfoot>tr.info>th {
+	background-color: #595959;
+}
+
+.table-hover>tbody>tr>td.info:hover, .table-hover>tbody>tr>th.info:hover, .table-hover>tbody>tr.info:hover>td, .table-hover>tbody>tr:hover>.info, .table-hover>tbody>tr.info:hover>th {
+	background-color: #444444;
+}
+
+.modal-content {
+	background-color: #262626;
+}
+
+.modal-header {
+	border-color: #424242;
+}
+
+.modal-footer {
+	border-color: #424242;
+}

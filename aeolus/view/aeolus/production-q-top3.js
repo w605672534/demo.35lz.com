@@ -1,0 +1,9 @@
+define({
+	widget:'webkit/grid',
+	dataset:'HYMII/UOM/corp_unit_qry',
+  tooltip:true,
+  maxLength:1,
+	series:{
+		template:$('#tpl-top3').html()
+	}
+});

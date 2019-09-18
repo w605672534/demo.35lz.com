@@ -1,0 +1,25 @@
+define({
+	widget:'webkit/block',
+	series:[
+		{
+			id:'1',
+			title:'',
+			column:6,
+			height:180,
+			view:'view/aeolus/production-q-gauge'
+		},
+		{
+			id:'2',
+			title:'',
+			height:200,
+			view:'view/aeolus/production-q-details'
+		},
+		{
+			id:'3',
+			title:'',
+			column:6,
+			height:360,
+			view:'view/aeolus/production-q-count'
+		}
+	]
+});

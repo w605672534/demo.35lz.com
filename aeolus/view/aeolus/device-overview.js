@@ -1,0 +1,33 @@
+define({
+	widget:'webkit/block',
+	series:[
+		{
+			id:'1',
+			title:'',
+			column:4,
+			height:180,
+			view:'view/aeolus/device-detail'
+		},
+		{
+			id:'2',
+			title:'',
+			column:4,
+			height:180,
+			view:'view/aeolus/device-gauge'
+		},
+		{
+			id:'3',
+			title:'',
+			column:4,
+			height:180,
+			view:'view/aeolus/device-next'
+		},
+		{
+			id:'4',
+			title:'',
+			column:12,
+			height:220,
+			view:'view/aeolus/device-trend'
+		}
+	]
+});

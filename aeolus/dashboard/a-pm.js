@@ -1,0 +1,35 @@
+define({
+	name:'pm',
+	params:[
+		
+	],
+	views:[
+		{
+			id:'1',
+			title:'产品产量周报',
+			column:6,
+			height:654,
+			view:'view/aeolus/production-weekly',
+			scroll:'auto'
+		},
+		{
+			id:'2',
+			title:'制造部生产状态',
+			column:6,
+			height:140,
+			view:'view/aeolus/dm-production-weekly'
+		},
+		{
+			id:'3',
+			title:'产品库存趋势',
+			height:159,
+			view:'view/aeolus/stock-trend-7d-line'
+		},
+		{
+			id:'4',
+			title:'产品质量排行榜',
+			height:229,
+			view:'view/aeolus/production-q-block'
+		}
+	]
+});

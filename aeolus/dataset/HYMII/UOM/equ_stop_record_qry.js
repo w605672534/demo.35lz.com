@@ -1,0 +1,37 @@
+define({ "Rowsets" : { 
+	"DateCreated" : "2014-12-24T17:23:27", "Version" : "15.0 SP2 Patch 3 (2014-10-27)", "StartDate" : "2014-12-24T16:23:27+0800", "EndDate" : "2014-12-24T17:23:27+0800", "CachedTime" : "", 
+	"Rowset" : [ 
+	{ "Columns" : { 
+		"Column" : [ 
+		{ "Name" : "EQU_ID", "SourceColumn" : "EQU_ID", "Description" : "EQU_ID", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "UNIT_ID", "SourceColumn" : "UNIT_ID", "Description" : "UNIT_ID", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "FACTORY_ID", "SourceColumn" : "FACTORY_ID", "Description" : "FACTORY_ID", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "EQU_NAME", "SourceColumn" : "EQU_NAME", "Description" : "EQU_NAME", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "UNIT_NAME", "SourceColumn" : "UNIT_NAME", "Description" : "UNIT_NAME", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "FACTORY_NAME", "SourceColumn" : "FACTORY_NAME", "Description" : "FACTORY_NAME", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "EQU_STOP_TIME", "SourceColumn" : "EQU_STOP_TIME", "Description" : "EQU_STOP_TIME", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "EQU_START_TIME", "SourceColumn" : "EQU_START_TIME", "Description" : "EQU_START_TIME", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "RECORD_TYPE", "SourceColumn" : "RECORD_TYPE", "Description" : "RECORD_TYPE", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "STOP_DURATION", "SourceColumn" : "STOP_DURATION", "Description" : "STOP_DURATION", "SQLDataType" : 2, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "STOP_DAY", "SourceColumn" : "STOP_DAY", "Description" : "STOP_DAY", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "STOP_MONTH", "SourceColumn" : "STOP_MONTH", "Description" : "STOP_MONTH", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "STOP_YEAR", "SourceColumn" : "STOP_YEAR", "Description" : "STOP_YEAR", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "EQU_STATE", "SourceColumn" : "EQU_STATE", "Description" : "EQU_STATE", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "FACTORY_SORT", "SourceColumn" : "FACTORY_SORT", "Description" : "FACTORY_SORT", "SQLDataType" : 2, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "UNIT_SORT", "SourceColumn" : "UNIT_SORT", "Description" : "UNIT_SORT", "SQLDataType" : 2, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "EQU_SORT", "SourceColumn" : "EQU_SORT", "Description" : "EQU_SORT", "SQLDataType" : 2, "MinRange" : 1.0, "MaxRange" : 1.0 }, 
+		{ "Name" : "IS_KEY_EQU", "SourceColumn" : "IS_KEY_EQU", "Description" : "IS_KEY_EQU", "SQLDataType" : 12, "MinRange" : 1.0, "MaxRange" : 1.0 } ] }, 
+	"Row" : [ 
+		{ "EQU_ID" : "38", "UNIT_ID" : "92", "FACTORY_ID" : "2", "EQU_NAME" : "氯气压缩机", "UNIT_NAME" : "F2电解", "FACTORY_NAME" : "氯碱化工", "EQU_STOP_TIME" : "2013-03-14 18:35:19", "EQU_START_TIME" : "2013-03-15 08:53:19", "RECORD_TYPE" : "非计划", "STOP_DURATION" : 14.30, "STOP_DAY" : "2013-03-14", "STOP_MONTH" : "2013-03", "STOP_YEAR" : "2013", "EQU_STATE" : "开车", "FACTORY_SORT" : 20.00, "UNIT_SORT" : 4.00, "EQU_SORT" : 0.00, "IS_KEY_EQU" : "NA" }, 
+		{ "EQU_ID" : "38", "UNIT_ID" : "92", "FACTORY_ID" : "2", "EQU_NAME" : "氯气压缩机", "UNIT_NAME" : "F2电解", "FACTORY_NAME" : "氯碱化工", "EQU_STOP_TIME" : "2013-03-14 10:34:19", "EQU_START_TIME" : "2013-03-14 10:47:18", "RECORD_TYPE" : "非计划", "STOP_DURATION" : 0.22, "STOP_DAY" : "2013-03-14", "STOP_MONTH" : "2013-03", "STOP_YEAR" : "2013", "EQU_STATE" : "开车", "FACTORY_SORT" : 20.00, "UNIT_SORT" : 4.00, "EQU_SORT" : 0.00, "IS_KEY_EQU" : "NA" }, 
+		{ "EQU_ID" : "38", "UNIT_ID" : "92", "FACTORY_ID" : "2", "EQU_NAME" : "氯气压缩机", "UNIT_NAME" : "F2电解", "FACTORY_NAME" : "氯碱化工", "EQU_STOP_TIME" : "2013-03-13 09:52:19", "EQU_START_TIME" : "2013-03-14 10:08:19", "RECORD_TYPE" : "非计划", "STOP_DURATION" : 24.27, "STOP_DAY" : "2013-03-13", "STOP_MONTH" : "2013-03", "STOP_YEAR" : "2013", "EQU_STATE" : "开车", "FACTORY_SORT" : 20.00, "UNIT_SORT" : 4.00, "EQU_SORT" : 0.00, "IS_KEY_EQU" : "NA" }, 
+		{ "EQU_ID" : "38", "UNIT_ID" : "92", "FACTORY_ID" : "2", "EQU_NAME" : "氯气压缩机", "UNIT_NAME" : "F2电解", "FACTORY_NAME" : "氯碱化工", "EQU_STOP_TIME" : "2013-03-13 09:00:19", "EQU_START_TIME" : "2013-03-13 09:13:19", "RECORD_TYPE" : "非计划", "STOP_DURATION" : 0.22, "STOP_DAY" : "2013-03-13", "STOP_MONTH" : "2013-03", "STOP_YEAR" : "2013", "EQU_STATE" : "开车", "FACTORY_SORT" : 20.00, "UNIT_SORT" : 4.00, "EQU_SORT" : 0.00, "IS_KEY_EQU" : "NA" }, 
+		{ "EQU_ID" : "38", "UNIT_ID" : "92", "FACTORY_ID" : "2", "EQU_NAME" : "氯气压缩机", "UNIT_NAME" : "F2电解", "FACTORY_NAME" : "氯碱化工", "EQU_STOP_TIME" : "2013-03-13 08:08:19", "EQU_START_TIME" : "2013-03-13 08:21:19", "RECORD_TYPE" : "非计划", "STOP_DURATION" : 0.22, "STOP_DAY" : "2013-03-13", "STOP_MONTH" : "2013-03", "STOP_YEAR" : "2013", "EQU_STATE" : "开车", "FACTORY_SORT" : 20.00, "UNIT_SORT" : 4.00, "EQU_SORT" : 0.00, "IS_KEY_EQU" : "NA" }, 
+		{ "EQU_ID" : "38", "UNIT_ID" : "92", "FACTORY_ID" : "2", "EQU_NAME" : "氯气压缩机", "UNIT_NAME" : "F2电解", "FACTORY_NAME" : "氯碱化工", "EQU_STOP_TIME" : "2013-03-11 18:26:19", "EQU_START_TIME" : "2013-03-12 07:00:19", "RECORD_TYPE" : "非计划", "STOP_DURATION" : 12.57, "STOP_DAY" : "2013-03-11", "STOP_MONTH" : "2013-03", "STOP_YEAR" : "2013", "EQU_STATE" : "开车", "FACTORY_SORT" : 20.00, "UNIT_SORT" : 4.00, "EQU_SORT" : 0.00, "IS_KEY_EQU" : "NA" }, 
+		{ "EQU_ID" : "38", "UNIT_ID" : "92", "FACTORY_ID" : "2", "EQU_NAME" : "氯气压缩机", "UNIT_NAME" : "F2电解", "FACTORY_NAME" : "氯碱化工", "EQU_STOP_TIME" : "2013-03-11 17:47:19", "EQU_START_TIME" : "2013-03-11 18:00:19", "RECORD_TYPE" : "非计划", "STOP_DURATION" : 0.22, "STOP_DAY" : "2013-03-11", "STOP_MONTH" : "2013-03", "STOP_YEAR" : "2013", "EQU_STATE" : "开车", "FACTORY_SORT" : 20.00, "UNIT_SORT" : 4.00, "EQU_SORT" : 0.00, "IS_KEY_EQU" : "NA" }, 
+		{ "EQU_ID" : "38", "UNIT_ID" : "92", "FACTORY_ID" : "2", "EQU_NAME" : "氯气压缩机", "UNIT_NAME" : "F2电解", "FACTORY_NAME" : "氯碱化工", "EQU_STOP_TIME" : "2013-03-11 13:01:19", "EQU_START_TIME" : "2013-03-11 13:27:19", "RECORD_TYPE" : "非计划", "STOP_DURATION" : 0.43, "STOP_DAY" : "2013-03-11", "STOP_MONTH" : "2013-03", "STOP_YEAR" : "2013", "EQU_STATE" : "开车", "FACTORY_SORT" : 20.00, "UNIT_SORT" : 4.00, "EQU_SORT" : 0.00, "IS_KEY_EQU" : "NA" }, 
+		{ "EQU_ID" : "38", "UNIT_ID" : "92", "FACTORY_ID" : "2", "EQU_NAME" : "氯气压缩机", "UNIT_NAME" : "F2电解", "FACTORY_NAME" : "氯碱化工", "EQU_STOP_TIME" : "2013-03-11 11:17:22", "EQU_START_TIME" : "2013-03-11 12:48:19", "RECORD_TYPE" : "非计划", "STOP_DURATION" : 1.52, "STOP_DAY" : "2013-03-11", "STOP_MONTH" : "2013-03", "STOP_YEAR" : "2013", "EQU_STATE" : "开车", "FACTORY_SORT" : 20.00, "UNIT_SORT" : 4.00, "EQU_SORT" : 0.00, "IS_KEY_EQU" : "NA" }, 
+		{ "EQU_ID" : "38", "UNIT_ID" : "92", "FACTORY_ID" : "2", "EQU_NAME" : "氯气压缩机", "UNIT_NAME" : "F2电解", "FACTORY_NAME" : "氯碱化工", "EQU_STOP_TIME" : "2013-03-10 17:31:19", "EQU_START_TIME" : "2013-03-11 10:51:19", "RECORD_TYPE" : "非计划", "STOP_DURATION" : 17.33, "STOP_DAY" : "2013-03-10", "STOP_MONTH" : "2013-03", "STOP_YEAR" : "2013", "EQU_STATE" : "开车", "FACTORY_SORT" : 20.00, "UNIT_SORT" : 4.00, "EQU_SORT" : 0.00, "IS_KEY_EQU" : "NA" } ]
+		 } ]
+	 }
+ });
