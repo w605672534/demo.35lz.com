@@ -1,0 +1,97 @@
+// 头部标题
+.title {
+  color: @head-color;
+  background: @bg-grey;
+  padding: @spacing*2 @spacing-normal;
+  font-size: @list-title;
+  font-weight: 500;
+}
+.content {
+  background: @bg-white;
+}
+// input 输入
+.input-info {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: @spacing-normal;
+  padding: @spacing*2 0;
+  border-bottom: 2rpx solid @line-color;
+  font-size: @list-title;
+  &-title {
+    width: 260rpx;
+  }
+}
+
+// radio 输入
+.radio-info {
+  display: block;
+  margin-left: @spacing-normal;
+  padding: @spacing*2 0;
+  border-bottom: 2rpx solid @line-color;
+  font-size: @list-title;
+  &-title {
+    padding-bottom: @spacing;
+  }
+  &-flag {
+    color: @fail-color;
+    font-size: @main-title;
+    padding-left: @spacing;
+  }
+  &-radio {
+    margin-left: @spacing-big*2;
+  }
+}
+// picker 输入
+.picker-info {
+  display: flex;
+  justify-content: space-between;
+  margin-left: @spacing-normal;
+  padding: @spacing*2 0;
+  border-bottom: 2rpx solid @line-color;
+  font-size: @list-title;
+  &-title {
+    padding-bottom: @spacing;
+  }
+  &-flag {
+    color: @fail-color;
+    font-size: @main-title;
+    padding-left: @spacing;
+  }
+  &-content {
+    margin-right: @spacing-normal;
+    color: @placeholder-color;
+  }
+}
+
+// 照片
+.photo {
+  font-size: @list-title;
+  margin: @spacing-small 0 0 @spacing-normal;
+  padding-bottom: @spacing*2;
+  border-bottom: 2rpx solid @line-color;
+  &-title {
+    color: @head-color;
+    font-size: @list-title;
+    padding: @spacing*2 0;
+    &-flag {
+      color: @fail-color;
+      font-size: @main-title;
+      padding-left: @spacing;
+    }
+  }
+  &-content {
+    display: flex;
+    color: @secondary-color-gray;
+    padding-bottom: @spacing*2;
+  }
+}
+.photo-image-upload {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: @border-radius;
+  border: 1rpx solid @line-color;
+  // margin: @spacing*2 0;
+  text-align: center;
+  line-height: 150rpx;
+  overflow: hidden;
+}

@@ -1,0 +1,24 @@
+.record-list {
+  background: @bg-white;
+  .record-item {
+    display: flex;
+    justify-content: space-between;
+    margin-left: @spacing-normal;
+    padding: @spacing*2 @spacing-normal @spacing*2 0;
+    border-bottom: 2rpx solid @line-color;
+    &-title {
+      display: flex;
+      font-size: @list-title;
+    }
+    &-content {
+      display: flex;
+      font-size: @list-title;
+      color: @secondary-color-gray;
+      i {
+        position: relative;
+        left: 6rpx;
+        top: 1rpx;
+      }
+    }
+  }
+}

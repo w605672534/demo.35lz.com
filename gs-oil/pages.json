@@ -1,0 +1,49 @@
+{
+	"pages": [
+    {
+			"path": "pages/index/main",
+			"style": {
+        "navigationBarTitleText": "首页",
+        "navigationBarBackgroundColor": "#E36803",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+			"path": "pages/car-info/main",
+			"style": {
+        "navigationBarTitleText": "车辆信息填报",
+        "navigationBarBackgroundColor": "#E36803",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+			"path": "pages/car-record/main",
+			"style": {
+        "navigationBarTitleText": "车辆信息记录",
+        "navigationBarBackgroundColor": "#E36803",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+			"path": "pages/car-record-detail/main",
+			"style": {
+        "navigationBarTitleText": "车辆信息记录详情",
+        "navigationBarBackgroundColor": "#E36803",
+        "navigationBarTextStyle": "white"
+      }
+    }
+  ],
+  "condition": {
+    "current": 0,
+    "list": [{
+      "name": "test",
+      "path": "pages/car-record/main"
+    }]
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "甘肃石油小程序",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#F5F5F5"
+  }
+ }

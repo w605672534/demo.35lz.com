@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/car-info/main",
+    "pages/car-record/main",
+    "pages/car-record-detail/main"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "甘肃石油小程序",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#F5F5F5"
+  },
+  "usingComponents": {}
+}
