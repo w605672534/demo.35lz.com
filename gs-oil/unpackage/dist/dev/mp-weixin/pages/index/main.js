@@ -163,6 +163,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   components: {},
@@ -192,7 +200,21 @@ var _default =
       wx.navigateTo({
         url: '/pages/car-record/main' });
 
-    } } };exports.default = _default;
+    },
+    carDashboard: function carDashboard() {
+      wx.navigateTo({
+        url: '/pages/car-dash/main' });
+
+    }
+    // 扫一扫
+    // toScan() {
+    //   wx.scanCode({
+    //     success: (res) => {
+    //       console.log(res)
+    //     }
+    //   })
+    // }
+  } };exports.default = _default;
 
 /***/ }),
 /* 17 */

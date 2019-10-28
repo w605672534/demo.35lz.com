@@ -36,13 +36,21 @@
       <div class="card-info" @click="carInfo()">
         <div class="card-item">
           <img src="/static/file.png">
-          <h5>信息填报</h5>
+          <h5>检查登记</h5>
         </div>
       </div>
       <div class="card-info">
         <div class="card-item" @click="infoRecord()">
           <img src="/static/backlog.png">
-          <h5>填报记录</h5>
+          <h5>登记查询</h5>
+        </div>
+      </div>
+    </div>
+    <div class="info-bar" style="padding: 8rpx;margin-top: -16rpx">
+      <div class="card-info" @click="carDashboard()">
+        <div class="card-item">
+          <img src="/static/dash.png">
+          <h5>登记统计</h5>
         </div>
       </div>
     </div>
@@ -79,6 +87,11 @@
           url: '/pages/car-record/main'
         })
       },
+      carDashboard() {
+        wx.navigateTo({
+          url: '/pages/car-dash/main'
+        })
+      }
       // 扫一扫
       // toScan() {
       //   wx.scanCode({

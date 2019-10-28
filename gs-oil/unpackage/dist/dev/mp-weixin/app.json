@@ -3,7 +3,8 @@
     "pages/index/main",
     "pages/car-info/main",
     "pages/car-record/main",
-    "pages/car-record-detail/main"
+    "pages/record-detail/main",
+    "pages/car-dash/main"
   ],
   "subPackages": [],
   "window": {
@@ -12,5 +13,6 @@
     "navigationBarBackgroundColor": "#ffffff",
     "backgroundColor": "#F5F5F5"
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

@@ -36,7 +36,7 @@
 		methods: {
          recordDetile() {
             wx.navigateTo({
-               url: '/pages/car-record-detail/main'
+               url: '/pages/record-detail/main'
             })
          },
       // infoRecord() {
