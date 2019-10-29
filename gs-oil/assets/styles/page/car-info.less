@@ -37,8 +37,21 @@
     font-size: @main-title;
     padding-left: @spacing;
   }
-  &-radio {
-    margin-left: @spacing-big*2;
+  &-content {
+    display: inline-block;
+    width: 80rpx;
+    height: 56rpx;
+    font-size: @explain-title;
+    line-height: 56rpx;
+    color: @head-color;
+    border-radius: @border-radius;
+    border: 1px solid @invalid-color;
+    text-align: center;
+    margin-right: @spacing-normal;
+  }
+  .checked {
+    color: @primary-color;
+    border: 1px solid @primary-color;
   }
 }
 // picker 输入

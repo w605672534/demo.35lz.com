@@ -81,7 +81,7 @@
             </div>
          </div>
          <div class="record-item">
-            <div class="record-item-title">是否具有质检部分核发槽罐质量检测证</div>
+            <div class="record-item-title">是否具有质检部门核发槽罐质量检测证</div>
             <div class="record-item-content">
                <span>是</span>
             </div>
@@ -111,7 +111,7 @@
             </div>
          </div>
          <div class="record-item">
-            <div class="record-item-title">是否具有质检部分核发槽罐质量检测证</div>
+            <div class="record-item-title">是否具有质检部门核发槽罐质量检测证</div>
             <div class="record-item-content">
                <span>是</span>
             </div>
@@ -166,7 +166,15 @@
                </div>
             </div>
             <div class="photo" style="margin: 0 32rpx">
-               <div class="photo-title">车辆反面照片</div>
+               <div class="photo-title">车尾照片</div>
+               <div class="photo-content">
+                  <div class="photo-image-upload" style="margin-left: 32rpx">
+                     <image :src="obverseTempFilePaths" style="width: 100%;height: 100%;" @click="obverseChangeImage()" mode="aspectFill"/>
+                  </div>
+               </div>
+            </div>
+            <div class="photo" style="margin: 0 32rpx">
+               <div class="photo-title">运输单据照片</div>
                <div class="photo-content">
                   <div class="photo-image-upload" style="margin-left: 32rpx">
                      <image :src="obverseTempFilePaths" style="width: 100%;height: 100%;" @click="obverseChangeImage()" mode="aspectFill"/>

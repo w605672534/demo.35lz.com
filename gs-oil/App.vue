@@ -1,7 +1,34 @@
 <script>
 	export default {
 		onLaunch: function() {
-			console.log('App Launch')
+			const _this = this;
+			uni.getProvider({
+				service: 'oauth',
+				success: function (res) {
+						console.log(res.provider,'aaaaa')
+						if (~res.provider.indexOf('weixin')) {
+								uni.login({
+										provider: 'weixin',
+										success: function (loginRes) {
+											console.log(JSON.stringify(loginRes,'bbbbb'));
+										}
+								});
+						}
+				}
+			});
+			uni.login({
+				provider: 'weixin',
+				success: function (loginRes) {
+					console.log(JSON.stringify(loginRes,'mmm'));
+					// 获取用户信息
+					uni.getUserInfo({
+						provider: 'weixin',
+						success: function (infoRes) {
+							console.log('用户昵称为：' + infoRes.userInfo.avatarUrl);
+						}
+					});
+				}
+			});
 		},
 		onShow: function() {
 			console.log('App Show')

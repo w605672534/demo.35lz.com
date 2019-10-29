@@ -35,7 +35,15 @@
     {
 			"path": "pages/car-dash/main",
 			"style": {
-        "navigationBarTitleText": "车辆信息",
+        "navigationBarTitleText": "车辆统计",
+        "navigationBarBackgroundColor": "#E36803",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+			"path": "pages/authorize/main",
+			"style": {
+        "navigationBarTitleText": "授权登录",
         "navigationBarBackgroundColor": "#E36803",
         "navigationBarTextStyle": "white"
       }
@@ -45,7 +53,7 @@
     "current": 0,
     "list": [{
       "name": "test",
-      "path": "pages/index/main"
+      "path": "pages/car-info/main"
     }]
   },
   "globalStyle": {
