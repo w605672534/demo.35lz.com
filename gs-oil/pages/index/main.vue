@@ -93,7 +93,7 @@ import {
 		methods: {
       carInfo() {
         wx.navigateTo({
-          url: '/pages/car-info/main'
+          url: '/pages/car-detail/main'
         })
       },
       infoRecord() {

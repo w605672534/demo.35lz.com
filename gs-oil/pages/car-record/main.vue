@@ -1,10 +1,10 @@
 <template>
    <div style="background: #eeeeee">
       <div class="record-list" v-for="(item, index) in record" :key="index">
-         <div class="record-item" @click="recordDetile()">
-            <div class="record-item-title">{{item.title}}</div>
+         <div class="record-item" @click="recordDetile(item)">
+            <div class="record-item-title">{{item.car_numbers}}</div>
             <div class="record-item-content">
-               <span>{{item.time}}</span>
+               <span>{{item.update_time | dateformat('YYYY-MM-DD HH:mm:ss')}}</span>
                <i class="iconfont icon-you"></i>
             </div>
          </div>
@@ -18,25 +18,24 @@
     },
 		data() {
 			return {
-            record: [
-               {id: '01', title: '甘A 12762', time: '2019-10-27 10:23'},
-               {id: '02', title: '甘A S6724', time: '2019-10-25 11:23'},
-               {id: '03', title: '甘A H6735', time: '2019-10-27 12:23'},
-               {id: '04', title: '甘A 65289', time: '2019-10-28 07:23'},
-               {id: '05', title: '甘G 52538', time: '2019-10-29 09:23'},
-               {id: '06', title: '甘E J7382', time: '2019-10-27 15:43'},
-               {id: '07', title: '甘A 09253', time: '2019-10-27 16:45'},
-               {id: '08', title: '甘F 78923', time: '2019-10-27 13:56'}
-            ]
+            record: [],
 			}
 		},
 		onLoad() {
-
+         uni.request({
+            url: 'http://train2.35lz.com/oms/api/traffic-record?_username=yangxiaoyan&_password=123456',
+         }).then((success, error) =>{
+            this.record = success[1].data.data.collection;
+            console.log(this.record,'ssss')
+         });
 		},
 		methods: {
-         recordDetile() {
+         recordDetile(item) {
+            // wx.navigateTo({
+            //    url: `/pages/record-detail/main?record_id=${item.record_id}`
+            // })
             wx.navigateTo({
-               url: '/pages/record-detail/main'
+               url: `/pages/car-records/main?record_id=${item.record_id}`
             })
          },
       // infoRecord() {

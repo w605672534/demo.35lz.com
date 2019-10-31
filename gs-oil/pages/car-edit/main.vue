@@ -5,22 +5,45 @@
     <div class="content">
       <div class="input-info">
         <div class="input-info-title">车号<span class="radio-info-flag">*</span></div>
-        <input type="text" :id="carNum" @input="getCarnumValue" placeholder="请填写车号">
+        <div class="record-item-content">
+          <span>{{detail.car_numbers}}</span>
+        </div>
+        <!-- <input type="text" :id="detail.car_numbers" @input="getCarnumValue" placeholder="请填写车号"> -->
       </div>
-      <div class="check-info">
-        <div class="check-info-title">危险化学品名称</div>
-        <div class="check-info-content"
+      <div class="input-info">
+        <div class="input-info-title">危险化学品名称</div>
+        <!-- <div class="check-info-content"
           :class="{'checked' : name.indexOf(item.material_id) !== -1}"
           @click="getNameValue(item)"
           v-for="item in material"
           :key="item.material_id" 
         >
         {{item.material_name}}
+        </div> -->
+        <div class="record-item-content">
+          <span>{{detail.material_name}}</span>
         </div>
       </div>
       <div class="input-info">
         <div class="input-info-title">数量（吨）<span class="radio-info-flag">*</span></div>
-        <input type="text" @input="getNumValue" :value="number" placeholder="请填写数量（吨）">
+        <div class="record-item-content">
+          <span>{{detail.load}}</span>
+        </div>
+        <!-- <input type="text" @input="getNumValue" :value="number" placeholder="请填写数量（吨）"> -->
+      </div>
+      <div class="input-info">
+        <div class="input-info-title">运输单位</div>
+        <div class="record-item-content">
+          <span>{{detail.traffic_org}}</span>
+        </div>
+        <!-- <input type="text" :value="transUnit" @input="getTransUnitValue" placeholder="请填写运输单位"> -->
+      </div>
+      <div class="input-info">
+        <div class="input-info-title">运/提货单号</div>
+        <div class="record-item-content">
+          <span>{{detail.Invoice_no}}</span>
+        </div>
+        <!-- <input type="text" :value="cargoNumber" @input="getCargoNumValue" placeholder="请填写运/提货单号"> -->
       </div>
       <div class="input-info">
         <div class="input-info-title">进站检查时间<span class="radio-info-flag">*</span></div>
@@ -48,25 +71,23 @@
           </picker>
         </div>
       </div>
-      <div class="input-info">
-        <div class="input-info-title">运输单位</div>
-        <input type="text" :value="transUnit" @input="getTransUnitValue" placeholder="请填写运输单位">
-      </div>
-      <div class="input-info">
-        <div class="input-info-title">运/提货单号</div>
-        <input type="text" :value="cargoNumber" @input="getCargoNumValue" placeholder="请填写运/提货单号">
-      </div>
     </div>
     <!-- 运输区间 -->
     <div class="title">运输区间</div>
     <div class="content">
       <div class="input-info">
         <div class="input-info-title">出发地</div>
-        <input type="text" @input="getDepartureValue" :value="departure" placeholder="请填写出发地">
+        <div class="record-item-content">
+          <span>{{detail.starting}}</span>
+        </div>
+        <!-- <input type="text" @input="getDepartureValue" :value="departure" placeholder="请填写出发地"> -->
       </div>
       <div class="input-info">
         <div class="input-info-title">目的地<span class="radio-info-flag">*</span></div>
-        <input type="text" @input="getDestinationValue" :value="destination" placeholder="请填写目的地">
+        <div class="record-item-content">
+          <span>{{detail.destination}}</span>
+        </div>
+        <!-- <input type="text" @input="getDestinationValue" :value="destination" placeholder="请填写目的地"> -->
       </div>
       <!-- <div class="check-info">
         <div class="check-info-title">途径地</div>
@@ -79,7 +100,7 @@
         {{item.address_name_cn}}
         </div>
       </div> -->
-      <div class="check-info">
+      <!-- <div class="check-info">
         <div class="check-info-title">完整途径地</div>
         <div class="check-info-content" 
           :class="{'checked' : pass.indexOf(item.address_id) !== -1}" 
@@ -89,7 +110,7 @@
         >
         {{item.address_name_cn}}
         </div>
-      </div>
+      </div> -->
     </div>
     <!-- 公安检查 -->
     <div class="title">公安检查</div>
@@ -283,10 +304,7 @@
     components: {
     },
 		data() {
-			return {
-        carNum: '', // 车号
-        name: [], // 危险化学品名称
-        number: '', // 数量（吨） 
+			return { 
         inTime: '', // 进站检查时间
         outTime: '', // 离站时间
         transUnit: '', // 运输单位
@@ -331,9 +349,19 @@
         invoiceTempFilePaths: '',// 运输单据照片
         passWay: [],
         material: [],
+        detailId: '',
+        detail: {},
 			}
 		},
-		onLoad() {
+		onLoad(option) {
+      this.detailId = option.detail_id
+      // 详情
+      uni.request({
+        url: `http://train2.35lz.com/oms/api/traffic-detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
+      }).then((success, error) =>{
+        this.detail = success[1].data.data.model;
+        console.log(this.detail,'88888')
+      });
       // 途径地
       uni.request({
         url: 'http://train2.35lz.com/oms/api/sys-area?_username=yangxiaoyan&_password=123456',
@@ -362,30 +390,6 @@
       this.outTime = date.getHours() + ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
     },
 		methods: {
-      // 车号
-      getCarnumValue: function(e) {
-        this.carNum = e.target.value;
-      },
-      // 危险化学品名称
-      getNameValue: function(item) {
-        if (this.name.indexOf(item.material_id) !== -1) {
-          this.name.splice(this.name.indexOf(item.material_id));
-        } else {
-          this.name.push(item.material_id);
-        }
-      },
-      // 数量（吨） 
-      getNumValue: function(e) {
-        this.number = e.target.value;
-      },
-      // 运输单位
-      getTransUnitValue: function(e) {
-        this.transUnit = e.target.value;
-      },
-      // 运/提货单号
-      getCargoNumValue: function(e) {
-        this.cargoNumber = e.target.value;
-      },
       // 进站日期
       bindInDateChange: function(e) {
         this.inDate = e.target.value;
@@ -548,21 +552,23 @@
       },
       // 提交
       submit() {
-        const name = this.name.join(',');
-        const pass = this.pass.join(',');
         const arriveTime = this.inDate + ' ' + this.inTime;
         const leaveTime = this.outDate + ' ' + this.outTime;
         const requestTask3 = uni.request({
-          url: 'http://train2.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456',
+          url: `http://train2.35lz.com/oms/api/traffic-detail/check/${this.detailId}?_username=yangxiaoyan&_password=123456`,
           data: { 
-            car_numbers: this.carNum,
-            material_id: name,
+            car_numbers: this.detail.car_numbers,
+            material_id: this.detail.material_id,
+            material_name: this.detail.material_name,
             arrive_time: arriveTime,
             leave_time: leaveTime,
-            traffic_org: this.transUnit,
-            Invoice_no: this.cargoNumber,
-            starting: this.departure,
-            destination: this.destination,
+            traffic_org: this.detail.traffic_org,
+            Invoice_no: this.detail.Invoice_no,
+            starting: this.detail.starting,
+            destination: this.detail.destination,
+            detail_id: this.detail.detail_id,
+            load: this.detail.load,
+            status: this.detail.status,
             record_way: pass,
             is_driving_licence: this.driving == '0' ? '是' : '否',
             is_driving_permit: this.drivingPermit == '0' ? '是' : '否',
@@ -573,15 +579,20 @@
             have_certification: this.driverLicense == '0' ? '是' : '否',
             have_identification_light: this.warningSign == '0' ? '是' : '否',
             have_illegal: this.violation == '0' ? '是' : '否',
+            record_id: this.detail.record_id,
+            record_way: this.detail.record_way,
             oils_type: this.type == '0' ? '汽油' : this.type == '1' ? '柴油' : this.type == '2' ? '煤油' : '其它化工产品',
             oils_invoice: this.invoice == '0' ? '是' : '否',
             is_qualified: this.qualified == '0' ? '是' : '否',
             is_assist: this.apply == '0' ? '是' : '否',
             is_late: this.sluggish == '0' ? '是' : '否',
+            update_time: this.detail.update_time,
+            way: '016e0adc13932c92ff8e6bc185570ed4',
+            way_name: '张掖市'
             // full_face_photo: this.facadeTempFilePaths,
             // voucher_photo: this.invoiceTempFilePaths,
           },
-          method:"POST",
+          method:"PUT",
           header : {'content-type':'application/json'},
           success: function (res) {
             console.log(res.data);

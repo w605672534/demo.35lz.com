@@ -54,6 +54,39 @@
     border: 1px solid @primary-color;
   }
 }
+// check 多选
+.check-info {
+  display: block;
+  margin-left: @spacing-normal;
+  padding: @spacing*2 0;
+  border-bottom: 2rpx solid @line-color;
+  font-size: @list-title;
+  &-title {
+    padding-bottom: @spacing;
+  }
+  &-flag {
+    color: @fail-color;
+    font-size: @main-title;
+    padding-left: @spacing;
+  }
+  &-content {
+    display: inline-block;
+    padding: 0 @spacing*2;
+    margin: @spacing*2 0;
+    height: 56rpx;
+    font-size: @explain-title;
+    line-height: 56rpx;
+    color: @head-color;
+    border-radius: @border-radius;
+    border: 1px solid @invalid-color;
+    text-align: center;
+    margin-right: @spacing-normal;
+  }
+  .checked {
+    color: @primary-color;
+    border: 1px solid @primary-color;
+  }
+}
 // picker 输入
 .picker-info {
   display: flex;
