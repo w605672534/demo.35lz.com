@@ -22,7 +22,7 @@
     </div>
     <div class="tabbar-content" v-if="toView == 'check'">
       <div class="record-list" v-for="(item, index) in checkRecord" :key="index">
-        <div class="record-item">
+        <div class="record-item" @click="recordDetileCheck(item)">
           <div class="record-item-title">{{item.car_numbers}}</div>
           <div class="record-item-content">
               <span>{{item.update_time | dateformat('YYYY-MM-DD HH:mm:ss')}}</span>
@@ -47,7 +47,19 @@
         checkRecord: [],
         toView: 'unCheck',
 			}
-		},
+    },
+    onShow(){
+      uni.request({
+        url: 'http://train2.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456&status=未检查',
+      }).then((success, error) =>{
+        this.unCheckRecord = success[1].data.data.collection;
+      });
+      uni.request({
+        url: 'http://train2.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456&status=已检查',
+      }).then((success, error) =>{
+        this.checkRecord = success[1].data.data.collection;
+      });
+    },
 		onLoad() {
       uni.request({
         url: 'http://train2.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456&status=未检查',
@@ -67,6 +79,11 @@
       recordDetileUncheck(item) {
         wx.navigateTo({
           url: `/pages/car-edit/main?detail_id=${item.detail_id}`
+        })
+      },
+      recordDetileCheck(item) {
+        wx.navigateTo({
+          url: `/pages/record-detail/main?detail_id=${item.detail_id}`
         })
       },
       creat() {
@@ -97,7 +114,7 @@
   display: flex;
   justify-content: space-between;
   background: @bg-white;
-  border-bottom: 2rpx solid @line-color;
+  // border-bottom: 2rpx solid @line-color;
   width: 100%;
   white-space:nowrap;
   position:fixed;

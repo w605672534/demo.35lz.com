@@ -584,6 +584,9 @@
           method:"POST",
           header : {'content-type':'application/json'},
           success: function (res) {
+            wx.navigateBack({
+              delta: 1
+            })
             console.log(res.data);
           }
         });

@@ -569,7 +569,6 @@
             detail_id: this.detail.detail_id,
             load: this.detail.load,
             status: this.detail.status,
-            record_way: pass,
             is_driving_licence: this.driving == '0' ? '是' : '否',
             is_driving_permit: this.drivingPermit == '0' ? '是' : '否',
             have_inspection: this.qualityInspection == '0' ? '是' : '否',
@@ -595,6 +594,9 @@
           method:"PUT",
           header : {'content-type':'application/json'},
           success: function (res) {
+            wx.navigateBack({
+              delta: 1
+            })
             console.log(res.data);
           }
         });

@@ -203,19 +203,17 @@
 		onLoad(option) {
          this.detailId = option.detail_id;
          this.recordId = option.record_id;
-         // http://train2.35lz.com/oms/api/traffic-record/016e11c8a4634028829e6e11c4500010/detail/016e1fd6c27e4028d8816e1fd6620005?_mode=inline&_fileId=016e1fd6bc064028d8816e1fd6620003
          uni.request({
             url: `http://train2.35lz.com/oms/api/traffic-record/${this.recordId}/detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
          }).then((success, error) =>{
             this.record = success[1].data.data.model;
+         });
+         uni.request({
+            url: `http://train2.35lz.com/oms/api/traffic-detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
+         }).then((success, error) =>{
+            this.record = success[1].data.data.model;
             console.log(this.record,'ssss')
          });
-         // uni.request({
-         //    url: `http://train2.35lz.com/oms/api/traffic-record/${this.recordId}/detail/${this.detailId}?_username=yangxiaoyan&_password=123456&_mode=inline&_fileId=016e1fd6bc064028d8816e1fd6620003`,
-         // }).then((success, error) =>{
-         //    this.facadeTempFilePaths = success[1].data.data.model;
-         //    console.log(this.record,'ssss')
-         // });
 		},
 		methods: {
          // 点击放大正面图片
