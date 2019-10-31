@@ -32,7 +32,7 @@
       </div>
     </div>
     <div>
-      <div class="footer-btn" @click="creat()">提交</div>
+      <div class="footer-btn" @click="creat()">车辆登记</div>
     </div>
    </div>
 </template>
