@@ -3,9 +3,10 @@
     <!-- 基本信息 -->
     <div class="title">基本信息</div>
     <div class="content">
-      <div class="input-info">
+      <div class="input-info LicensePlateNumber" @click='LicensePlateNumber_ok'>
         <div class="input-info-title">车号<span class="radio-info-flag">*</span></div>
-        <input type="text" :id="carNum" @input="getCarnumValue" placeholder="请填写车号">
+        <input value='{{LicensePlateNumber}}' disabled='true' placeholder='请选择车牌号'>
+        <!-- <input type="text" :id="carNum" @input="getCarnumValue" placeholder="请填写车号"> -->
       </div>
       <div class="check-info">
         <div class="check-info-title">危险化学品名称</div>
@@ -275,6 +276,35 @@
       </div>
     </div>
     <div class="footer-btn" @click="submit()">提交</div>
+    <!-- 车牌号输入键盘 -->
+    <view class='licensePlateShow' v-if='licensePlateShowHidden'>
+      <view class='licensePlate_Bg' @click='licensePlate_close'></view>
+      <!-- 省份 -->
+      <view class='licensePlate_provinces_Box' v-if='licensePlate_provinces_Box'>
+        <view class='licensePlate_provincesTist' wx:for='{{licensePlate_provinces}}' @click='licensePlate_provinces_ok' data-licensePlateProvinces='{{item}}' wx:key='index'>{{item}}</view>
+        <view class='licensePlate_but' @click='licensePlate_close'>关闭</view>
+      </view>
+      <!-- 字母 -->
+      <view class='licensePlate_letter_Box' v-if='licensePlate_letter_Box'>
+        <view class='licensePlate_letterTist' wx:for='{{licensePlate_letter}}' @click='licensePlate_letter_ok' data-licensePlateProvinces='{{item}}' wx:key='index'>{{item}}</view>
+        <view class='licensePlate_letterTist_but'>
+          <view class='licensePlate_but' @click='licensePlate_switchDigital'>数字</view>
+          <view class='licensePlate_but' @click='licensePlate_delete()'>删除</view>
+          <view class='licensePlate_but' @click='licensePlate_empty()'>清空</view>
+          <view class='licensePlate_but' @click='licensePlate_close()'>关闭</view>
+        </view>
+      </view>
+      <!-- 数字 -->
+      <view class='licensePlate_digital_Box' v-if='licensePlate_digital_Box'>
+        <view class='licensePlate_digitalTist' wx:for='{{licensePlate_digital}}' @click='licensePlate_digital_ok' data-licensePlateProvinces='{{item}}' wx:key='index'>{{item}}</view>
+        <view class='licensePlate_digital_but'>
+          <view class='licensePlate_but' @click='licensePlate_switchLetter()'>字母</view>
+          <view class='licensePlate_but' @click='licensePlate_delete()'>删除</view>
+          <view class='licensePlate_but' @click='licensePlate_empty()'>清空</view>
+          <view class='licensePlate_but' @click='licensePlate_close()'>关闭</view>
+        </view>
+      </view>
+    </view>
 	</div>
 </template>
 
@@ -331,6 +361,32 @@
         invoiceTempFilePaths: '',// 运输单据照片
         passWay: [],
         material: [],
+        licensePlateShowHidden: false,
+        licensePlate_provinces_Box: false,
+        licensePlate_letter_Box: false, 
+        licensePlate_digital_Box: false,
+        licensePlate_provinces: [
+          "京", "沪", "浙", "苏", "粤", "鲁", 
+          "晋", "冀", "豫", "川", "渝", "辽", 
+          "吉", "黑", "皖", "鄂", "津", "贵", 
+          "云", "桂", "琼", "青", "新", "藏",
+          "蒙", "宁", "甘", "陕", "闽", "赣", 
+          "湘"
+        ],
+        licensePlate_letter: [
+          "A", "B", "C", "D", "E", "F",
+          "G", "H", "L", "J", "K", "L",
+          "M", "N", "O", "P", "Q", "R",
+          "S", "T", "U", "V", "W", "X",
+          "Y", "Z"
+        ],
+        licensePlate_digital: [
+          "1", "2", "3", 
+          "4", "5", "6",
+          "7", "8", "9", 
+          "0"
+        ],
+        LicensePlateNumber:'',
 			}
 		},
 		onLoad() {
@@ -362,6 +418,109 @@
       this.outTime = date.getHours() + ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
     },
 		methods: {
+      // 显示模拟键盘
+      LicensePlateNumber_ok:function(){
+        var LicensePlateNumber = this.LicensePlateNumber;
+        var LicensePlateNumberLen = LicensePlateNumber.length;
+        if (LicensePlateNumberLen == 0){
+          this.licensePlateShowHidden = true
+          this.licensePlate_provinces_Box = true
+        } else if (LicensePlateNumberLen == 1){
+          this.licensePlateShowHidden = true
+          this.licensePlate_letter_Box = true
+        } else{
+          this.licensePlateShowHidden = true
+          this.licensePlate_digital_Box = true
+        }
+      },
+      // 切换成字母
+      licensePlate_switchLetter:function(){
+          this.licensePlate_provinces_Box = false
+          this.licensePlate_letter_Box = true
+          this.licensePlate_digital_Box = false
+      },
+      // 切换成数字
+      licensePlate_switchDigital: function () {
+        var LicensePlateNumberLen = this.LicensePlateNumber.length;
+        if (LicensePlateNumberLen == 1){
+          wx.showToast({
+            title: '车牌号码第二位必须是字母',
+            icon: 'none',
+            duration: 1500,
+          })
+        }else{
+          this.licensePlate_provinces_Box = false
+          this.licensePlate_letter_Box = false
+          this.licensePlate_digital_Box = true
+        }
+      },
+      // 删除
+      licensePlate_delete: function (e) {
+        var LicensePlateNumberLen = this.LicensePlateNumber.length;
+        var LicensePlateNumberDelete = this.LicensePlateNumber.split('');
+        var NewLicensePlateNumber = LicensePlateNumberDelete.join('').slice(0,-1)
+        if (LicensePlateNumberDelete.slice(0,-1).length == 1){
+          this.licensePlate_provinces_Box = false
+          this.licensePlate_letter_Box = true
+          this.licensePlate_digital_Box = false
+        } else if (LicensePlateNumberLen == 0 || this.LicensePlateNumber == '' || LicensePlateNumberDelete.slice(0, -1).length == 0){
+          this.licensePlate_provinces_Box = true
+          this.licensePlate_letter_Box = false
+          this.licensePlate_digital_Box = false
+        }
+        this.LicensePlateNumber = NewLicensePlateNumber
+      },
+
+      // 清空
+      licensePlate_empty: function (e) {
+        this.LicensePlateNumber = '',
+        this.licensePlate_provinces_Box = true
+        this.licensePlate_letter_Box = false
+        this.licensePlate_digital_Box = false
+      },
+
+      // 关闭模拟键盘
+      licensePlate_close:function(){
+        this.licensePlateShowHidden = false
+      },
+
+      // 点击获取省份
+      licensePlate_provinces_ok: function (e) {
+        this.LicensePlateNumber = e.target.dataset.licenseplateprovinces,
+        this.licensePlate_letter_Box = true
+        this.licensePlate_digital_Box = false
+        console.log(e.target.dataset.licenseplateprovinces)
+      },
+
+      // 点击获取字母
+      licensePlate_letter_ok: function (e) {
+        var LicensePlateNumberLen = this.LicensePlateNumber.length;
+        if (LicensePlateNumberLen != 8) {
+          this.LicensePlateNumber = this.LicensePlateNumber + e.target.dataset.licenseplateprovinces
+          console.log(e.target.dataset.licenseplateprovinces)
+        } else {
+          wx.showToast({
+            title: '车牌号码最多不能超过8位',
+            icon: 'none',
+            duration: 1500,
+          })
+        }
+      },
+
+      // 点击获取数字
+      licensePlate_digital_ok: function (e) {
+        var LicensePlateNumberLen = this.LicensePlateNumber.length;
+        if (LicensePlateNumberLen != 8){
+          this.LicensePlateNumber = this.LicensePlateNumber + e.target.dataset.licenseplateprovinces
+          console.log(e.target.dataset.licenseplateprovinces)
+        }else{
+          wx.showToast({
+            title: '车牌号码最多不能超过8位',
+            icon:'none',
+            duration:1500,
+          })
+        }
+      },
       // 车号
       getCarnumValue: function(e) {
         this.carNum = e.target.value;
@@ -417,18 +576,6 @@
         } else {
           this.pass.push(item.address_id);
         }
-        // var items = this.passWay;
-        // console.log(items,'bbbb');
-        // values = e.detail;
-        // // console.log(items,'bbbb');
-        // for (var i = 0, lenI = items.length; i < lenI; ++i) {
-        //     const item = items[i]
-        //     if(values.includes(item.value)){
-        //         this.$set(item,'checked',true)
-        //     }else{
-        //         this.$set(item,'checked',false)
-        //     }
-        // }
       },
       // 是否具有驾驶证
       bindDrivingChange(index) {
@@ -555,7 +702,7 @@
         const requestTask3 = uni.request({
           url: 'http://train2.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456',
           data: { 
-            car_numbers: this.carNum,
+            car_numbers: this.LicensePlateNumber,
             material_id: name,
             arrive_time: arriveTime,
             leave_time: leaveTime,
@@ -602,5 +749,175 @@
 
 <style lang="less" scoped>
 @import '../../assets/styles/theme/variables.less';
+.licensePlateShow{
+  min-height: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.licensePlate_Bg{
+  min-height: 100%;
+  width: 750rpx;
+  position: absolute;
+  z-index: 40;
+  overflow: hidden;
+}
+
+.licensePlate_provinces_Box{
+  background-color: #d0d4da;
+  margin: 0 auto;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  z-index: 55;
+  display: flex;
+  position: fixed;
+  height: 100rpx;
+  line-height: 100rpx;
+  bottom: 510rpx;
+  width: 100%;
+  color: @head-color;
+  background: @primary-color;
+  font-size: 38rpx;
+  text-align: center;
+  left: 0;
+}
+
+.licensePlate_provincesTist{
+  flex:15%;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 0 auto;
+  text-align: center;
+  background-color:#ffffff; 
+  border-top: 1px solid #abb2bd;
+  border-left: 1px solid #abb2bd;
+}
+
+.licensePlate_provincesTist:nth-child(6n){
+  border-right: 1px solid #abb2bd;
+}
+
+.licensePlate_letter_Box{
+  background-color: #d0d4da;
+  margin: 0 auto;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  z-index: 55;
+  display: flex;
+  position: fixed;
+  height: 100rpx;
+  line-height: 100rpx;
+  bottom: 510rpx;
+  width: 100%;
+  color: @head-color;
+  background: @primary-color;
+  font-size: 38rpx;
+  text-align: center;
+  left: 0;
+}
+
+.licensePlate_letterTist{
+  flex:15%;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 0 auto;
+  text-align: center;
+  background-color:#ffffff; 
+  border-top: 1px solid #abb2bd;
+  border-left: 1px solid #abb2bd;
+}
+
+.licensePlate_letterTist:nth-child(6n){
+  border-right: 1px solid #abb2bd;
+} 
+
+.licensePlate_letterTist:nth-child(26){
+  border-right: 1px solid #abb2bd;
+}
+
+.licensePlate_letterTist_but{
+  position: fixed;
+  height: 100rpx;
+  line-height: 100rpx;
+  bottom: 0;
+  width: 100%;
+  color: @bg-white;
+  background: @primary-color;
+  font-size: 38rpx;
+  text-align: center;
+  left: 0;
+}
+
+.licensePlate_digital_Box{
+  background-color: #d0d4da;
+  margin: 0 auto;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  z-index: 55;
+  display: flex;
+  position: fixed;
+  height: 100rpx;
+  line-height: 100rpx;
+  bottom: 420rpx;
+  width: 100%;
+  color: @head-color;
+  background: @primary-color;
+  font-size: 38rpx;
+  text-align: center;
+  left: 0;
+}
+
+.licensePlate_digitalTist{
+  flex:25%;
+  height: 105rpx;
+  line-height: 105rpx;
+  margin: 0 auto;
+  text-align: center;
+  background-color: @bg-white; 
+  border-top: 1px solid @line-color;
+  border-left: 1px solid @line-color;
+}
+
+.licensePlate_digital_but{
+  // width: 750rpx;
+  display: flex;
+  // display: -webkit-flex;
+  // flex-wrap: wrap;
+  // justify-content: flex-start;
+  position: fixed;
+  height: 100rpx;
+  line-height: 100rpx;
+  bottom: 0;
+  width: 100%;
+  color: @bg-white;
+  background: @primary-color;
+  font-size: 38rpx;
+  text-align: center;
+  left: 0;
+}
+
+.licensePlate_but{
+  flex: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: @bg-white;
+  background-color: @primary-color; 
+  border-top: 2rpx solid @line-color;
+  border-left: 2rpx solid @line-color;
+}
+
+.licensePlate_but:last-child{
+  border-right: 1px solid #abb2bd;
+}
+
+.LicensePlateNumber{
+  // width: 750rpx;
+  // height: 200rpx;
+  // border-bottom: 1rpx solid #abb2bd
+}
 
 </style>

@@ -25,7 +25,8 @@
     <div class="info" style="background-image: url(/static/bg.png);background-repeat:no-repeat;background-size:100% 100%">
       <div class="info-bar">
         <div style="display: flex">
-          <i class="iconfont icon-renyuan-copy"></i><span class="info-bar-name">小熊猪</span><span class="info-bar-name">，您好</span>
+          <i class="iconfont icon-renyuan-copy"></i><span class="info-bar-name">登录</span>
+          <!-- <i class="iconfont icon-renyuan-copy"></i><span class="info-bar-name">小熊猪</span><span class="info-bar-name">，您好</span> -->
         </div>
         <div class="info-bar-time">{{currentDate}} {{currentTime}}</div>
       </div>

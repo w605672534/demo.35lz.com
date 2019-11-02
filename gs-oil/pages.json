@@ -9,6 +9,14 @@
       }
     },
     {
+			"path": "pages/login/main",
+			"style": {
+        "navigationBarTitleText": "登录",
+        "navigationBarBackgroundColor": "#E36803",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
 			"path": "pages/car-detail/main",
 			"style": {
         "navigationBarTitleText": "车辆信息",
@@ -77,7 +85,7 @@
     "current": 0,
     "list": [{
       "name": "test",
-      "path": "pages/index/main"
+      "path": "pages/car-info/main"
     }]
   },
   "globalStyle": {

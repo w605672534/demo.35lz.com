@@ -1,12 +1,11 @@
 <template >
 	<div>
-    <div class="logo">
-      <img src="/static/logo.png">
+    <div>
+      <input :value="account"  @input="getNameValue" placeholder='请输入账号'>
+      <input :value="password" @input="getPasswordValue" type="password" placeholder='请输入密码'>
     </div>
-    <div class="info">中国石油天然气股份有限公司甘肃销售公司（以下简称甘肃销售）的前身为甘肃省石油总公司，成立于1953年，主要从事汽油、煤油、柴油、润滑油及特种油品的批发、零售业务，承担着甘肃省工农业生产和人民群众生产、生活用油的供应任务。</div>
     <div class="login">
-      <view class="login-label">请完成微信授权以继续使用</view>
-      <button hover-class="none" open-type="getUserInfo" type="primary" lang="zh_CN" @getuserinfo="bindGetUserInfo">授权登录</button>
+      <button hover-class="none" open-type="getUserInfo" type="primary" lang="zh_CN" @getuserinfo="bindGetUserInfo">登录</button>
     </div>
 	</div>
 </template>
@@ -16,20 +15,15 @@ import {
   SYSTEM_INFO,
   USER_INFO
 } from '@/store/constant'
-import { mapState } from 'vuex'
 	export default {
     components: {
     },
 		data() {
 			return {
-        
+        account: '',
+        password: '',
 			}
-    },
-    computed: {
-    ...mapState({
-      user: 'user'
-    })
-  },
+		},
 		onLoad() {
       let userInfo = wx.getStorageSync(USER_INFO)
       if (userInfo) {
@@ -40,18 +34,23 @@ import { mapState } from 'vuex'
       }
 		},
 		methods: {
+      getNameValue: function(e) {
+        this.account = e.target.value;
+      },
+      getPasswordValue: function(e) {
+        this.password = e.target.value;
+      },
       async bindGetUserInfo (e) {
         if (e.mp.detail.errMsg === 'getUserInfo:ok') {
           const _this = this
           wx.login({
             async success (res) {
-              console.log(res,'123')
               if (res.code) {
                 // tip.loading()
                 _this.userinfo = e.mp.detail.userInfo
                 let systemInfo = wx.getSystemInfoSync()
                 wx.setStorageSync(SYSTEM_INFO, systemInfo)
-                await _this.$store.dispatch('wechatAcommituth', res.code)
+                await _this.$store.dispatch('wechatAcommituth', {code:res.code, userId: _this.account, password: _this.password})
                 if(this.user) {
                   wx.redirectTo({
                     url: '/pages/login/main'
@@ -59,20 +58,6 @@ import { mapState } from 'vuex'
                 } else {
                   
                 }
-                // const data = await _this.$api.wxJsCode2Session({
-                //   jsCode: res.code,
-                //   // userInfo: _this.userinfo
-                //   avatarUrl: _this.userinfo.avatarUrl,
-                //   gender: _this.userinfo.gender == 1 ? 'male' : 'female',
-                //   nickName: _this.userinfo.nickName
-                // })
-                // if (data.result) {
-                //   wx.setStorageSync(USER_INFO, data.user)
-                // } else {
-                //   // console.log(data)
-                //   tip.loaded()
-                //   tip.errorTip('授权失败')
-                // }
               } else {
                 const meg = '124'
                 tip.errorTip(meg)
