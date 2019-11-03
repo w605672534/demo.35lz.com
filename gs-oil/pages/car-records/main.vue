@@ -25,7 +25,7 @@
 		onLoad(option) {
       this.recordId = option.record_id;
       uni.request({
-        url: `http://train2.35lz.com/oms/api/traffic-record/${this.recordId}/detail?_username=yangxiaoyan&_password=123456`,
+        url: `http://train.35lz.com/oms/api/traffic-record/${this.recordId}/detail?_username=yangxiaoyan&_password=123456`,
       }).then((success, error) =>{
         this.records = success[1].data.data.collection ? success[1].data.data.collection : '';
       });

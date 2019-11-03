@@ -22,11 +22,11 @@
       </swiper>
     </div>
     <!-- 信息栏 -->
-    <div class="info" style="background-image: url(/static/bg.png);background-repeat:no-repeat;background-size:100% 100%">
+    <div class="info" style="background-image: url(http://hp-coffee.hulu.io/gs-oil/bg.png);background-repeat:no-repeat;background-size:100% 100%">
       <div class="info-bar">
         <div style="display: flex">
-          <i class="iconfont icon-renyuan-copy"></i><span class="info-bar-name">登录</span>
-          <!-- <i class="iconfont icon-renyuan-copy"></i><span class="info-bar-name">小熊猪</span><span class="info-bar-name">，您好</span> -->
+          <!-- <i class="iconfont icon-renyuan-copy"></i><span class="info-bar-name">登录</span> -->
+          <i class="iconfont icon-renyuan-copy"></i><span class="info-bar-name">{{userInfo.name}}</span><span class="info-bar-name">，您好</span>
         </div>
         <div class="info-bar-time">{{currentDate}} {{currentTime}}</div>
       </div>
@@ -36,13 +36,13 @@
     <div class="info-bar" style="padding: 8rpx;">
       <div class="card-info" @click="carInfo()">
         <div class="card-item">
-          <img src="/static/file.png">
+          <img src="http://hp-coffee.hulu.io/gs-oil/file.png">
           <h5>检查登记</h5>
         </div>
       </div>
       <div class="card-info">
         <div class="card-item" @click="infoRecord()">
-          <img src="/static/backlog.png">
+          <img src="http://hp-coffee.hulu.io/gs-oil/backlog.png">
           <h5>登记查询</h5>
         </div>
       </div>
@@ -50,7 +50,7 @@
     <div class="info-bar" style="padding: 8rpx;margin-top: -16rpx">
       <div class="card-info" @click="carDashboard()">
         <div class="card-item">
-          <img src="/static/dash.png">
+          <img src="http://hp-coffee.hulu.io/gs-oil/dash.png">
           <h5>登记统计</h5>
         </div>
       </div>
@@ -70,17 +70,18 @@ import {
 			return {
         // 轮播图
         banners: [
-          '/static/banner.png',
-          '/static/banner1.png',
-          '/static/banner2.png',
-          '/static/banner3.png'
+          'http://hp-coffee.hulu.io/gs-oil/banner.png',
+          'http://hp-coffee.hulu.io/gs-oil/banner1.png',
+          'http://hp-coffee.hulu.io/gs-oil/banner2.png',
+          'http://hp-coffee.hulu.io/gs-oil/banner3.png'
         ],
         currentDate: '',
-        currentTime: ''
+        currentTime: '',
+        userInfo: {}
 			}
 		},
 		onLoad() {
-      let userInfo = wx.getStorageSync(USER_INFO)
+      this.userInfo = wx.getStorageSync('user')
     },
     onShow() {
       const date = new Date();
@@ -89,7 +90,6 @@ import {
         + (month < 10 ? '0' + month : month) + '-'
         + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
       this.currentTime = date.getHours() + ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
-        let userInfo = wx.getStorageSync(USER_INFO)
       },
 		methods: {
       carInfo() {

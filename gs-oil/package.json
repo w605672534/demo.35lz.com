@@ -1,7 +1,6 @@
 {
   "name": "gs-oil",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +15,7 @@
     "moment": "^2.24.0",
     "mpvue-citypicker": "^1.0.6",
     "qs": "^6.8.0"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

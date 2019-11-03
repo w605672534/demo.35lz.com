@@ -1,20 +1,23 @@
 <template >
 	<div>
-    <div>
-      <input :value="account"  @input="getNameValue" placeholder='请输入账号'>
-      <input :value="password" @input="getPasswordValue" type="password" placeholder='请输入密码'>
-    </div>
     <div class="login">
+      <div class="input-info" style="border: 0">
+        <div class="account">账号</div>
+        <input :value="account"  @input="getNameValue" placeholder='请输入账号' style="border: 2rpx solid #eeeeee;padding: 8rpx">
+      </div>
+      <div class="input-info" style="border: 0">
+        <div class="password">密码</div>
+        <input :value="password" @input="getPasswordValue" type="password" placeholder='请输入密码' style="border: 2rpx solid #eeeeee;padding: 8rpx">
+      </div>
+    </div>
+    <div class="login-btn">
       <button hover-class="none" open-type="getUserInfo" type="primary" lang="zh_CN" @getuserinfo="bindGetUserInfo">登录</button>
     </div>
 	</div>
 </template>
 
 <script>
-import {
-  SYSTEM_INFO,
-  USER_INFO
-} from '@/store/constant'
+import { mapState } from 'vuex'
 	export default {
     components: {
     },
@@ -23,11 +26,15 @@ import {
         account: '',
         password: '',
 			}
-		},
+    },
+    computed: {
+      ...mapState({
+        user: 'user'
+      })
+    },
 		onLoad() {
-      let userInfo = wx.getStorageSync(USER_INFO)
+      let userInfo = wx.getStorageSync('user')
       if (userInfo) {
-        // 判断有没有实名认证过,若实名认证过进入首页，没有认证过进入实名认证页，把openid及姓名等存入到user表中
         wx.redirectTo({
           url: '/pages/index/main'
         })
@@ -41,30 +48,45 @@ import {
         this.password = e.target.value;
       },
       async bindGetUserInfo (e) {
-        if (e.mp.detail.errMsg === 'getUserInfo:ok') {
-          const _this = this
-          wx.login({
-            async success (res) {
-              if (res.code) {
-                // tip.loading()
-                _this.userinfo = e.mp.detail.userInfo
-                let systemInfo = wx.getSystemInfoSync()
-                wx.setStorageSync(SYSTEM_INFO, systemInfo)
-                await _this.$store.dispatch('wechatAcommituth', {code:res.code, userId: _this.account, password: _this.password})
-                if(this.user) {
-                  wx.redirectTo({
-                    url: '/pages/login/main'
-                  })
-                } else {
-                  
-                }
-              } else {
-                const meg = '124'
-                tip.errorTip(meg)
-              }
-            }
+        if (!this.account || !this.password) {
+          wx.showToast({
+            title: '请输入账号和密码',
+            icon: 'none',
+            mask: true,
+            duration: 2000
           })
+        } else {
+          if (e.mp.detail.errMsg === 'getUserInfo:ok') {
+            const _this = this
+            wx.login({
+              async success (res) {
+                if (res.code) {
+                  // tip.loading()
+                  _this.userinfo = e.mp.detail.userInfo
+                  await _this.$store.dispatch('wechatAcommituth', {code:res.code, userId: _this.account, password: _this.password, page: 'login'})
+                  wx.setStorageSync('user', _this.user)
+                  // if(_this.user) {
+                  //   console.log(_this.user,'10100100')
+                  //   wx.redirectTo({
+                  //     url: '/pages/index/main'
+                  //   })
+                  // } else {
+                  //   wx.showToast({
+                  //     title: '请输入正确的账号和密码',
+                  //     icon: 'none',
+                  //     mask: true,
+                  //     duration: 2000
+                  //   })
+                  // }
+                } else {
+                  const meg = '124'
+                  tip.errorTip(meg)
+                }
+              }
+            })
+          }
         }
+        
       },
     } 
   }
@@ -72,22 +94,21 @@ import {
 
 <style lang="less" scoped>
 @import '../../assets/styles/theme/variables.less';
-.logo {
-  padding:100rpx 0;
-  text-align: center;
-  image{
-    width:300rpx;
-    height: 300rpx;
-   
-  }
+.login {
+  margin: @spacing-big*4 auto;
+  padding: 0 120rpx;
 }
 .info {
   font-size: @secondary-title;
   color: @head-color;
   padding: @spacing-normal;
 }
-.login {
+.account,.password {
+  padding-right: @spacing*2;
+}
+.login-btn {
   margin: @spacing-normal;
+  border-radius: @border-radius-button;
   &-label {
     color: @secondary-color-gray;
     font-size: @explain-title;

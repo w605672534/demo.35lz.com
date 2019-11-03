@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://train.35lz.com/oms/' // 配置axios请求的地址
+axios.defaults.baseURL = 'http://train2.35lz.com/oms/' // 配置axios请求的地址
 // axios.defaults.imgURL = 'http://kitchen-cdn-qn.xiyouqi.com/' // 图片请求的地址
 axios.defaults.timeout = 600000
 axios.defaults.withCredentials = false // 设置cross跨域，并设置访问权限，允许跨域携带cookie信息

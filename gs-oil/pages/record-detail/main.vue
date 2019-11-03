@@ -204,12 +204,12 @@
          this.detailId = option.detail_id;
          this.recordId = option.record_id;
          uni.request({
-            url: `http://train2.35lz.com/oms/api/traffic-record/${this.recordId}/detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
+            url: `http://train.35lz.com/oms/api/traffic-record/${this.recordId}/detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
          }).then((success, error) =>{
             this.record = success[1].data.data.model;
          });
          uni.request({
-            url: `http://train2.35lz.com/oms/api/traffic-detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
+            url: `http://train.35lz.com/oms/api/traffic-detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
          }).then((success, error) =>{
             this.record = success[1].data.data.model;
             console.log(this.record,'ssss')

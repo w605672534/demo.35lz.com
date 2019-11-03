@@ -1,7 +1,8 @@
 <template >
 	<div>
     <div class="logo">
-      <img src="/static/logo.png">
+      <img src="http://hp-coffee.hulu.io/gs-oil/oil-logo.png">
+      <div class="logo-title">陇油风暴</div>
     </div>
     <div class="info">中国石油天然气股份有限公司甘肃销售公司（以下简称甘肃销售）的前身为甘肃省石油总公司，成立于1953年，主要从事汽油、煤油、柴油、润滑油及特种油品的批发、零售业务，承担着甘肃省工农业生产和人民群众生产、生活用油的供应任务。</div>
     <div class="login">
@@ -12,10 +13,6 @@
 </template>
 
 <script>
-import {
-  SYSTEM_INFO,
-  USER_INFO
-} from '@/store/constant'
 import { mapState } from 'vuex'
 	export default {
     components: {
@@ -31,13 +28,12 @@ import { mapState } from 'vuex'
     })
   },
 		onLoad() {
-      let userInfo = wx.getStorageSync(USER_INFO)
-      if (userInfo) {
-        // 判断有没有实名认证过,若实名认证过进入首页，没有认证过进入实名认证页，把openid及姓名等存入到user表中
-        wx.redirectTo({
-          url: '/pages/index/main'
-        })
-      }
+      // let userInfo = wx.getStorageSync(USER_INFO)
+      // if (userInfo) {
+      //   wx.redirectTo({
+      //     url: '/pages/index/main'
+      //   })
+      // }
 		},
 		methods: {
       async bindGetUserInfo (e) {
@@ -45,36 +41,13 @@ import { mapState } from 'vuex'
           const _this = this
           wx.login({
             async success (res) {
-              console.log(res,'123')
               if (res.code) {
                 // tip.loading()
                 _this.userinfo = e.mp.detail.userInfo
-                let systemInfo = wx.getSystemInfoSync()
-                wx.setStorageSync(SYSTEM_INFO, systemInfo)
-                await _this.$store.dispatch('wechatAcommituth', res.code)
-                if(this.user) {
-                  wx.redirectTo({
-                    url: '/pages/login/main'
-                  })
-                } else {
-                  
-                }
-                // const data = await _this.$api.wxJsCode2Session({
-                //   jsCode: res.code,
-                //   // userInfo: _this.userinfo
-                //   avatarUrl: _this.userinfo.avatarUrl,
-                //   gender: _this.userinfo.gender == 1 ? 'male' : 'female',
-                //   nickName: _this.userinfo.nickName
-                // })
-                // if (data.result) {
-                //   wx.setStorageSync(USER_INFO, data.user)
-                // } else {
-                //   // console.log(data)
-                //   tip.loaded()
-                //   tip.errorTip('授权失败')
-                // }
+                await _this.$store.dispatch('wechatAcommituth', {code: res.code, userId: '', password: '', page: 'auth'})
+                wx.setStorageSync('user', _this.user)
               } else {
-                const meg = '124'
+                const meg = '授权登录失败'
                 tip.errorTip(meg)
               }
             }
@@ -91,9 +64,8 @@ import { mapState } from 'vuex'
   padding:100rpx 0;
   text-align: center;
   image{
-    width:300rpx;
+    width: 450rpx;
     height: 300rpx;
-   
   }
 }
 .info {
@@ -112,5 +84,10 @@ import { mapState } from 'vuex'
   button {
     background: @primary-color;
   }
+}
+.logo-title {
+  text-align: center;
+  color: @primary-color;
+  font-size: @list-title;
 }
 </style>

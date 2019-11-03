@@ -300,8 +300,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 	export default {
     components: {
+    },
+    computed: {
+      ...mapState({
+        detail: 'detail',
+      })
     },
 		data() {
 			return { 
@@ -350,28 +356,29 @@
         passWay: [],
         material: [],
         detailId: '',
-        detail: {},
+        // detail: {},
 			}
 		},
-		onLoad(option) {
+		async onLoad(option) {
       this.detailId = option.detail_id
+      await this.$store.dispatch('editRecordDetail', { id: this.detailId})
       // 详情
-      uni.request({
-        url: `http://train2.35lz.com/oms/api/traffic-detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
-      }).then((success, error) =>{
-        this.detail = success[1].data.data.model;
-        console.log(this.detail,'88888')
-      });
+      // uni.request({
+      //   url: `http://train.35lz.com/oms/api/traffic-detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
+      // }).then((success, error) =>{
+      //   this.detail = success[1].data.data.model;
+      //   console.log(this.detail,'88888')
+      // });
       // 途径地
       uni.request({
-        url: 'http://train2.35lz.com/oms/api/sys-area?_username=yangxiaoyan&_password=123456',
+        url: 'http://train.35lz.com/oms/api/sys-area?_username=yangxiaoyan&_password=123456',
       }).then((success, error) =>{
         this.passWay = success[1].data.data.collection;
         console.log(this.passWay,'ssss')
       });
       // 化学品名称
       uni.request({
-        url: 'http://train2.35lz.com/oms/api/sys-chemical?_username=yangxiaoyan&_password=123456',
+        url: 'http://train.35lz.com/oms/api/sys-chemical?_username=yangxiaoyan&_password=123456',
       }).then((success, error) =>{
         this.material = success[1].data.data.collection;
         console.log(this.material,'ssss')
@@ -555,7 +562,7 @@
         const arriveTime = this.inDate + ' ' + this.inTime;
         const leaveTime = this.outDate + ' ' + this.outTime;
         const requestTask3 = uni.request({
-          url: `http://train2.35lz.com/oms/api/traffic-detail/check/${this.detailId}?_username=yangxiaoyan&_password=123456`,
+          url: `http://train.35lz.com/oms/api/traffic-detail/check/${this.detailId}?_username=yangxiaoyan&_password=123456`,
           data: { 
             car_numbers: this.detail.car_numbers,
             material_id: this.detail.material_id,

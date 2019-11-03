@@ -10,7 +10,6 @@
     </div>
     <div class="tabbar-content" v-if="toView == 'unCheck'">
       <div class="record-list" v-for="(item, index) in unCheckRecord" :key="index">
-        <!-- <div class="no-record" v-if="unCheckRecord.length== 0">没有车辆登记记录</div> -->
         <div class="record-item" @click="recordDetileUncheck(item)">
           <div class="record-item-title">{{item.car_numbers}}</div>
           <div class="record-item-content">
@@ -18,6 +17,11 @@
               <i class="iconfont icon-bianji"></i>
           </div>
         </div>
+      </div>
+
+      <div class="no-record" v-if="unCheckRecord.length == 0">
+        <i class="iconfont icon-jilu"></i>
+        <p>没有车辆登记记录</p>
       </div>
     </div>
     <div class="tabbar-content" v-if="toView == 'check'">
@@ -38,39 +42,28 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 	export default {
     components: {
     },
+    computed: {
+      ...mapState({
+        unCheckRecord: 'unCheckRecord',
+        checkRecord: 'checkRecord'
+      })
+    },
 		data() {
 			return {
-        unCheckRecord: [],
-        checkRecord: [],
         toView: 'unCheck',
 			}
     },
-    onShow(){
-      uni.request({
-        url: 'http://train2.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456&status=未检查',
-      }).then((success, error) =>{
-        this.unCheckRecord = success[1].data.data.collection;
-      });
-      uni.request({
-        url: 'http://train2.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456&status=已检查',
-      }).then((success, error) =>{
-        this.checkRecord = success[1].data.data.collection;
-      });
+    async onShow(){
+      await this.$store.dispatch('getUnChek');
+      await this.$store.dispatch('getChek')
     },
-		onLoad() {
-      uni.request({
-        url: 'http://train2.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456&status=未检查',
-      }).then((success, error) =>{
-        this.unCheckRecord = success[1].data.data.collection;
-      });
-      uni.request({
-        url: 'http://train2.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456&status=已检查',
-      }).then((success, error) =>{
-        this.checkRecord = success[1].data.data.collection;
-      });
+		async onLoad() {
+      await this.$store.dispatch('getUnChek');
+      await this.$store.dispatch('getChek')
 		},
 		methods: {
       tabClick (tabCode) {
@@ -145,5 +138,18 @@
 .tabbar-content {
   margin: @spacing*2 0;
   padding-top: 105rpx;
+}
+.no-record{
+  background: @bg-white;
+  font-size: @icon-font;
+  padding: @spacing-big*4 0;
+  text-align: center;
+  color: @secondary-color-gray;
+  p {
+    font-size: @icon-font;
+  }
+  i {
+    font-size: @number-font;
+  }
 }
 </style>

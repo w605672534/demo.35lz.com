@@ -5,16 +5,15 @@
     <div class="content">
       <div class="input-info LicensePlateNumber" @click='LicensePlateNumber_ok'>
         <div class="input-info-title">车号<span class="radio-info-flag">*</span></div>
-        <input value='{{LicensePlateNumber}}' disabled='true' placeholder='请选择车牌号'>
-        <!-- <input type="text" :id="carNum" @input="getCarnumValue" placeholder="请填写车号"> -->
+        <input :value='LicensePlateNumber' disabled='true' placeholder='请选择车牌号'>
       </div>
-      <div class="check-info">
-        <div class="check-info-title">危险化学品名称</div>
-        <div class="check-info-content"
-          :class="{'checked' : name.indexOf(item.material_id) !== -1}"
+      <div class="radio-info">
+        <div class="radio-info-title">危险化学品名称</div>
+        <div class="radio-info-content"
+          :class="{'checked' : item.material_id == name}"
           @click="getNameValue(item)"
-          v-for="item in material"
-          :key="item.material_id" 
+          v-for="(item,index) in material"
+          :key="index" 
         >
         {{item.material_name}}
         </div>
@@ -281,12 +280,12 @@
       <view class='licensePlate_Bg' @click='licensePlate_close'></view>
       <!-- 省份 -->
       <view class='licensePlate_provinces_Box' v-if='licensePlate_provinces_Box'>
-        <view class='licensePlate_provincesTist' wx:for='{{licensePlate_provinces}}' @click='licensePlate_provinces_ok' data-licensePlateProvinces='{{item}}' wx:key='index'>{{item}}</view>
+        <view class='licensePlate_provincesTist' v-for="(item,index) in licensePlate_provinces" :key="index" @click='licensePlate_provinces_ok(item)'>{{item}}</view>
         <view class='licensePlate_but' @click='licensePlate_close'>关闭</view>
       </view>
       <!-- 字母 -->
       <view class='licensePlate_letter_Box' v-if='licensePlate_letter_Box'>
-        <view class='licensePlate_letterTist' wx:for='{{licensePlate_letter}}' @click='licensePlate_letter_ok' data-licensePlateProvinces='{{item}}' wx:key='index'>{{item}}</view>
+        <view class='licensePlate_letterTist' v-for="(item, index) in licensePlate_letter" :key="index" @click='licensePlate_letter_ok(item)'>{{item}}</view>
         <view class='licensePlate_letterTist_but'>
           <view class='licensePlate_but' @click='licensePlate_switchDigital'>数字</view>
           <view class='licensePlate_but' @click='licensePlate_delete()'>删除</view>
@@ -296,7 +295,7 @@
       </view>
       <!-- 数字 -->
       <view class='licensePlate_digital_Box' v-if='licensePlate_digital_Box'>
-        <view class='licensePlate_digitalTist' wx:for='{{licensePlate_digital}}' @click='licensePlate_digital_ok' data-licensePlateProvinces='{{item}}' wx:key='index'>{{item}}</view>
+        <view class='licensePlate_digitalTist' v-for="(item, index) in licensePlate_digital" :key="index" @click='licensePlate_digital_ok(item)'>{{item}}</view>
         <view class='licensePlate_digital_but'>
           <view class='licensePlate_but' @click='licensePlate_switchLetter()'>字母</view>
           <view class='licensePlate_but' @click='licensePlate_delete()'>删除</view>
@@ -309,13 +308,19 @@
 </template>
 
 <script>
+// import { mapState } from 'vuex'
 	export default {
     components: {
     },
+    // computed: {
+    //   ...mapState({
+    //     passWay: 'passWay'
+    //   })
+    // },
 		data() {
 			return {
         carNum: '', // 车号
-        name: [], // 危险化学品名称
+        name: '', // 危险化学品名称
         number: '', // 数量（吨） 
         inTime: '', // 进站检查时间
         outTime: '', // 离站时间
@@ -389,20 +394,21 @@
         LicensePlateNumber:'',
 			}
 		},
-		onLoad() {
+		async onLoad() {
       // 途径地
+      // await this.$store.dispatch('getArea')
       uni.request({
-        url: 'http://train2.35lz.com/oms/api/sys-area?_username=yangxiaoyan&_password=123456',
+        url: 'http://train.35lz.com/oms/api/sys-area?_username=yangxiaoyan&_password=123456',
       }).then((success, error) =>{
         this.passWay = success[1].data.data.collection;
         console.log(this.passWay,'ssss')
       });
       // 化学品名称
       uni.request({
-        url: 'http://train2.35lz.com/oms/api/sys-chemical?_username=yangxiaoyan&_password=123456',
+        url: 'http://train.35lz.com/oms/api/sys-chemical?_username=yangxiaoyan&_password=123456',
       }).then((success, error) =>{
         this.material = success[1].data.data.collection;
-        console.log(this.material,'ssss')
+        console.log(this.material,'2222222')
       });
     },
     onShow() {
@@ -421,6 +427,7 @@
       // 显示模拟键盘
       LicensePlateNumber_ok:function(){
         var LicensePlateNumber = this.LicensePlateNumber;
+        console.log(LicensePlateNumber,'9999')
         var LicensePlateNumberLen = LicensePlateNumber.length;
         if (LicensePlateNumberLen == 0){
           this.licensePlateShowHidden = true
@@ -470,7 +477,6 @@
         }
         this.LicensePlateNumber = NewLicensePlateNumber
       },
-
       // 清空
       licensePlate_empty: function (e) {
         this.LicensePlateNumber = '',
@@ -478,26 +484,23 @@
         this.licensePlate_letter_Box = false
         this.licensePlate_digital_Box = false
       },
-
       // 关闭模拟键盘
       licensePlate_close:function(){
         this.licensePlateShowHidden = false
       },
-
       // 点击获取省份
       licensePlate_provinces_ok: function (e) {
-        this.LicensePlateNumber = e.target.dataset.licenseplateprovinces,
+        this.LicensePlateNumber = e
         this.licensePlate_letter_Box = true
         this.licensePlate_digital_Box = false
-        console.log(e.target.dataset.licenseplateprovinces)
+        console.log('sssss', e)
       },
-
       // 点击获取字母
       licensePlate_letter_ok: function (e) {
-        var LicensePlateNumberLen = this.LicensePlateNumber.length;
+        var LicensePlateNumberLen = this.LicensePlateNumber.length
         if (LicensePlateNumberLen != 8) {
-          this.LicensePlateNumber = this.LicensePlateNumber + e.target.dataset.licenseplateprovinces
-          console.log(e.target.dataset.licenseplateprovinces)
+          this.LicensePlateNumber = this.LicensePlateNumber + e
+          console.log(e)
         } else {
           wx.showToast({
             title: '车牌号码最多不能超过8位',
@@ -506,13 +509,12 @@
           })
         }
       },
-
       // 点击获取数字
       licensePlate_digital_ok: function (e) {
         var LicensePlateNumberLen = this.LicensePlateNumber.length;
         if (LicensePlateNumberLen != 8){
-          this.LicensePlateNumber = this.LicensePlateNumber + e.target.dataset.licenseplateprovinces
-          console.log(e.target.dataset.licenseplateprovinces)
+          this.LicensePlateNumber = this.LicensePlateNumber + e
+          console.log(e)
         }else{
           wx.showToast({
             title: '车牌号码最多不能超过8位',
@@ -527,11 +529,12 @@
       },
       // 危险化学品名称
       getNameValue: function(item) {
-        if (this.name.indexOf(item.material_id) !== -1) {
-          this.name.splice(this.name.indexOf(item.material_id));
-        } else {
-          this.name.push(item.material_id);
-        }
+        this.name = item.material_id;
+        // if (this.name.indexOf(item.material_id) !== -1) {
+        //   this.name.splice(this.name.indexOf(item.material_id));
+        // } else {
+        //   this.name.push(item.material_id);
+        // }
       },
       // 数量（吨） 
       getNumValue: function(e) {
@@ -695,15 +698,15 @@
       },
       // 提交
       submit() {
-        const name = this.name.join(',');
+        // const name = this.name.join(',');
         const pass = this.pass.join(',');
         const arriveTime = this.inDate + ' ' + this.inTime;
         const leaveTime = this.outDate + ' ' + this.outTime;
         const requestTask3 = uni.request({
-          url: 'http://train2.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456',
+          url: 'http://train.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456',
           data: { 
             car_numbers: this.LicensePlateNumber,
-            material_id: name,
+            material_id: this.name,
             arrive_time: arriveTime,
             leave_time: leaveTime,
             traffic_org: this.transUnit,
@@ -731,9 +734,11 @@
           method:"POST",
           header : {'content-type':'application/json'},
           success: function (res) {
-            wx.navigateBack({
-              delta: 1
-            })
+            // if (res.data.code == 200) {
+              wx.navigateBack({
+                delta: 1
+              })
+            // }
             console.log(res.data);
           }
         });

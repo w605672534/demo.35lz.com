@@ -23,7 +23,7 @@
 		},
 		onLoad() {
          uni.request({
-            url: 'http://train2.35lz.com/oms/api/traffic-record?_username=yangxiaoyan&_password=123456',
+            url: 'http://train.35lz.com/oms/api/traffic-record?_username=yangxiaoyan&_password=123456',
          }).then((success, error) =>{
             this.record = success[1].data.data.collection;
             console.log(this.record,'ssss')
