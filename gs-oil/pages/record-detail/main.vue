@@ -189,31 +189,27 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 	export default {
       components: {
+      },
+      computed: {
+         ...mapState({
+            record: 'record',
+         })
       },
 		data() {
 			return {
             recordId: '',
             facadeTempFilePaths: '/static/banner3.png',
             obverseTempFilePaths: '/static/banner2.png',
-            record: {}
 			}
 		},
-		onLoad(option) {
+		async onLoad(option) {
          this.detailId = option.detail_id;
          this.recordId = option.record_id;
-         uni.request({
-            url: `http://train.35lz.com/oms/api/traffic-record/${this.recordId}/detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
-         }).then((success, error) =>{
-            this.record = success[1].data.data.model;
-         });
-         uni.request({
-            url: `http://train.35lz.com/oms/api/traffic-detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
-         }).then((success, error) =>{
-            this.record = success[1].data.data.model;
-            console.log(this.record,'ssss')
-         });
+         await this.$store.dispatch('carRecordDetail', { id: this.detailId})
+         await this.$store.dispatch('carRecordWayDetail', { detailId: this.detailId, recordId: this.recordId})
 		},
 		methods: {
          // 点击放大正面图片

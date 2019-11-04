@@ -1,6 +1,6 @@
 <template>
    <div style="background: #eeeeee">
-      <div class="record-list" v-for="(item, index) in record" :key="index">
+      <div class="record-list" v-for="(item, index) in recordList" :key="index">
          <div class="record-item" @click="recordDetile(item)">
             <div class="record-item-title">{{item.car_numbers}}</div>
             <div class="record-item-content">
@@ -13,44 +13,29 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 	export default {
-    components: {
-    },
+      components: {
+      },
 		data() {
 			return {
-            record: [],
+           
 			}
-		},
-		onLoad() {
-         uni.request({
-            url: 'http://train.35lz.com/oms/api/traffic-record?_username=yangxiaoyan&_password=123456',
-         }).then((success, error) =>{
-            this.record = success[1].data.data.collection;
-            console.log(this.record,'ssss')
-         });
+      },
+      computed: {
+         ...mapState({
+            recordList: 'recordList',
+         })
+      },
+		async onLoad() {
+         await this.$store.dispatch('carRecord')
 		},
 		methods: {
          recordDetile(item) {
-            // wx.navigateTo({
-            //    url: `/pages/record-detail/main?record_id=${item.record_id}`
-            // })
             wx.navigateTo({
                url: `/pages/car-records/main?record_id=${item.record_id}`
             })
          },
-      // infoRecord() {
-      //   wx.navigateTo({
-      //     url: '/pages/customer/main'
-      //   })
-      // },
-      // 扫一扫
-      // toScan() {
-      //   wx.scanCode({
-      //     success: (res) => {
-      //       console.log(res)
-      //     }
-      //   })
-      // }
 		}
 	}
 </script>

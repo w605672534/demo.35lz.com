@@ -66,7 +66,10 @@ const store = new Vuex.Store({
     passWay: [],
     unCheckRecord: [],
     checkRecord: [],
-    detail: {}
+    detail: {},
+    record: {},
+    recordList: [],
+    wayList: []
   },
   mutations: {
     wechatInfo (state, payload) {
@@ -84,22 +87,30 @@ const store = new Vuex.Store({
     seteditRecordDetail(state, payload) {
       state.detail = payload
     },
+    setCarRecordDetail(state, payload) {
+      state.record = payload
+    },
+    setCarRecord(state, payload) {
+      state.recordList = payload
+    },
+    setCarRecordWay(state, payload) {
+      state.wayList = payload
+    },
   },
   actions: {
     // 授权登录
     async wechatAcommituth ({ dispatch, commit }, params) {
       const url = this.state.server +  '/weixin/login';
       const result =  await request('POST', url, {code: params.code, userId: params.userId, password: params.password});
-      const pageName = params.page
       if (result) {
-        if(result.code == 200) {
+        if (params.page == 'auth' && result.code == 401) {
+          wx.redirectTo({
+            url: '/pages/login/main'
+          })
+        } else if(result.code == 200) {
           commit('wechatInfo', result.data)
           wx.redirectTo({
             url: '/pages/index/main'
-          })
-        } else if (params.page == 'auth' && result.code == 401) {
-          wx.redirectTo({
-            url: '/pages/login/main'
           })
         } else {
           wx.showToast({
@@ -141,12 +152,48 @@ const store = new Vuex.Store({
       }
     },
     // 记录详情
-    async editRecordDetail ({ dispatch, commit }) {
+    async editRecordDetail ({ dispatch, commit },params) {
       const url = this.state.server + '/api/traffic-detail/' + params.id;
       let result = await request('GET', url, {});
       console.log(result,'222')
       if(result) {
         commit('seteditRecordDetail', result.data)
+      }
+    },
+    // 车辆信息详情
+    async carRecordDetail ({ dispatch, commit },params) {
+      const url = this.state.server + '/api/traffic-detail/' + params.id;
+      let result = await request('GET', url, {});
+      console.log(result,'222')
+      if(result) {
+        commit('setCarRecordDetail', result.data.model)
+      }
+    },
+    // 车辆信息记录
+    async carRecord ({ dispatch, commit },params) {
+      const url = this.state.server + '/api/traffic-detail/';
+      let result = await request('GET', url, {size: 1000});
+      console.log(result,'222')
+      if(result) {
+        commit('setCarRecord', result.data.collection)
+      }
+    },
+    // 车辆信息记录途径地
+    async carRecordWay ({ dispatch, commit },params) {
+      const url = this.state.server + '/api/traffic-record/' + params.id + '/detail';
+      let result = await request('GET', url);
+      console.log(result,'222')
+      if(result) {
+        commit('setCarRecordWay', result.data.collection)
+      }
+    },
+    // 车辆信息记录途径地详情
+    async carRecordWayDetail ({ dispatch, commit },params) {
+      const url = this.state.server + '/api/traffic-record/' + params.recordId + '/detail/' + params.detailId;
+      let result = await request('GET', url);
+      console.log(result,'222')
+      if(result) {
+        commit('setCarRecordWay', result.data.collection)
       }
     },
   }

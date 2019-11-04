@@ -397,19 +397,19 @@
 		async onLoad() {
       // 途径地
       // await this.$store.dispatch('getArea')
-      uni.request({
-        url: 'http://train.35lz.com/oms/api/sys-area?_username=yangxiaoyan&_password=123456',
-      }).then((success, error) =>{
-        this.passWay = success[1].data.data.collection;
-        console.log(this.passWay,'ssss')
-      });
+      // uni.request({
+      //   url: 'http://train.35lz.com/oms/api/sys-area?_username=yangxiaoyan&_password=123456',
+      // }).then((success, error) =>{
+      //   this.passWay = success[1].data.data.collection;
+      //   console.log(this.passWay,'ssss')
+      // });
       // 化学品名称
-      uni.request({
-        url: 'http://train.35lz.com/oms/api/sys-chemical?_username=yangxiaoyan&_password=123456',
-      }).then((success, error) =>{
-        this.material = success[1].data.data.collection;
-        console.log(this.material,'2222222')
-      });
+      // uni.request({
+      //   url: 'http://train.35lz.com/oms/api/sys-chemical?_username=yangxiaoyan&_password=123456',
+      // }).then((success, error) =>{
+      //   this.material = success[1].data.data.collection;
+      //   console.log(this.material,'2222222')
+      // });
     },
     onShow() {
       const date = new Date();
@@ -582,6 +582,7 @@
       },
       // 是否具有驾驶证
       bindDrivingChange(index) {
+        console.log(333, index)
         this.driving = index;
       },
       // 是否具有行驶证
@@ -713,10 +714,11 @@
             Invoice_no: this.cargoNumber,
             starting: this.departure,
             destination: this.destination,
+            load: this.number,
             record_way: pass,
-            is_driving_licence: this.driving == '0' ? '是' : '否',
-            is_driving_permit: this.drivingPermit == '0' ? '是' : '否',
-            have_inspection: this.qualityInspection == '0' ? '是' : '否',
+            is_driving_licence: this.driving == 0 ? '是' : '否',
+            is_driving_permit: this.drivingPermit == 0 ? '是' : '否',
+            have_inspection: this.qualityInspection == 0 ? '是' : '否',
             have_danger_license: this.transportationPermit == '0' ? '是' : '否',
             have_toxic_license: this.transportPass == '0' ? '是' : '否',
             have_supercargo: this.supercargo == '0' ? '是' : '否',

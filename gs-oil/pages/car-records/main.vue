@@ -1,7 +1,7 @@
 <template>
    <div style="background: #eeeeee">
-      <div v-if="records.length==0" class="no-record">暂无车辆明细记录</div>
-      <div v-else class="record-list" v-for="(item, index) in records" :key="index">
+      <div v-if="wayList.length==0" class="no-record">暂无车辆明细记录</div>
+      <div v-else class="record-list" v-for="(item, index) in wayList" :key="index">
          <div class="record-item" @click="recordDetile(item)">
             <div class="record-item-title">{{item.way_name}}</div>
             <div class="record-item-content">
@@ -14,27 +14,33 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 	export default {
-    components: {
-    },
-		data() {
-			return {
-        records: [],
-			}
-		},
-		onLoad(option) {
+   components: {
+   },
+   computed: {
+      ...mapState({
+         wayList: 'wayList',
+      })
+   },
+   data() {
+      return {
+         
+      }
+   },
+   async onLoad(option) {
       this.recordId = option.record_id;
-      uni.request({
-        url: `http://train.35lz.com/oms/api/traffic-record/${this.recordId}/detail?_username=yangxiaoyan&_password=123456`,
-      }).then((success, error) =>{
-        this.records = success[1].data.data.collection ? success[1].data.data.collection : '';
-      });
-		},
-		methods: {
+      await this.$store.dispatch('carRecordWay', { id: this.recordId})
+   },
+   async onShow(option) {
+      this.recordId = option.record_id;
+      await this.$store.dispatch('carRecordWay', { id: this.recordId})
+   },
+   methods: {
       recordDetile(item) {
-        wx.navigateTo({
-          url: `/pages/record-detail/main?record_id=${this.recordId}&detail_id=${item.detail_id}`
-        })
+         wx.navigateTo({
+            url: `/pages/record-detail/main?record_id=${this.recordId}&detail_id=${item.detail_id}`
+         })
       },
       // infoRecord() {
       //   wx.navigateTo({

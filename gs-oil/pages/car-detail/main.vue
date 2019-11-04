@@ -13,7 +13,7 @@
         <div class="record-item" @click="recordDetileUncheck(item)">
           <div class="record-item-title">{{item.car_numbers}}</div>
           <div class="record-item-content">
-              <span style="padding-left: 16rpx">{{item.update_time | dateformat('YYYY-MM-DD HH:mm:ss')}}</span>
+              <span style="margin-right: 16rpx">{{item.update_time | dateformat('YYYY-MM-DD HH:mm:ss')}}</span>
               <i class="iconfont icon-bianji"></i>
           </div>
         </div>
@@ -87,19 +87,6 @@ import { mapState } from 'vuex'
           url: `/pages/car-info/main`
         })
       }
-      // infoRecord() {
-      //   wx.navigateTo({
-      //     url: '/pages/customer/main'
-      //   })
-      // },
-      // 扫一扫
-      // toScan() {
-      //   wx.scanCode({
-      //     success: (res) => {
-      //       console.log(res)
-      //     }
-      //   })
-      // }
 		}
 	}
 </script>

@@ -33,12 +33,12 @@ import { mapState } from 'vuex'
       })
     },
 		onLoad() {
-      let userInfo = wx.getStorageSync('user')
-      if (userInfo) {
-        wx.redirectTo({
-          url: '/pages/index/main'
-        })
-      }
+      // let userInfo = wx.getStorageSync('user')
+      // if (userInfo) {
+      //   wx.redirectTo({
+      //     url: '/pages/index/main'
+      //   })
+      // }
 		},
 		methods: {
       getNameValue: function(e) {

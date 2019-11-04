@@ -3,14 +3,14 @@
     <!-- 基本信息 -->
     <div class="title">基本信息</div>
     <div class="content">
-      <div class="input-info">
+      <div class="input-info" v-if="this.detailId">
         <div class="input-info-title">车号<span class="radio-info-flag">*</span></div>
         <div class="record-item-content">
           <span>{{detail.car_numbers}}</span>
         </div>
         <!-- <input type="text" :id="detail.car_numbers" @input="getCarnumValue" placeholder="请填写车号"> -->
       </div>
-      <div class="input-info">
+      <div class="input-info" v-if="this.detailId">
         <div class="input-info-title">危险化学品名称</div>
         <!-- <div class="check-info-content"
           :class="{'checked' : name.indexOf(item.material_id) !== -1}"
@@ -24,21 +24,21 @@
           <span>{{detail.material_name}}</span>
         </div>
       </div>
-      <div class="input-info">
+      <div class="input-info" v-if="this.detailId">
         <div class="input-info-title">数量（吨）<span class="radio-info-flag">*</span></div>
         <div class="record-item-content">
           <span>{{detail.load}}</span>
         </div>
         <!-- <input type="text" @input="getNumValue" :value="number" placeholder="请填写数量（吨）"> -->
       </div>
-      <div class="input-info">
+      <div class="input-info" v-if="this.detailId">
         <div class="input-info-title">运输单位</div>
         <div class="record-item-content">
           <span>{{detail.traffic_org}}</span>
         </div>
         <!-- <input type="text" :value="transUnit" @input="getTransUnitValue" placeholder="请填写运输单位"> -->
       </div>
-      <div class="input-info">
+      <div class="input-info" v-if="this.detailId">
         <div class="input-info-title">运/提货单号</div>
         <div class="record-item-content">
           <span>{{detail.Invoice_no}}</span>
@@ -73,8 +73,8 @@
       </div>
     </div>
     <!-- 运输区间 -->
-    <div class="title">运输区间</div>
-    <div class="content">
+    <div class="title" v-if="this.detailId">运输区间</div>
+    <div class="content" v-if="this.detailId">
       <div class="input-info">
         <div class="input-info-title">出发地</div>
         <div class="record-item-content">
@@ -362,27 +362,6 @@ import { mapState } from 'vuex'
 		async onLoad(option) {
       this.detailId = option.detail_id
       await this.$store.dispatch('editRecordDetail', { id: this.detailId})
-      // 详情
-      // uni.request({
-      //   url: `http://train.35lz.com/oms/api/traffic-detail/${this.detailId}?_username=yangxiaoyan&_password=123456`,
-      // }).then((success, error) =>{
-      //   this.detail = success[1].data.data.model;
-      //   console.log(this.detail,'88888')
-      // });
-      // 途径地
-      uni.request({
-        url: 'http://train.35lz.com/oms/api/sys-area?_username=yangxiaoyan&_password=123456',
-      }).then((success, error) =>{
-        this.passWay = success[1].data.data.collection;
-        console.log(this.passWay,'ssss')
-      });
-      // 化学品名称
-      uni.request({
-        url: 'http://train.35lz.com/oms/api/sys-chemical?_username=yangxiaoyan&_password=123456',
-      }).then((success, error) =>{
-        this.material = success[1].data.data.collection;
-        console.log(this.material,'ssss')
-      });
     },
     onShow() {
       const date = new Date();
@@ -428,18 +407,6 @@ import { mapState } from 'vuex'
         } else {
           this.pass.push(item.address_id);
         }
-        // var items = this.passWay;
-        // console.log(items,'bbbb');
-        // values = e.detail;
-        // // console.log(items,'bbbb');
-        // for (var i = 0, lenI = items.length; i < lenI; ++i) {
-        //     const item = items[i]
-        //     if(values.includes(item.value)){
-        //         this.$set(item,'checked',true)
-        //     }else{
-        //         this.$set(item,'checked',false)
-        //     }
-        // }
       },
       // 是否具有驾驶证
       bindDrivingChange(index) {
@@ -573,7 +540,7 @@ import { mapState } from 'vuex'
             Invoice_no: this.detail.Invoice_no,
             starting: this.detail.starting,
             destination: this.detail.destination,
-            detail_id: this.detail.detail_id,
+            detail_id: this.detailId,
             load: this.detail.load,
             status: this.detail.status,
             is_driving_licence: this.driving == '0' ? '是' : '否',
