@@ -18,7 +18,6 @@
           </div>
         </div>
       </div>
-
       <div class="no-record" v-if="unCheckRecord.length == 0">
         <i class="iconfont icon-jilu"></i>
         <p>没有车辆登记记录</p>
@@ -33,6 +32,10 @@
               <i class="iconfont icon-you"></i>
           </div>
         </div>
+      </div>
+      <div class="no-record" v-if="checkRecord.length == 0">
+        <i class="iconfont icon-jilu"></i>
+        <p>没有车辆登记记录</p>
       </div>
     </div>
     <div>

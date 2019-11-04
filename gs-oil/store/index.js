@@ -59,7 +59,7 @@ const store = new Vuex.Store({
   state: {
     server: 'http://train.35lz.com/oms',
     // server: 'http://192.168.2.30:8080/oms',
-    imgURL: 'http://train2.35lz.com/oms',
+    imgURL: 'http://train.35lz.com/oms',
     site: '10000',
     store: [],
     user: {},
