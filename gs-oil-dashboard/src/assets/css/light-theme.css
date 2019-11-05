@@ -1,0 +1,386 @@
+.app-light#app {
+  background-color: #F0F2F5;
+  background-image: none;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.app-light .nav-bg {
+  background-color: #fff;
+}
+.app-light .panel-title {
+  color: rgba(0, 0, 0, 0.65);
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 15px;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.app-light .process-water-title {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .el-button--primary {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+@media screen and (max-width:1000px) {
+  .app-light .collapse-panel {
+    background-color: #fff;
+  }
+  .app-light .navbar-dark .navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.45);
+    color: rgba(0, 0, 0, 0.45);
+  }
+}
+.app-light .product-title {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .product-num {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .table-tr {
+  color: rgba(0, 0, 0, 0.65);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+}
+.app-light .table-tr > th {
+  padding: 11px 3px;
+}
+.app-light .table-tr > td {
+  padding: 11px 3px;
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .bluedata-logo {
+  color: rgba(0, 0, 0, 0.85);
+}
+.app-light .process-water-num {
+  color: rgba(0, 0, 0, 0.85);
+}
+.app-light .navbar-brand {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+.app-light .count-title {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .count-title > .count-num {
+  color: #1890ff;
+}
+.app-light .count-title > .count-num > span {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .circle-progress-content {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .circle-progress-content i {
+  color: #1890ff;
+}
+.app-light .circle-progress-content > .circle-progress-num {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .el-table {
+  color: rgba(0, 0, 0, 0.65);
+  margin-top: 0px;
+}
+.app-light .el-table th {
+  background-color: #fff;
+  padding: 10px 5px;
+  border-bottom: 1px solid #e8e8e8;
+  padding-left: 0;
+}
+.app-light .el-table th > .cell {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .product-content-top {
+  border-top: 1px solid #e8e8e8;
+}
+.app-light .process-water-company {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .panel-noframe.panel-default > .panel-body {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+.app-light .panel-default > .panel-body {
+  background-color: #fff;
+  border: 0;
+}
+.app-light .product-water > .panel-body > .block > .el-row > .el-col > .panel-body {
+  background-color: #fff;
+}
+.app-light .el-dialog {
+  background: #fff;
+}
+.app-light .el-dialog > .el-dialog__header {
+  border-bottom: 1px solid #e8e8e8;
+}
+.app-light .el-dialog > .el-dialog__header .el-dialog__title {
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+.app-light .el-dialog > .el-dialog__header .el-dialog__headerbtn .el-icon-close {
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+.app-light .el-dialog > .el-dialog__body {
+  padding: 15px;
+}
+.app-light .el-tabs--border-card {
+  background-color: #fff;
+  border: 0;
+}
+.app-light .el-tabs--border-card > .el-tabs__content {
+  padding: 0;
+  margin-top: 0;
+}
+.app-light .el-tabs--border-card > .el-tabs__header {
+  background-color: #fff;
+  border-bottom: 1px solid #e8e8e8;
+}
+.app-light .el-tabs--border-card > .el-tabs__header .el-tabs__item {
+  line-height: 50px;
+  height: 50px;
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+  color: #1890ff;
+  border-bottom-color: #1890ff;
+}
+.app-light .water-compare {
+  background: #e8e8e8;
+  padding: 13px;
+}
+.app-light .water-compare > h5 {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .water-compare:after {
+  border-bottom: 1px solid #e8e8e8;
+}
+.app-light .water-compare:before {
+  border-right: 1px solid #e8e8e8;
+}
+.app-light .water-compare::before {
+  border-right: 1px solid #e8e8e8;
+}
+.app-light .water-compare::after {
+  border-bottom: 1px solid #e8e8e8;
+}
+.app-light .navbar-nav > a {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .navbar-nav > a:hover,
+.app-light .navbar-nav > a:active {
+  color: rgba(0, 0, 0, 0.85);
+}
+.app-light .navbar-nav > a:hover > i,
+.app-light .navbar-nav > a:active > i {
+  color: rgba(0, 0, 0, 0.85);
+}
+.app-light .navbar-nav > a > i {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .warning-monitor-num.monitor-num.circle-progress-num {
+  color: #eb2f96;
+}
+.app-light .monitor-num.circle-progress-num {
+  color: #52c41a;
+}
+.app-light .progress-bar {
+  background-color: #1890ff;
+}
+.app-light .el-table--striped .el-table__body tr.el-table__row--striped td {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.app-light .el-table__body-wrapper tr:hover > td {
+  background-color: #1890ff !important;
+}
+.app-light .el-table__body-wrapper .el-table__row.current-row,
+.app-light .el-table__body-wrapper .el-table__row.el-table__row--striped.current-row {
+  background-color: #1890ff;
+  color: #ffffff;
+}
+.app-light .el-table__body-wrapper .el-table__row.current-row > td,
+.app-light .el-table__body-wrapper .el-table__row.el-table__row--striped.current-row > td {
+  background-color: #1890ff;
+  color: #ffffff;
+}
+.app-light .fsize-13 {
+  font-size: 13px;
+}
+.app-light .fsize-15 {
+  font-size: 15px;
+}
+.app-light .fsize-18 {
+  font-size: 18px;
+}
+.app-light .fsize-20 {
+  font-size: 20px;
+}
+.app-light .unit-exception {
+  background-color: #52c41a;
+}
+.app-light .key-parameter {
+  background-color: #1890ff;
+}
+.app-light .online-analysis {
+  background-color: #13c2c2;
+}
+.app-light .test {
+  background-color: #722ed1;
+}
+.app-light .warning-color {
+  background-color: #eb2f96;
+}
+.app-light .normal-color {
+  background-color: #52c41a;
+}
+/*进度条底色*/
+.app-light .el-progress-circle__track {
+  stroke: rgba(0, 0, 0, 0.2);
+}
+.app-light .el-progress-bar__outer {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+/*进度条颜色*/
+.app-light .el-progress-circle__path {
+  stroke: #1890ff;
+}
+.app-light .el-progress-bar__inner {
+  background-color: #1890ff;
+}
+.app-light .icon-palette,
+.app-light .sign-out {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .icon-palette:hover,
+.app-light .sign-out:hover,
+.app-light .icon-palette:active,
+.app-light .sign-out:active {
+  color: rgba(0, 0, 0, 0.85);
+}
+.app-light.el-dropdown-menu {
+  background-color: #fff;
+  border: 0;
+}
+.app-light.el-dropdown-menu .el-dropdown-menu__item {
+  color: rgba(0, 0, 0, 0.85);
+}
+.app-light.el-dropdown-menu .el-dropdown-menu__item:hover,
+.app-light.el-dropdown-menu .el-dropdown-menu__item:active {
+  background-color: #1890ff;
+  color: #fff;
+}
+.app-light .el-progress__title {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .el-progress__num {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .el-pagination {
+  color: rgba(0, 0, 0, 0.85);
+}
+.app-light .el-pagination .btn-prev,
+.app-light .el-pagination .btn-next {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .el-pagination .el-pagination__total {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .el-pagination .el-pager li.btn-quickprev,
+.app-light .el-pagination .el-pager li.btn-quicknext {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .el-pagination .el-pager li.active {
+  color: #1890ff;
+}
+.app-light .el-pagination .el-pager li:hover {
+  color: #1890ff;
+}
+.app-light .teach-flow-prompt {
+  color: rgba(0, 0, 0, 0.45);
+}
+/*垂直滚动条*/
+.app-light .el-table .el-table__body-wrapper::-webkit-scrollbar-thumb:vertical {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.app-light .el-checkbox {
+  margin-bottom: 0;
+}
+.app-light .el-checkbox .el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+@media screen and (max-width:1000px) {
+  .app-light .navbar-nav a {
+    color: rgba(0, 0, 0, 0.65);
+  }
+  .app-light .navbar-nav a:focus,
+  .app-light .navbar-nav a:active {
+    background-color: #1890ff;
+    color: #fff;
+  }
+  .app-light .navbar-nav a:focus > i,
+  .app-light .navbar-nav a:active > i {
+    color: #fff;
+  }
+}
+.app-light .station {
+  background: #1890ff;
+  border: 1px solid #1890ff;
+}
+.app-light .home,
+.app-light .station-center,
+.app-light .alarm-user {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .content,
+.app-light .equ-list,
+.app-light .alarm-center,
+.app-light .parameter {
+  border-bottom: 1px solid #e8e8e8;
+}
+.app-light .station-center {
+  background: #fff;
+}
+.app-light .station-center .title {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .station-content {
+  background: #fff;
+  border-left: 1px solid #e8e8e8;
+  border-top: 1px solid #e8e8e8;
+}
+.app-light .col-content {
+  border-bottom: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+}
+.app-light .col-content i {
+  color: #1890ff;
+}
+.app-light .col-content .title-nus {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .equ-list {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .equ-list-icon,
+.app-light .equ-list-title {
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .el-tabs--card > .el-tabs__header .el-tabs__item {
+  color: rgba(0, 0, 0, 0.45);
+}
+.app-light .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
+  color: #1890ff;
+}
+.app-light .equ-title {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.65);
+}
+.app-light .start {
+  border: 1px solid #1890ff;
+  background: rgba(24, 144, 255, 0.3);
+  color: #1890ff;
+  border-radius: 4px;
+}
+.app-light .el-carousel__indicator.is-active button.el-carousel__button {
+  background-color: #1890ff;
+}

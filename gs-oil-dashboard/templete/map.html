@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>兰州市民网大数据分析平台</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/iconfont.css" rel="stylesheet">
+</head>
+<body>
+<!--<canvas id="bgCanvas"></canvas>-->
+<!--<canvas id="terCanvas"></canvas>-->
+<!--背景-->
+<div class="bluedata-bg">
+    <img src="img/bluedata-bg.jpg" width="100%" height="100%"/>
+</div>
+
+<!--导航-->
+<nav class="bluedata-nav navbar navbar-expand-lg navbar-dark">
+    <h2 class="bluedata-logo">兰州市民网大数据展示平台</h2>
+    <div class="navbar-brand" href="#" style="color: #54bfc8 "><i class="iconfont icon-time-o"></i><span style="font-size: 16px;margin-left: 10px">2017.01.01 ~ 2017.11.11</span></div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--导航右侧按钮-->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav ml-auto">
+            <a href="index.html"><i class="iconfont icon-shouye-copy" style="font-size: 24px;margin-left: 15px"></i></a>
+            <a data-toggle="modal" data-target="#exampleModal"><i class="iconfont icon-shujuku" style="font-size: 24px;margin-left: 30px"></i></a>
+        </div>
+    </div>
+    <!-- 下拉框 -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="bluedata-modal modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 modal-col">
+                            <p class="modal-content-group">概述篇</p>
+                            <p class="modal-content-btn"><a>热点诉求分析</a></p>
+                            <p class="modal-content-btn"><a>互联网和电话</a></p>
+                            <p class="modal-content-btn"><a>诉求渠道分析</a></p>
+                        </div>
+                        <div class="col-md-3 modal-col">
+                            <p class="modal-content-group">群众篇</p>
+                            <p class="modal-content-btn"><a>热点诉求分析</a></p>
+                            <p class="modal-content-btn"><a>互联网和电话</a></p>
+                            <p class="modal-content-btn"><a>诉求渠道分析</a></p>
+                        </div>
+                        <div class="col-md-3 modal-col">
+                            <p class="modal-content-group">部门篇</p>
+                            <p class="modal-content-btn"><a>受理情况统计</a></p>
+                            <p class="modal-content-btn"><a>诉求量分析</a></p>
+                            <p class="modal-content-btn"><a>诉求实时数据</a></p>
+                            <p class="modal-content-btn"><a>办件满意度</a></p>
+                        </div>
+                        <div class="col-md-3 modal-col">
+                            <p class="modal-content-group">辅助决策篇</p>
+                            <p class="modal-content-btn"><a>热点舆情分析</a></p>
+                            <p class="modal-content-btn"><a>诉求实时预测</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<!--内容-->
+<div class="map-content bluedata-content">
+    <div style="margin-top: 40px;width: 100%;text-align: center"><img src="img/lanzhou-map1.png" width="560px"></div>
+    <div class="box-left-top">
+        <h3 class="bluedata-content-title">热点诉求增幅</h3>
+        <div class="bluedata-content-card" style="border-bottom-right-radius: 25px;margin-bottom: 0">
+            <h5 class="card-left-top-name">办理率</h5>
+            <p class="box-left-top-num">17654</p>
+            <p class="box-left-top-des">这里是关于内容的描述</p>
+        </div>
+    </div>
+
+    <div class="box-right-top">
+        <h3 class="bluedata-content-title">热点诉求增幅</h3>
+        <div class="bluedata-content-card" style="border-bottom-left-radius: 25px;margin-bottom: 0">
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="box-right-top-type"><span style="background-color: #cf5ba4;"></span>分类一</p>
+                    <p class="box-right-top-type"><span style="background-color: #92f9ce;"></span>分类二</p>
+                    <p class="box-right-top-type"><span style="background-color: #6283f7;"></span>分类三</p>
+                    <p class="box-right-top-type"><span style="background-color: #54bfc8;"></span>分类四</p>
+                    <p class="box-right-top-type"><span style="background-color: #306083;"></span>分类五</p>
+                </div>
+                <div class="col-md-8">
+                    <img src="img/pie-chart.png" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-left-bottom">
+      <h3 class="bluedata-content-title">热点诉求增幅</h3>
+      <div class="bluedata-content-card" style="border-top-right-radius: 25px;margin-bottom: 0">
+        <h5 class="card-left-top-name">男女比例</h5>
+        <div class="row">
+          <div class="col-md-6" style="text-align: center">
+            <img src="img/icon-men.png">
+            <p class="box-left-bottom-num">60%</p>
+          </div>
+          <div class="col-md-6" style="text-align: center">
+            <img src="img/icon-women.png">
+            <p class="box-left-bottom-num">40%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-right-bottom">
+      <h3 class="bluedata-content-title">热点诉求增幅</h3>
+      <div class="bluedata-content-card" style="border-top-left-radius: 25px;margin-bottom: 0;padding-bottom: 0">
+        <img src="img/peak-figure.png">
+      </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!--<script src="js/bluedata.js"></script>-->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="js/vender/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

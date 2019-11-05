@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>兰州市民网大数据分析平台</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/iconfont.css" rel="stylesheet">
+  </head>
+  <body>
+  <!--<canvas id="bgCanvas"></canvas>-->
+  <!--<canvas id="terCanvas"></canvas>-->
+    <!--背景-->
+    <div class="bluedata-bg">
+      <img src="img/bluedata-bg.jpg" width="100%" height="100%"/>
+    </div>
+
+    <!--导航-->
+    <nav class="bluedata-nav navbar navbar-expand-lg navbar-dark">
+      <h1 class="bluedata-logo">兰州市民网大数据展示平台</h1>
+      <div class="navbar-brand" href="#" style="color: #54bfc8 "><i class="iconfont icon-time-o"></i><span style="font-size: 16px;margin-left: 10px">2017.01.01 ~ 2017.11.11</span></div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!--导航右侧按钮-->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav ml-auto">
+          <a href="index.html"><i class="iconfont icon-shouye-copy" style="font-size: 24px;margin-left: 15px"></i></a>
+          <a data-toggle="modal" data-target="#exampleModal"><i class="iconfont icon-shujuku" style="font-size: 24px;margin-left: 30px"></i></a>
+        </div>
+      </div>
+      <!-- 下拉框 -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="bluedata-modal modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-3 modal-col">
+                  <p class="modal-content-group">概述篇</p>
+                  <p class="modal-content-btn"><a>热点诉求分析</a></p>
+                  <p class="modal-content-btn"><a>互联网和电话</a></p>
+                  <p class="modal-content-btn"><a>诉求渠道分析</a></p>
+                </div>
+                <div class="col-md-3 modal-col">
+                  <p class="modal-content-group">群众篇</p>
+                  <p class="modal-content-btn"><a>热点诉求分析</a></p>
+                  <p class="modal-content-btn"><a>互联网和电话</a></p>
+                  <p class="modal-content-btn"><a>诉求渠道分析</a></p>
+                </div>
+                <div class="col-md-3 modal-col">
+                  <p class="modal-content-group">部门篇</p>
+                  <p class="modal-content-btn"><a>受理情况统计</a></p>
+                  <p class="modal-content-btn"><a>诉求量分析</a></p>
+                  <p class="modal-content-btn"><a>诉求实时数据</a></p>
+                  <p class="modal-content-btn"><a>办件满意度</a></p>
+                </div>
+                <div class="col-md-3 modal-col">
+                  <p class="modal-content-group">辅助决策篇</p>
+                  <p class="modal-content-btn"><a>热点舆情分析</a></p>
+                  <p class="modal-content-btn"><a>诉求实时预测</a></p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <!--内容-->
+    <div class="bluedata-content container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+
+          <!--左上-->
+          <h3 class="bluedata-content-title">办理结果</h3>
+          <div class="bluedata-content-card-left-top bluedata-content-card" style="border-top-right-radius: 25px">
+            <div class="row">
+              <div class="col-md-6" style="text-align: center">
+                <h5 class="card-left-top-name">办理率</h5>
+                <img src="img/circle-progress1.png" width="110px">
+                <p class="card-left-top-content"><span style="margin-right: 15px">诉求量</span>17654<span style="margin-left: 15px">件</span></p>
+                <p class="card-left-top-content"><span style="margin-right: 15px">办件量</span>17654<span style="margin-left: 15px">件</span></p>
+              </div>
+              <div class="col-md-6" style="text-align: center">
+                <h5 class="card-left-top-name">办理结果满意率</h5>
+                <img src="img/circle-progress2.png" width="110px">
+                <p class="card-left-top-content"><span style="margin-right: 15px">办结量</span >17654<span style="margin-left: 15px">件</span></p>
+                <p class="card-left-top-content"><span style="margin-right: 15px">满意量</span>17654<span style="margin-left: 15px">件</span></p>
+              </div>
+            </div>
+          </div>
+
+          <!--左中-->
+          <h3 class="bluedata-content-title">热点诉求增幅</h3>
+          <div class="bluedata-content-card" style="border-bottom-right-radius: 25px">
+            <table class="table table-condensed">
+              <tr>
+                <th class="bluedata-table-th">序号</th>
+                <th class="bluedata-table-th">热点问题</th>
+                <th class="bluedata-table-th">同比上月增长</th>
+              </tr>
+              <tr>
+                <td class="bluedata-table-td">1</td>
+                <td class="bluedata-table-td">咨询企业退休职工工资上涨的问题</td>
+                <td class="bluedata-table-progress">
+                  <div class="bluedata-progress progress">
+                    <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="bluedata-table-td">2</td>
+                <td class="bluedata-table-td">咨询企业退休职工工资上涨的问题</td>
+                <td class="bluedata-table-progress">
+                  <div class="bluedata-progress progress">
+                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="bluedata-table-td">3</td>
+                <td class="bluedata-table-td">咨询企业退休职工工资上涨的问题</td>
+                <td class="bluedata-table-progress">
+                  <div class="bluedata-progress progress">
+                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="bluedata-table-td">4</td>
+                <td class="bluedata-table-td">咨询企业退休职工工资上涨的问题</td>
+                <td class="bluedata-table-progress">
+                  <div class="bluedata-progress progress">
+                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="bluedata-table-td">5</td>
+                <td class="bluedata-table-td">咨询企业退休职工工资上涨的问题</td>
+                <td class="bluedata-table-progress">
+                  <div class="bluedata-progress progress">
+                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!--左下-->
+          <h3 class="bluedata-content-title">办理结果</h3>
+          <div class="bluedata-content-card-left-bottom bluedata-content-card" style="border-top-right-radius: 25px">
+            <div class="row">
+              <div class="col-md-4" style="text-align: center">
+                <h5 class="col-left-bottom-name">电话</h5>
+                <img src="img/col-progress.png">
+                <h6 class="card-left-bottom-content">17654</h6>
+              </div>
+              <div class="col-md-4" style="text-align: center">
+                <h5 class="col-left-bottom-name">电话</h5>
+                <img src="img/col-progress.png">
+                <h6 class="card-left-bottom-content">17654</h6>
+              </div>
+              <div class="col-md-4" style="text-align: center">
+                <h5 class="col-left-bottom-name">电话</h5>
+                <img src="img/col-progress.png">
+                <h6 class="card-left-bottom-content">17654</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <!--中上-->
+          <div class="col-center-top row">
+            <div class="col-md-4">网格化系统
+              <p class="col-center-top-num">1.35%</p>
+              <p class="col-center-top-status" style="color: #92f9ce"><i class="iconfont icon-shangsheng" style="margin-right: 5px"></i>2.6</p>
+            </div>
+            <div class="col-md-4">民勤通
+              <p class="col-center-top-num">86.35%</p>
+              <p class="col-center-top-status" style="color: #C163A1"><i class="iconfont icon-shangsheng-copy" style="margin-right: 5px"></i>2.6</p>
+            </div>
+            <div class="col-md-4">市民留言板
+              <p class="col-center-top-num">1.35%</p>
+              <p class="col-center-top-status" style="color: #92f9ce"><i class="iconfont icon-shangsheng" style="margin-right: 5px"></i>2.6</p>
+            </div>
+          </div>
+
+          <!--地图-->
+          <div class="row">
+            <div class="col-md-12" style="margin-top: 30px">
+              <img src="img/lanzhou-map.png">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <!--右上-->
+          <h3 class="bluedata-content-title" style="text-align: right">办理结果</h3>
+          <div class="bluedata-content-card" style="border-top-left-radius: 25px">
+            <h5 class="col-right-top-name">诉求量走势
+              <span style="float: right;font-size: 13px">
+                <i class="iconfont icon-zhexiandian" style="color: #77f9f7"></i>
+                分类一
+                <i class="iconfont icon-zhexiandian" style="color: #92f9ce"></i>
+                分类二
+                <i class="iconfont icon-zhexiandian" style="color: #6283f7"></i>
+                分类三
+              </span>
+            </h5>
+            <img src="img/line-chart.png" >
+          </div>
+          <!--右中-->
+          <h3 class="bluedata-content-title" style="text-align: right">办理结果</h3>
+          <div class="bluedata-content-card" style="border-bottom-left-radius: 25px">
+            <div class="row">
+              <div class="col-md-6">
+                <h5 class="col-right-top-name">诉求量走势</h5>
+                <img src="img/person-progress-men.png">
+                <h6 class="col-right-center-dec" style="color:#54bfc8">系列1</h6>
+                <img src="img/person-progress-women.png">
+                <h6 class="col-right-center-dec" style="color:#C163A1;margin-bottom: 0">系列1</h6>
+              </div>
+              <div class="col-md-6" style="text-align: center">
+                <h5 class="col-right-top-name" style="text-align: left">诉求量走势</h5>
+                <img src="img/radar-map.png" width="160px">
+              </div>
+            </div>
+          </div>
+          <!--右下-->
+          <h3 class="bluedata-content-title" style="text-align: right">办理结果</h3>
+          <div class="bluedata-content-card" style="border-top-left-radius: 25px">
+            <h5 class="col-right-top-name">诉求量走势</h5>
+            <div class="row align-items-end">
+              <div class="col-md-6">
+                <div class="row align-items-end">
+                  <div class="col-md-6">
+                    <h6 class="col-right-bottom-title">电话</h6>
+                    <p class="col-right-bottom-num">40%</p>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="col-right-bottom-title">互联网</h6>
+                    <p class="col-right-bottom-num">60%</p>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6" style="text-align: center">
+                <img src="img/wave-chart.png" width="120px">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--<script src="js/bluedata.js"></script>-->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="js/vender/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

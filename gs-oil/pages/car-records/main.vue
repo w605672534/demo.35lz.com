@@ -25,38 +25,24 @@ import { mapState } from 'vuex'
    },
    data() {
       return {
-         
+         recordId: ''
       }
    },
    async onLoad(option) {
       this.recordId = option.record_id;
       await this.$store.dispatch('carRecordWay', { id: this.recordId})
    },
-   async onShow(option) {
-      this.recordId = option.record_id;
+   async onShow() {
       await this.$store.dispatch('carRecordWay', { id: this.recordId})
    },
    methods: {
       recordDetile(item) {
          wx.navigateTo({
-            url: `/pages/record-detail/main?record_id=${this.recordId}&detail_id=${item.detail_id}`
+            url: `/pages/record-detail/main?detail_id=${item.detail_id}`
          })
-      },
-      // infoRecord() {
-      //   wx.navigateTo({
-      //     url: '/pages/customer/main'
-      //   })
-      // },
-      // 扫一扫
-      // toScan() {
-      //   wx.scanCode({
-      //     success: (res) => {
-      //       console.log(res)
-      //     }
-      //   })
-      // }
-		}
+      }
 	}
+}
 </script>
 
 <style lang="less" scoped>

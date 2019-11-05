@@ -1,0 +1,415 @@
+.app-dark#app {
+  background-color: rgba(8, 10, 31, 0.4);
+  background-image: url("../image/background-img3.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.app-dark .panel-title {
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(8, 10, 31, 0.4);
+  border-bottom: 1px solid rgba(8, 10, 31, 0.4);
+  padding: 15px;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.app-dark .el-button--primary {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+.app-dark .el-dialog__wrapper {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+@media screen and (max-width:1000px) {
+  .app-dark .collapse-panel {
+    background-color: rgba(8, 10, 31, 0.4);
+  }
+  .app-dark .navbar-dark .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
+.app-dark .process-water-title {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .product-title {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .product-num {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .table-tr {
+  color: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+}
+.app-dark .table-tr > th {
+  padding: 11px 3px;
+}
+.app-dark .table-tr > td {
+  padding: 11px 3px;
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .bluedata-logo {
+  color: #ffffff;
+}
+.app-dark .process-water-num {
+  color: #ffffff;
+}
+.app-dark .navbar-brand {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+.app-dark .count-title {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .count-title > .count-num {
+  color: #1890ff;
+}
+.app-dark .count-title > .count-num > span {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .circle-progress-content {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .circle-progress-content i {
+  color: #1890ff;
+}
+.app-dark .circle-progress-content > .circle-progress-num {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .el-table {
+  color: #ffffff;
+  margin-top: 0px;
+}
+.app-dark .el-table th {
+  background-color: rgba(8, 10, 31, 0.4);
+  padding: 10px 5px;
+  border-bottom: 1px solid #080a1f;
+  padding-left: 0;
+}
+.app-dark .el-table th > .cell {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .product-content-top {
+  border-top: 1px solid #080a1f;
+}
+.app-dark .process-water-company {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .panel-noframe.panel-default > .panel-body {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+.app-dark .panel-default > .panel-body {
+  background-color: rgba(8, 10, 31, 0.4);
+  border: 0;
+}
+.app-dark .product-water > .panel-body > .block > .el-row > .el-col > .panel-body {
+  background-color: rgba(8, 10, 31, 0.4);
+}
+.app-dark .el-dialog {
+  background: rgba(8, 10, 31, 0.95);
+}
+.app-dark .el-dialog > .el-dialog__header {
+  border-bottom: 1px solid #080a1f;
+}
+.app-dark .el-dialog > .el-dialog__header .el-dialog__title {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+.app-dark .el-dialog > .el-dialog__header .el-dialog__headerbtn .el-icon-close {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+.app-dark .el-dialog > .el-dialog__body {
+  padding: 15px;
+}
+.app-dark .el-tabs--border-card {
+  background-color: rgba(8, 10, 31, 0.4);
+  border: 0;
+}
+.app-dark .el-tabs--border-card > .el-tabs__content {
+  padding: 0;
+  margin-top: 0;
+}
+.app-dark .el-tabs--border-card > .el-tabs__header {
+  background-color: rgba(8, 10, 31, 0.4);
+  border-bottom: 1px solid #080a1f;
+}
+.app-dark .el-tabs--border-card > .el-tabs__header .el-tabs__item {
+  line-height: 50px;
+  height: 50px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+  color: #1890ff;
+  border-bottom-color: #1890ff;
+}
+.app-dark .el-progress__text {
+  color: #fff;
+}
+.app-dark .water-compare {
+  background: #080a1f;
+  padding: 13px;
+}
+.app-dark .water-compare > h5 {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .water-compare:after {
+  border-bottom: 1px solid #080a1f;
+}
+.app-dark .water-compare:before {
+  border-right: 1px solid #080a1f;
+}
+.app-dark .water-compare::before {
+  border-right: 1px solid #080a1f;
+}
+.app-dark .water-compare::after {
+  border-bottom: 1px solid #080a1f;
+}
+.app-dark .navbar-nav > a {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .navbar-nav > a:hover,
+.app-dark .navbar-nav > a:active {
+  color: #ffffff;
+}
+.app-dark .navbar-nav > a:hover > i,
+.app-dark .navbar-nav > a:active > i {
+  color: #ffffff;
+}
+.app-dark .navbar-nav > a > i {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .warning-monitor-num.monitor-num.circle-progress-num {
+  color: #eb2f96;
+}
+.app-dark .monitor-num.circle-progress-num {
+  color: #52c41a;
+}
+.app-dark .progress-bar {
+  background-color: #1890ff;
+}
+.app-dark .el-table--striped .el-table__body tr.el-table__row--striped td {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.app-dark .el-table__body-wrapper tr:hover > td {
+  background-color: #1890ff !important;
+}
+.app-dark .el-table__body-wrapper .el-table__row.current-row,
+.app-dark .el-table__body-wrapper .el-table__row.el-table__row--striped.current-row {
+  background-color: #1890ff;
+  color: #ffffff;
+}
+.app-dark .el-table__body-wrapper .el-table__row.current-row > td,
+.app-dark .el-table__body-wrapper .el-table__row.el-table__row--striped.current-row > td {
+  background-color: #1890ff;
+  color: #ffffff;
+}
+.app-dark .fsize-13 {
+  font-size: 13px;
+}
+.app-dark .fsize-15 {
+  font-size: 15px;
+}
+.app-dark .fsize-18 {
+  font-size: 18px;
+}
+.app-dark .fsize-20 {
+  font-size: 20px;
+}
+.app-dark .unit-exception {
+  background-color: #52c41a;
+}
+.app-dark .key-parameter {
+  background-color: #1890ff;
+}
+.app-dark .online-analysis {
+  background-color: #13c2c2;
+}
+.app-dark .test {
+  background-color: #722ed1;
+}
+.app-dark .warning-color {
+  background-color: #eb2f96;
+}
+.app-dark .normal-color {
+  background-color: #52c41a;
+}
+/*进度条底色*/
+.app-dark .el-progress-circle__track {
+  stroke: rgba(0, 0, 0, 0.2);
+}
+.app-dark .el-progress-bar__outer {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+/*进度条颜色*/
+.app-dark .el-progress-circle__path {
+  stroke: #1890ff;
+}
+.app-dark .el-progress-bar__inner {
+  background-color: #1890ff;
+}
+.app-dark .icon-palette,
+.app-dark .sign-out {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .icon-palette:hover,
+.app-dark .sign-out:hover,
+.app-dark .icon-palette:active,
+.app-dark .sign-out:active {
+  color: #ffffff;
+}
+.app-dark.el-dropdown-menu {
+  background-color: rgba(8, 10, 31, 0.4);
+  border: 0;
+}
+.app-dark.el-dropdown-menu .el-dropdown-menu__item {
+  color: #ffffff;
+}
+.app-dark.el-dropdown-menu .el-dropdown-menu__item:hover,
+.app-dark.el-dropdown-menu .el-dropdown-menu__item:active {
+  background-color: #1890ff;
+  color: #fff;
+}
+.app-dark .el-progress__title {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .el-progress__num {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .el-pagination {
+  color: #ffffff;
+}
+.app-dark .el-pagination .btn-prev,
+.app-dark .el-pagination .btn-next {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .el-pagination .el-pagination__total {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .el-pagination .el-pager li.btn-quickprev,
+.app-dark .el-pagination .el-pager li.btn-quicknext {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .el-pagination .el-pager li.active {
+  color: #1890ff;
+}
+.app-dark .el-pagination .el-pager li:hover {
+  color: #1890ff;
+}
+.app-dark .teach-flow-prompt {
+  color: rgba(255, 255, 255, 0.65);
+}
+/*垂直滚动条*/
+.app-dark .el-table .el-table__body-wrapper::-webkit-scrollbar-thumb:vertical {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.app-dark .el-input__inner {
+  color: #ffffff;
+  background-color: rgba(8, 10, 31, 0.4);
+  border-color: rgba(8, 10, 31, 0.4);
+}
+.app-dark.el-picker-panel {
+  color: #ffffff;
+  background: rgba(8, 10, 31, 0.4);
+  border-color: rgba(8, 10, 31, 0.4);
+}
+.app-dark.el-picker-panel .el-date-picker__header-label,
+.app-dark.el-picker-panel .el-picker-panel__icon-btn {
+  color: #ffffff;
+}
+.app-dark.el-picker-panel .el-date-table th {
+  color: #ffffff;
+  border-color: rgba(8, 10, 31, 0.4);
+}
+.app-dark.el-picker-panel .el-date-table td.next-month,
+.app-dark.el-picker-panel .el-date-table td.prev-month {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .el-checkbox {
+  margin-bottom: 0;
+}
+.app-dark .el-checkbox .el-checkbox__inner {
+  background: rgba(8, 10, 31, 0.4);
+  border-color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .el-checkbox .el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+@media screen and (max-width:1000px) {
+  .app-dark .navbar-nav a {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .app-dark .navbar-nav a:focus,
+  .app-dark .navbar-nav a:active {
+    background-color: #1890ff;
+    color: #fff;
+  }
+  .app-dark .navbar-nav a:focus > i,
+  .app-dark .navbar-nav a:active > i {
+    color: #fff;
+  }
+}
+.app-dark .station {
+  background: #1890ff;
+  border: 1px solid #1890ff;
+}
+.app-dark .home,
+.app-dark .station-center,
+.app-dark .alarm-user {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .content,
+.app-dark .equ-list,
+.app-dark .alarm-center,
+.app-dark .parameter {
+  border-bottom: 1px solid #080a1f;
+}
+.app-dark .station-center {
+  background: rgba(8, 10, 31, 0.4);
+}
+.app-dark .station-center .title {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .station-content {
+  background: rgba(8, 10, 31, 0.4);
+  border-left: 1px solid #080a1f;
+  border-top: 1px solid #080a1f;
+}
+.app-dark .col-content {
+  border-bottom: 1px solid #080a1f;
+  border-right: 1px solid #080a1f;
+}
+.app-dark .col-content i {
+  color: #1890ff;
+}
+.app-dark .col-content .title-nus {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .equ-list {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .equ-list-icon,
+.app-dark .equ-list-title {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .el-tabs--card > .el-tabs__header .el-tabs__item {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-dark .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
+  color: #1890ff;
+}
+.app-dark .equ-title {
+  background-color: rgba(8, 10, 31, 0.4);
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-dark .start {
+  border: 1px solid #1890ff;
+  background: rgba(24, 144, 255, 0.3);
+  color: #1890ff;
+  border-radius: 4px;
+}
+.app-dark .el-carousel__indicator.is-active button.el-carousel__button {
+  background-color: #1890ff;
+}

@@ -318,14 +318,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
-
-
-
-
-
-
-
 var _vuex = __webpack_require__(/*! vuex */ 149);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   components: {},
@@ -337,16 +329,21 @@ var _vuex = __webpack_require__(/*! vuex */ 149);function _interopRequireDefault
 
   data: function data() {
     return {
-      recordId: '',
-      facadeTempFilePaths: '/static/banner3.png',
-      obverseTempFilePaths: '/static/banner2.png' };
+      detailId: '',
+      facadeTempFilePaths: '',
+      invoiceTempFilePaths: '' };
 
   },
-  onLoad: function () {var _onLoad = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(option) {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-              this.detailId = option.detail_id;
-              this.recordId = option.record_id;_context.next = 4;return (
-                this.$store.dispatch('carRecordDetail', { id: this.detailId }));case 4:_context.next = 6;return (
-                this.$store.dispatch('carRecordWayDetail', { detailId: this.detailId, recordId: this.recordId }));case 6:case "end":return _context.stop();}}}, _callee, this);}));function onLoad(_x) {return _onLoad.apply(this, arguments);}return onLoad;}(),
+  onLoad: function () {var _onLoad = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(option) {var tmpFacePhotos, voucherPhotos, facePhoto, voucherPhoto;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+              this.detailId = option.detail_id;_context.next = 3;return (
+                this.$store.dispatch('carRecordDetail', { id: this.detailId }));case 3:
+              console.log(this);
+              tmpFacePhotos = this.record.full_face_photo ? JSON.parse(this.record.full_face_photo) : [];
+              voucherPhotos = this.record.voucher_photo ? JSON.parse(this.record.voucher_photo) : [];
+              facePhoto = tmpFacePhotos.length > 0 ? tmpFacePhotos[0].file_id : '';
+              voucherPhoto = voucherPhotos.length > 0 ? voucherPhotos[0].file_id : '';
+              this.facadeTempFilePaths = facePhoto ? this.$store.state.imgURL + '/api/traffic-detail/' + this.record.detail_id + '?_mode=inline&_fileId=' + facePhoto + '&_username=yangxiaoyan&_password=123456' : '';
+              this.invoiceTempFilePaths = voucherPhoto ? this.$store.state.imgURL + '/api/traffic-detail/' + this.record.detail_id + '?_mode=inline&_fileId=' + voucherPhoto + '&_username=yangxiaoyan&_password=123456' : '';case 10:case "end":return _context.stop();}}}, _callee, this);}));function onLoad(_x) {return _onLoad.apply(this, arguments);}return onLoad;}(),
 
   methods: {
     // 点击放大正面图片
@@ -360,7 +357,7 @@ var _vuex = __webpack_require__(/*! vuex */ 149);function _interopRequireDefault
     obverseChangeImage: function obverseChangeImage() {
       wx.predivImage({
         current: 'tempFilePaths', // 当前显示图片的http链接
-        urls: [this.obverseTempFilePaths] // 需要预览的图片http链接列表
+        urls: [this.invoiceTempFilePaths] // 需要预览的图片http链接列表
       });
     } } };exports.default = _default;
 

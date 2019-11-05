@@ -1,0 +1,409 @@
+.app-aurora#app {
+  background-color: #252525;
+  background-image: url("../image/background-img2.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.app-aurora .nav-bg {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.app-aurora .panel-title {
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid transparent;
+  padding: 15px;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.app-aurora .el-button--primary {
+  background-color: #69c0ff;
+  border-color: #69c0ff;
+}
+@media screen and (max-width: 1000px) {
+  .app-aurora .collapse-panel {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .app-aurora .navbar-dark .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
+.app-aurora .process-water-title {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .product-title {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .product-num {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .table-tr {
+  color: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+}
+.app-aurora .table-tr > th {
+  padding: 11px 3px;
+}
+.app-aurora .table-tr > td {
+  padding: 11px 3px;
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .bluedata-logo {
+  color: #ffffff;
+}
+.app-aurora .process-water-num {
+  color: #ffffff;
+}
+.app-aurora .navbar-brand {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+.app-aurora .count-title {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .count-title > .count-num {
+  color: #69c0ff;
+}
+.app-aurora .count-title > .count-num > span {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .circle-progress-content {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .circle-progress-content i {
+  color: #69c0ff;
+}
+.app-aurora .circle-progress-content > .circle-progress-num {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .el-table {
+  color: #ffffff;
+  margin-top: 0px;
+}
+.app-aurora .el-table th {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-left: 0;
+}
+.app-aurora .el-table th > .cell {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .product-content-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.app-aurora .process-water-company {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .panel-noframe.panel-default > .panel-body {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+.app-aurora .panel-default > .panel-body {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 0;
+}
+.app-aurora .product-water > .panel-body > .block > .el-row > .el-col > .panel-body {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.app-aurora .el-dialog {
+  background: rgba(0, 0, 0, 0.65);
+}
+.app-aurora .el-dialog > .el-dialog__header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.app-aurora .el-dialog > .el-dialog__header .el-dialog__title {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+.app-aurora .el-dialog > .el-dialog__header .el-dialog__headerbtn .el-icon-close {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+.app-aurora .el-dialog > .el-dialog__body {
+  padding: 15px;
+}
+.app-aurora .el-tabs--border-card {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 0;
+}
+.app-aurora .el-tabs--border-card > .el-tabs__content {
+  padding: 0;
+  margin-top: 0;
+}
+.app-aurora .el-tabs--border-card > .el-tabs__header {
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.app-aurora .el-tabs--border-card > .el-tabs__header .el-tabs__item {
+  line-height: 50px;
+  height: 50px;
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+  color: #69c0ff;
+  border-bottom-color: #69c0ff;
+}
+.app-aurora .water-compare {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 13px;
+}
+.app-aurora .water-compare > h5 {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .water-compare:after {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.app-aurora .water-compare:before {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.app-aurora .water-compare::before {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.app-aurora .water-compare::after {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.app-aurora .navbar-nav > a {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .navbar-nav > a:hover,
+.app-aurora .navbar-nav > a:active {
+  color: #ffffff;
+}
+.app-aurora .navbar-nav > a:hover > i,
+.app-aurora .navbar-nav > a:active > i {
+  color: #ffffff;
+}
+.app-aurora .navbar-nav > a > i {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .warning-monitor-num.monitor-num.circle-progress-num {
+  color: #ff85c0;
+}
+.app-aurora .monitor-num.circle-progress-num {
+  color: #95de64;
+}
+.app-aurora .progress-bar {
+  background-color: #69c0ff;
+}
+.app-aurora .el-table--striped .el-table__body tr.el-table__row--striped td {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.app-aurora .el-table__body-wrapper tr:hover > td {
+  background-color: #69c0ff !important;
+}
+.app-aurora .el-table__body-wrapper .el-table__row.current-row,
+.app-aurora .el-table__body-wrapper .el-table__row.el-table__row--striped.current-row {
+  background-color: #69c0ff;
+  color: #ffffff;
+}
+.app-aurora .el-table__body-wrapper .el-table__row.current-row > td,
+.app-aurora .el-table__body-wrapper .el-table__row.el-table__row--striped.current-row > td {
+  background-color: #69c0ff;
+  color: #ffffff;
+}
+.app-aurora .fsize-13 {
+  font-size: 13px;
+}
+.app-aurora .fsize-15 {
+  font-size: 15px;
+}
+.app-aurora .fsize-18 {
+  font-size: 18px;
+}
+.app-aurora .fsize-20 {
+  font-size: 20px;
+}
+.app-aurora .unit-exception {
+  background-color: #95de64;
+}
+.app-aurora .key-parameter {
+  background-color: #69c0ff;
+}
+.app-aurora .online-analysis {
+  background-color: #5cdbd3;
+}
+.app-aurora .test {
+  background-color: #b37feb;
+}
+.app-aurora .warning-color {
+  background-color: #ff85c0;
+}
+.app-aurora .normal-color {
+  background-color: #95de64;
+}
+/*进度条底色*/
+.app-aurora .el-progress-circle__track {
+  stroke: rgba(0, 0, 0, 0.2);
+}
+.app-aurora .el-progress-bar__outer {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+/*进度条颜色*/
+.app-aurora .el-progress-circle__path {
+  stroke: #69c0ff;
+}
+.app-aurora .el-progress-bar__inner {
+  background-color: #69c0ff;
+}
+.app-aurora .icon-palette,
+.app-aurora .sign-out {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .icon-palette:hover,
+.app-aurora .sign-out:hover,
+.app-aurora .icon-palette:active,
+.app-aurora .sign-out:active {
+  color: #ffffff;
+}
+.app-aurora.el-dropdown-menu {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 0;
+}
+.app-aurora.el-dropdown-menu .el-dropdown-menu__item {
+  color: #ffffff;
+}
+.app-aurora.el-dropdown-menu .el-dropdown-menu__item:hover,
+.app-aurora.el-dropdown-menu .el-dropdown-menu__item:active {
+  background-color: #69c0ff;
+  color: #fff;
+}
+.app-aurora .el-progress__text {
+  color: #ffffff;
+}
+.app-aurora .el-progress__title {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .el-progress__num {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .el-pagination {
+  color: #ffffff;
+}
+.app-aurora .el-pagination .btn-prev,
+.app-aurora .el-pagination .btn-next {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .el-pagination .el-pagination__total {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .el-pagination .el-pager li.btn-quickprev,
+.app-aurora .el-pagination .el-pager li.btn-quicknext {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .el-pagination .el-pager li.active {
+  color: #69c0ff;
+}
+.app-aurora .el-pagination .el-pager li:hover {
+  color: #69c0ff;
+}
+.app-aurora .teach-flow-prompt {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .el-input__inner {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: transparent;
+}
+.app-aurora.el-picker-panel {
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.65);
+  border-color: transparent;
+}
+.app-aurora.el-picker-panel .el-date-picker__header-label,
+.app-aurora.el-picker-panel .el-picker-panel__icon-btn {
+  color: #ffffff;
+}
+.app-aurora.el-picker-panel .el-date-table th {
+  color: #ffffff;
+  border-color: transparent;
+}
+.app-aurora.el-picker-panel .el-date-table td.next-month,
+.app-aurora.el-picker-panel .el-date-table td.prev-month {
+  color: rgba(255, 255, 255, 0.65);
+}
+/*垂直滚动条*/
+.app-aurora .el-table .el-table__body-wrapper::-webkit-scrollbar-thumb:vertical {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.app-aurora .el-checkbox {
+  margin-bottom: 0;
+}
+.app-aurora .el-checkbox .el-checkbox__inner {
+  background: #22304B;
+  border-color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .el-checkbox .el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: #69c0ff;
+  border-color: #69c0ff;
+}
+@media screen and (max-width:1000px) {
+  .app-aurora .navbar-nav a {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .app-aurora .navbar-nav a:focus,
+  .app-aurora .navbar-nav a:active {
+    background-color: #69c0ff;
+    color: #fff;
+  }
+  .app-aurora .navbar-nav a:focus > i,
+  .app-aurora .navbar-nav a:active > i {
+    color: #fff;
+  }
+}
+.app-aurora .station {
+  background: #69c0ff;
+  border: 1px solid #69c0ff;
+}
+.app-aurora .home,
+.app-aurora .station-center,
+.app-aurora .alarm-user {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .content,
+.app-aurora .equ-list,
+.app-aurora .alarm-center,
+.app-aurora .parameter {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.app-aurora .station-center {
+  background: rgba(0, 0, 0, 0.1);
+}
+.app-aurora .station-center .title {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .station-content {
+  background: rgba(0, 0, 0, 0.1);
+}
+.app-aurora .col-content i {
+  color: #69c0ff;
+}
+.app-aurora .col-content .title-nus {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .equ-list {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .equ-list-icon,
+.app-aurora .equ-list-title {
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .el-tabs--card > .el-tabs__header .el-tabs__item {
+  color: rgba(255, 255, 255, 0.65);
+}
+.app-aurora .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
+  color: #69c0ff;
+}
+.app-aurora .equ-title {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+}
+.app-aurora .start {
+  border: 1px solid #69c0ff;
+  background: rgba(105, 192, 255, 0.3);
+  color: #69c0ff;
+  border-radius: 4px;
+}
+.app-aurora .el-carousel__indicator.is-active button.el-carousel__button {
+  background-color: #69c0ff;
+}

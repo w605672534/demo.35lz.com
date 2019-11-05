@@ -1,0 +1,90 @@
+#particle-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.box-login {
+    width: 20%;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 35%;
+    z-index: 100;
+    margin: 0 auto;
+}
+
+.login-bg h2 {
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 20%;
+    z-index: 100;
+    font-weight: 100;
+}
+
+.navbar-fixed-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 15px;
+    z-index: 1030;
+    width: 100%;
+    text-align: center;
+    color: #999999;
+    font-size: 12px;
+}
+
+.login-control {
+    background-color: transparent;
+    border-bottom: 1px solid #ccc;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    color: #fff;
+    box-shadow: none;
+    padding: 6px 30px;
+}
+
+.login-control:focus {
+    box-shadow: none;
+}
+
+.form-group i {
+    color: #fff;
+    position: relative;
+    top: 32px;
+}
+
+.btn-login {
+    background-color: transparent;
+    border-radius: 3px;
+    border: 1px solid #fff;
+    margin: 50px 0;
+}
+
+.btn-login:hover {
+    background-color: #69c0ff;
+}
+
+.form-control:focus {
+    background-color: transparent;
+    color: #fff;
+}
+
+.login-control::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, .4);
+}
+
+.login-control::-moz-placeholder {
+    color: rgba(255, 255, 255, .4);
+}
+
+.login-control::-moz-placeholder {
+    color: rgba(255, 255, 255, .4);
+}
+
+.login-control::-ms-input-placeholder {
+    color: rgba(255, 255, 255, .4);
+}

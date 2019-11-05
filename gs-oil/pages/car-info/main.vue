@@ -729,11 +729,6 @@
           }
         });
       }
-      // carInfo() {
-      //    wx.navigateTo({
-      //     url: '/pages/goods/main'
-      //   })
-      // },
 		}
 	}
 </script>

@@ -272,17 +272,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="photo" style="margin: 0 32rpx">
-        <div class="photo-title">上传车尾照片<span class="photo-title-flag">*</span></div>
-        <div class="photo-content">
-          <div class="photo-image-upload" @click="takePhotoObverse()">
-            <i class="iconfont icon-paizhao" style="font-size: 50rpx"></i>
-          </div>
-          <div class="photo-image-upload" style="margin-left: 32rpx" v-if="obverseTempFilePaths">
-            <image :src="obverseTempFilePaths" style="width: 100%;height: 100%;" @click="obverseChangeImage()" mode="aspectFill"/>
-          </div>
-        </div>
-      </div> -->
       <div class="photo" style="margin: 0 32rpx">
         <div class="photo-title">上传运输单据照片<span class="photo-title-flag">*</span></div>
         <div class="photo-content">
@@ -351,12 +340,12 @@ import { mapState } from 'vuex'
         isSluggish: ['是', '否'], // 运输车辆是否迟滞
         sluggish: 0, // 迟滞标识
         facadeTempFilePaths: '', // 车辆正面照片
-        obverseTempFilePaths: '', // 车辆尾部照片
         invoiceTempFilePaths: '',// 运输单据照片
+        full_face_photo: '',
+        voucher_photo: '',
         passWay: [],
         material: [],
-        detailId: '',
-        // detail: {},
+        detailId: ''
 			}
 		},
 		async onLoad(option) {
@@ -471,22 +460,10 @@ import { mapState } from 'vuex'
           count: 1,
           sizeType: ['original', 'compressed'],
           sourceType: ['album', 'camera'],
-          success(res) {
+          async success(res) {
             // tempFilePath可以作为img标签的src属性显示图片
             _this.facadeTempFilePaths = res.tempFilePaths[0]
-          }
-        })
-      },
-      // 车辆尾部照片
-      takePhotoObverse() {
-        const _this = this;
-        wx.chooseImage({
-          count: 1,
-          sizeType: ['original', 'compressed'],
-          sourceType: ['album', 'camera'],
-          success(res) {
-            // tempFilePath可以作为img标签的src属性显示图片
-            _this.obverseTempFilePaths = res.tempFilePaths[0]
+            _this.full_face_photo = await _this.$store.dispatch('fileUpload', {file: _this.facadeTempFilePaths})
           }
         })
       },
@@ -497,9 +474,10 @@ import { mapState } from 'vuex'
           count: 1,
           sizeType: ['original', 'compressed'],
           sourceType: ['album', 'camera'],
-          success(res) {
+          async success(res) {
             // tempFilePath可以作为img标签的src属性显示图片
             _this.invoiceTempFilePaths = res.tempFilePaths[0]
+            _this.voucher_photo = await _this.$store.dispatch('fileUpload', {file: _this.invoiceTempFilePaths})
           }
         })
       },
@@ -558,10 +536,18 @@ import { mapState } from 'vuex'
             is_assist: this.apply == '0' ? '是' : '否',
             is_late: this.sluggish == '0' ? '是' : '否',
             update_time: this.detail.update_time,
-            full_face_photo: this.facadeTempFilePaths,
-            voucher_photo: this.invoiceTempFilePaths,
+            full_face_photo: this.full_face_photo ? [this.full_face_photo] : [],
+            voucher_photo: this.voucher_photo ? [this.voucher_photo] : []
           }
           await this.$store.dispatch('carRecordEdit', data)
+          uni.showToast({
+            icon: 'none',
+            title: '登记成功',
+            duration: 2000
+          })
+          wx.navigateTo({
+            url: '/pages/car-detail/main'
+          })
       }
 		}
 	}

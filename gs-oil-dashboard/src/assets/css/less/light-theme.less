@@ -1,0 +1,482 @@
+@import 'variables';
+@import 'light';
+
+.@{app-theme}#app {
+  background-color: @bg-color;
+  background-image:@bg-texture;
+  background-attachment:fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.@{app-theme} .nav-bg{
+  background-color:@panel-color;
+}
+
+.@{app-theme} .panel-title {
+  color: @text-color;
+  background: @panel-color;
+  border-bottom: 1px solid @panel-title-bottom;
+  padding: 15px;
+  font-size: 16px;
+  letter-spacing: 1px
+}
+
+.@{app-theme} .process-water-title{
+  color: @text-color;
+}
+
+.@{app-theme} .el-button--primary{
+  background-color: @primary-color;
+  border-color: @primary-color;
+}
+
+@media screen and (max-width: 1000px) {
+  .@{app-theme} .collapse-panel{
+    background-color: @collapse-bgcolor;
+  }
+
+  .@{app-theme} .navbar-dark .navbar-toggler{
+    border-color:  @text-color-secondary;
+    color:  @text-color-secondary
+  }
+}
+
+.@{app-theme} .product-title{
+  color: @text-color-secondary;
+}
+
+.@{app-theme} .product-num{
+  color: @text-color;
+}
+
+.@{app-theme} .table-tr{
+  color: @text-color;
+  border-bottom: 1px solid rgba(0, 0, 0, .15);
+  font-size: 14px;
+  >th{
+    padding: 11px 3px;
+  };
+  >td{
+    padding: 11px 3px;
+    color: @text-color-secondary;
+  }
+}
+
+.@{app-theme} .bluedata-logo {
+  color: @heading-color;
+}
+
+.@{app-theme} .process-water-num{
+  color: @heading-color;
+}
+
+.@{app-theme} .navbar-brand{
+  color: @text-color-secondary !important;
+}
+
+.@{app-theme} .count-title{
+  color:@text-color-secondary;
+  >.count-num{
+    color: @num-color;
+    >span{
+      color: @text-color-secondary;
+    }
+  }
+}
+
+.@{app-theme} .circle-progress-content{
+  color:@text-color-secondary;
+  i{
+    color: @primary-color;
+  }
+  >.circle-progress-num{
+    color: @text-color;
+  }
+}
+
+.@{app-theme} .el-table{
+  color:@text-color;
+  margin-top: 0px;
+  th{
+    background-color:@panel-color;
+    padding: 10px 5px;
+    border-bottom:1px solid @line-color;
+    padding-left: 0;
+    >.cell{
+      color: @text-color;
+    }
+  }
+}
+
+.@{app-theme} .product-content-top{
+  border-top:1px solid @line-color;
+}
+
+.@{app-theme} .process-water-company{
+  color: @text-color-secondary;
+}
+
+.@{app-theme} .panel-noframe.panel-default{
+    >.panel-body {
+      background-color: @transparent-color;
+      border: @zero;
+      padding: @zero;
+    }
+}
+
+.@{app-theme} .panel-default{
+    >.panel-body {
+      background-color: @panel-color;
+      border: @zero;
+    }
+}
+
+.@{app-theme} .product-water>.panel-body>.block>.el-row>.el-col>.panel-body{
+  background-color: @panel-color;
+}
+
+.@{app-theme} .el-dialog{
+  background: @dialog-bg;
+  >.el-dialog__header{
+    border-bottom: 1px solid @line-color;
+    .el-dialog__title{
+      color: @text-color !important;
+    }
+    .el-dialog__headerbtn .el-icon-close{
+      color: @text-color !important;
+    }
+  };
+  >.el-dialog__body {
+    padding: 15px
+  }
+}
+
+.@{app-theme} .el-tabs--border-card{
+  background-color: @panel-color;
+  border: @zero;
+  >.el-tabs__content{
+    padding: @zero;
+    margin-top: 0;
+  }
+  >.el-tabs__header{
+    background-color: @tabs-header-color;
+    border-bottom:1px solid @line-color;
+    .el-tabs__item{
+      line-height: 50px;
+      height: 50px;
+      color: @text-color-secondary;
+    }
+    .el-tabs__item.is-active{
+      color: @primary-color;
+      border-bottom-color: @primary-color;
+    }
+  }
+}
+
+.@{app-theme} .water-compare{
+  background: @line-color;
+  padding: 13px;
+  >h5{
+    color: @text-color;
+  };
+  &:after{
+    border-bottom: 1px solid @line-color;
+  };
+  &:before{
+    border-right: 1px solid @line-color;
+  };
+  &::before {
+    border-right: 1px solid @line-color;
+  }
+  &::after {
+      border-bottom: 1px solid @line-color;
+  }
+}
+
+.@{app-theme} .navbar-nav{
+    >a{
+      color:@text-color-secondary;
+      &:hover,&:active{
+        color:@heading-color;
+        >i{
+          color:@heading-color;
+        }
+      }
+      >i{
+        color:@text-color-secondary;
+      }
+    }
+
+}
+
+// 告警
+.@{app-theme} .warning-monitor-num.monitor-num.circle-progress-num {
+  color: @warning-color;
+}
+
+// 正常
+.@{app-theme} .monitor-num.circle-progress-num {
+  color:@normal-color;
+}
+
+.@{app-theme} .progress-bar {
+  background-color: @primary-color;
+}
+
+.@{app-theme} .el-table--striped .el-table__body tr.el-table__row--striped td {
+  background-color: rgba(0, 0, 0, .10)
+}
+
+.@{app-theme} .el-table__body-wrapper {
+  tr{
+    &:hover{
+      >td {
+        background-color: @primary-color !important;
+      }
+    }
+  }
+  .el-table__row.current-row,.el-table__row.el-table__row--striped.current-row{
+    background-color: @primary-color;
+    color: #ffffff;
+    >td{
+      background-color: @primary-color;
+      color: #ffffff;
+    }
+  }
+}
+
+.@{app-theme} .fsize-13{
+  font-size: @fsize-13
+}
+
+.@{app-theme} .fsize-15{
+  font-size: @fsize-15
+}
+
+.@{app-theme} .fsize-18{
+  font-size: @fsize-18
+}
+
+.@{app-theme} .fsize-20{
+  font-size: @fsize-20
+}
+
+
+// 报警统计
+.@{app-theme} .unit-exception{
+  background-color: @unit-exception;
+}
+
+.@{app-theme} .key-parameter{
+  background-color: @key-parameter;
+}
+
+.@{app-theme} .online-analysis{
+  background-color: @online-analysis;
+}
+
+.@{app-theme} .test{
+  background-color: @test;
+}
+
+// 告警色
+.@{app-theme} .warning-color{
+  background-color: @warning-color;
+}
+
+// 正常色
+.@{app-theme} .normal-color{
+  background-color: @normal-color;
+}
+
+/*进度条底色*/
+.@{app-theme} .el-progress-circle__track {
+  stroke: rgba(0,0,0,.2);
+}
+
+.@{app-theme} .el-progress-bar__outer{
+  background-color: rgba(0,0,0,.2);
+}
+
+
+/*进度条颜色*/
+.@{app-theme} .el-progress-circle__path {
+  stroke: @primary-color;
+}
+
+.@{app-theme} .el-progress-bar__inner{
+  background-color: @primary-color;
+}
+
+// 切换主题按钮
+.@{app-theme}{
+  .icon-palette,.sign-out{
+    color: @text-color-secondary;
+    &:hover,&:active{
+      color:@heading-color;
+    }
+  }
+}
+
+// 下拉框
+.@{app-theme}.el-dropdown-menu{
+  background-color: @collapse-bgcolor;
+  border:0;
+  .el-dropdown-menu__item{
+    color: @heading-color;
+    &:hover,&:active{
+      background-color: @primary-color;
+      color: #fff;
+    }
+  }
+}
+
+.@{app-theme} .el-progress__title{
+  color: @text-color-secondary
+}
+
+.@{app-theme} .el-progress__num{
+  color: @text-color
+}
+
+// 分页
+.@{app-theme} .el-pagination{
+  color: @heading-color;
+  .btn-prev,.btn-next{
+    color: @text-color;
+  }
+  .el-pagination__total{
+    color: @text-color;
+  }
+  .el-pager{
+    li.btn-quickprev,li.btn-quicknext{
+      color: @text-color;
+    }
+    li.active{
+      color: @primary-color;
+    }
+    li{
+      &:hover{
+        color: @primary-color;
+      }
+    }
+  }
+}
+
+.@{app-theme} .teach-flow-prompt{
+  color: @text-color-secondary;
+}
+
+/*垂直滚动条*/
+
+.@{app-theme} {
+  .el-table .el-table__body-wrapper::-webkit-scrollbar-thumb:vertical {
+    background-color: rgba(0, 0, 0, .2);
+  }
+}
+
+//表格 checkbox
+.@{app-theme} .el-checkbox{
+  margin-bottom: 0;
+  .el-checkbox__input.is-checked{
+    .el-checkbox__inner{
+      background-color: @primary-color;
+      border-color: @primary-color;
+    }
+  }
+}
+
+@media screen and (max-width:1000px) {
+  .@{app-theme} .navbar-nav{
+    a{
+      color:@text-color;
+      &:focus,&:active{
+        background-color: @primary-color;
+        color:#fff;
+        >i{
+          color:#fff;
+        }
+      }
+    }
+  }
+}
+
+//无人值守
+.@{app-theme} {
+  .station{
+    background: @primary-color;
+    border: 1px solid @primary-color;
+  }
+
+  .home,.station-center,.alarm-user{
+    color:@text-color;
+  }
+
+  .content,.equ-list,.alarm-center,.parameter{
+    border-bottom: 1px solid @line-color;
+  }
+
+  .station-center{
+    background:@panel-color;
+    .title{
+      color:@text-color-secondary;
+    }
+  }
+
+  .station-content{
+    background:@panel-color;
+    border-left: 1px solid @line-color;
+    border-top: 1px solid @line-color;
+  }
+
+  .col-content{
+    border-bottom: 1px solid @line-color;
+    border-right: 1px solid @line-color;
+    i{
+      color:@primary-color;
+    }
+    .title-nus{
+      color:@text-color;
+    }
+  }
+
+  .equ-list{
+    color:@text-color-secondary;
+  }
+
+  .equ-list-icon,.equ-list-title{
+    color:@text-color;
+  }
+
+  .el-tabs--card{
+    >.el-tabs__header{
+      .el-tabs__item{
+        color:@text-color-secondary;
+      }
+      .el-tabs__item.is-active{
+        color: @primary-color;
+      }
+    }
+  }
+
+  .equ-title{
+    background-color:@panel-color;
+    color: @text-color;
+  }
+
+  .start{
+    border: 1px solid @primary-color;
+    background: fade(@primary-color,30%);
+    color: @primary-color;
+    border-radius: 4px;
+  }
+
+  .el-carousel__indicator.is-active{
+    button.el-carousel__button{
+      background-color:@primary-color;
+    }
+  }
+}
+
+

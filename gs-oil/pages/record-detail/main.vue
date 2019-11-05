@@ -167,19 +167,11 @@
                   </div>
                </div>
             </div>
-            <!-- <div class="photo" style="margin: 0 32rpx">
-               <div class="photo-title">车尾照片</div>
-               <div class="photo-content">
-                  <div class="photo-image-upload" style="margin-left: 32rpx">
-                     <image :src="record.voucher_photo" style="width: 100%;height: 100%;" @click="obverseChangeImage()" mode="aspectFill"/>
-                  </div>
-               </div>
-            </div> -->
             <div class="photo" style="margin: 0 32rpx">
                <div class="photo-title">运输单据照片</div>
                <div class="photo-content">
                   <div class="photo-image-upload" style="margin-left: 32rpx">
-                     <image :src="obverseTempFilePaths" style="width: 100%;height: 100%;" @click="obverseChangeImage()" mode="aspectFill"/>
+                     <image :src="invoiceTempFilePaths" style="width: 100%;height: 100%;" @click="obverseChangeImage()" mode="aspectFill"/>
                   </div>
                </div>
             </div>
@@ -200,16 +192,21 @@ import { mapState } from 'vuex'
       },
 		data() {
 			return {
-            recordId: '',
-            facadeTempFilePaths: '/static/banner3.png',
-            obverseTempFilePaths: '/static/banner2.png',
+            detailId: '',
+            facadeTempFilePaths: '',
+            invoiceTempFilePaths: '',
 			}
 		},
 		async onLoad(option) {
          this.detailId = option.detail_id;
-         this.recordId = option.record_id;
          await this.$store.dispatch('carRecordDetail', { id: this.detailId})
-         await this.$store.dispatch('carRecordWayDetail', { detailId: this.detailId, recordId: this.recordId})
+         console.log(this)
+         const tmpFacePhotos = this.record.full_face_photo ? JSON.parse(this.record.full_face_photo) : []
+         const voucherPhotos = this.record.voucher_photo ? JSON.parse(this.record.voucher_photo) : []
+         const facePhoto = tmpFacePhotos.length > 0 ? tmpFacePhotos[0].file_id : ''
+         const voucherPhoto = voucherPhotos.length > 0 ? voucherPhotos[0].file_id : ''
+         this.facadeTempFilePaths = facePhoto ? this.$store.state.imgURL + '/api/traffic-detail/' + this.record.detail_id + '?_mode=inline&_fileId=' + facePhoto + '&_username=yangxiaoyan&_password=123456' : ''
+         this.invoiceTempFilePaths = voucherPhoto ? this.$store.state.imgURL + '/api/traffic-detail/' + this.record.detail_id + '?_mode=inline&_fileId=' + voucherPhoto + '&_username=yangxiaoyan&_password=123456' : ''
 		},
 		methods: {
          // 点击放大正面图片
@@ -223,14 +220,9 @@ import { mapState } from 'vuex'
          obverseChangeImage() {
             wx.predivImage({
                current: 'tempFilePaths', // 当前显示图片的http链接
-               urls: [this.obverseTempFilePaths] // 需要预览的图片http链接列表
+               urls: [this.invoiceTempFilePaths] // 需要预览的图片http链接列表
             })
          },
-         // recordDetile() {
-         //    wx.navigateTo({
-         //       url: '/pages/record-detail/main'
-         //    })
-         // },
 		}
 	}
 </script>

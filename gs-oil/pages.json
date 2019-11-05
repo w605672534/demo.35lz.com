@@ -51,7 +51,7 @@
     {
 			"path": "pages/car-records/main",
 			"style": {
-        "navigationBarTitleText": "车辆信息明细",
+        "navigationBarTitleText": "站点检查明细",
         "navigationBarBackgroundColor": "#E36803",
         "navigationBarTextStyle": "white"
       }
@@ -59,7 +59,7 @@
     {
 			"path": "pages/record-detail/main",
 			"style": {
-        "navigationBarTitleText": "车辆信息详情",
+        "navigationBarTitleText": "车辆检查详情",
         "navigationBarBackgroundColor": "#E36803",
         "navigationBarTextStyle": "white"
       }

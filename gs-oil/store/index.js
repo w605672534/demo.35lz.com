@@ -4,19 +4,6 @@ import http from './http'
 import api from './api' // 此处，引入存放对promise处理的文件
 
 Vue.use(Vuex, http)
-const transformData = function (data) {
-  const fd = new FormData()
-  for (let i in data) {
-    if (Array.isArray(data[i])) {
-      for (let j=0; j < data[i].length; j++) {
-        fd.append(`${i}`, data[i][j])
-      }
-    } else {
-      fd.append(i, data[i])
-    }
-  }
-  return fd
-}
 const getRequest = api.httpsPromisify(uni.request)
 const request = (method, url, data = {}, isUpload = false) => { // method为请求方法，url为接口路径，data为传参
   //  #ifdef H5
@@ -68,8 +55,8 @@ const fail = (res, dispatch) => {
 const store = new Vuex.Store({
 
   state: {
-    //server: 'http://train.35lz.com/oms',
-    server: 'http://192.168.2.55:8080/oms',
+    server: 'http://train.35lz.com/oms',
+    //server: 'http://192.168.2.55:8080/oms',
     imgURL: 'http://train.35lz.com/oms',
     site: '10000',
     store: [],
@@ -206,8 +193,20 @@ const store = new Vuex.Store({
     // 车辆信息记录途径地详情
     async carRecordEdit ({ dispatch, commit },params) {
       const url = this.state.server + '/api/traffic-detail/check/' + params['detail_id'];
-      //let data = params ? transformData(params) : params
       await request('PUT', url, params);
+    },
+
+    // 文件上传
+    async fileUpload ({ dispatch, commit },params) {
+      const url = this.state.server + '/api/sys-file/upload';
+      const [err, result] = await uni.uploadFile({
+        url: url,
+        filePath: params.file,
+        name: 'file',
+        header: {'Content-Type': 'multipart/form-data', 'Cookie': uni.getStorageSync('SET_COOKIE')},
+        formData: {}
+      })
+      return JSON.parse(result.data).data
     },
   }
 })

@@ -1,0 +1,397 @@
+a,a:hover{
+  text-decoration: none !important;
+  cursor: pointer
+}
+canvas{position:absolute;top:0;left:0}
+.bluedata-bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index:-1;
+}
+
+/*导航*/
+.bluedata-logo{
+  position: absolute;
+  left: 50%;
+  margin-left: -192px;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+.bluedata-nav{
+  margin-bottom: 30px;
+}
+
+.navbar-nav{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-nav>a{
+  color: #ffffff !important;
+}
+
+
+/*下拉框*/
+.bluedata-modal{
+  max-width: 600px !important;
+}
+
+.bluedata-modal .modal-content{
+  background-color: rgba(0,0,0,.3);
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 0;
+  border-bottom-left-radius: 25px;
+  font-size: 18px;
+  color: #ffffff;
+  padding: 10px 0 13px;
+}
+
+.modal-col{
+  text-align: center;
+}
+
+.modal-content .modal-content-group{
+  margin-bottom: 0;
+}
+
+.modal-content .modal-content-btn{
+  margin-bottom: 0;
+  margin-top: 10px;
+  border:1px solid #54bfc8;
+  width: 100%;
+  padding: 5px;
+}
+
+.modal-content-btn a{
+  font-size: 16px;
+  color: #54bfc8 !important;
+  width: 100%;
+  border-radius: 0;
+}
+
+.modal-content .modal-content-btn:hover{
+  border-color: #54bfc8;
+  background-color: #54bfc8;
+}
+
+
+.modal-content .modal-content-btn:hover>a{
+  color: #fff !important;
+}
+
+
+.bluedata-modal{
+  position: absolute !important;
+  top: 56px;
+  right: 20px;
+  margin: 0 !important;
+}
+
+
+.icon-shouye-copy,.icon-shujuku{
+  color: #54bfc8;
+}
+
+
+/*首页*/
+
+/*.bluedata-content{*/
+  /*padding-bottom: 10px;*/
+/*}*/
+
+.bluedata-content-card{
+  width: 100%;
+  background-color: rgba(0,0,0,.2);
+  border: 1px solid rgba(255,255,255,.3);
+  background-repeat: repeat;
+  padding:15px;
+  margin-bottom: 25px;
+}
+
+.bluedata-content-title{
+  margin-bottom: 0;
+  padding-bottom:10px;
+  font-size: 18px;
+  color: #54bfc8;
+}
+
+.bluedata-content-card .bluedata-table-td,.bluedata-content-card .bluedata-table-th {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0;
+  vertical-align: top;
+  border-top: 0;
+  color: #ffffff;
+}
+
+.bluedata-table-th{
+  font-size: 16px;
+  padding-bottom: 15px !important;
+  line-height: 1.5;
+}
+
+.bluedata-table-td{
+  font-size: 14px;
+  line-height:2;
+  color: rgba(255,255,255,.8);
+}
+
+.table-condensed{
+  margin-bottom: 0 !important;
+}
+
+.bluedata-content-card .bluedata-table-progress{
+  padding: 0;
+  vertical-align: inherit;
+  border: 0;
+}
+
+.bluedata-content-card .bluedata-progress{
+  border-radius: 0;
+  background-color: #245c79;
+  height: 14px;
+}
+
+.bluedata-progress .progress-bar{
+  background-color: #54bfc8;
+  height: 14px;
+}
+
+.col-left-bottom-name{
+  font-size: 12px !important;
+  margin-bottom: 20px !important;
+}
+
+.card-left-top-name,.col-left-bottom-name,.col-right-top-name{
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+
+.card-left-top-content{
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 20px;
+  color: #f9ed5f;
+}
+
+.card-left-top-content span{
+  color: #ffffff;
+  font-size: 12px;
+  color: rgba(255,255,255,.6) !important;
+}
+
+.card-left-bottom-content{
+  font-size: 16px;
+  color: #f9ed5f;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+.col-center-top{
+  color: rgba(255,255,255,.6);
+  margin-top: 37px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.col-center-top-num{
+  font-size: 45px;
+  color: #f9ed5f;
+  margin-bottom: 0;
+}
+
+.col-right-center-dec{
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+.col-right-bottom-title,.col-right-bottom-num{
+  margin-bottom: 0;
+}
+
+.col-right-bottom-title{
+  color: #ffffff;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.col-right-bottom-num{
+  font-size: 24px;
+  color: #f9ed5f;
+}
+
+
+/*地图页面*/
+.map-content{
+  position: relative;
+}
+
+.box-left-top{
+  width: 300px;
+}
+
+.map-content p{
+  margin-bottom: 0;
+}
+
+.box-left-top{
+  position: absolute;
+  top: 70px;
+  left: 110px;
+}
+
+
+.box-left-top-num{
+  font-size: 45px;
+  color: #f9ed5f;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.box-left-top-des{
+  color: rgba(255,255,255,.6);
+  font-size: 14px;
+}
+
+.box-right-top{
+  position: absolute;
+  top:0px;
+  right: 220px;
+}
+
+.box-right-top-type{
+  font-size: 10px;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 5px !important;
+}
+
+.box-right-top-type span{
+  display:block;
+  width: 15px;
+  height: 15px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 1.5px
+}
+
+
+.box-left-bottom{
+  position: absolute;
+  bottom: 0;
+  left: 220px;
+}
+
+.box-left-bottom img{
+  padding: 0 40px;
+}
+
+.box-left-bottom-num{
+  font-size: 24px;
+  color: #f9ed5f;
+  margin-top: 10px;
+}
+
+.box-right-bottom{
+  position: absolute;
+  bottom: 70px;
+  right: 110px;
+}
+
+/*sign in*/
+
+.pcu-bg{
+  width:100%;
+  height:0;
+  padding-bottom: 100%;
+  overflow:hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  background-size:cover;
+}
+
+.login-logo{
+  text-align: center;
+  padding-top: 8%;
+}
+
+.login-logo img{
+  width: 40px;
+  margin-right: 8px;
+}
+.login-logo span{
+  color:#fff;
+}
+
+.sign-in{
+  width:260px;
+  margin: auto;
+  padding-top: 2%;
+}
+
+.login .form-control{
+  background-color:transparent; 
+  color:#fff;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(255,255,255,.8);
+}
+
+.login .form-control:focus {
+  background-color:transparent; 
+  border-color: #03a9f4;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0), 0 0 8px rgba(102,175,233,0);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0), 0 0 8px rgba(102,175,233,0);
+}
+
+.form-group>label{
+  color: rgba(255,255,255,.8);
+  font-weight: 400;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+ .from-button{
+  background-color: transparent;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 0;
+  color:rgba(255,255,255,.8) ;
+  margin-top: 15%;
+  width: 100%;
+}
+
+ .from-button:hover,.from-button:focus{
+  border-color: #03a9f4;
+  border-radius: 0;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 750px) {
+  .pcu-bg{
+    height:100%;
+  }
+  .form-control:focus {
+    background-color:transparent; 
+    border-color: rgba(255,255,255,.8);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0), 0 0 8px rgba(102,175,233,0);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0), 0 0 8px rgba(102,175,233,0);
+  }
+  .login-logo{
+    padding-top: 120px;
+  }
+  .sign-in{
+    margin-top: 32px;
+  }
+  
+}
+

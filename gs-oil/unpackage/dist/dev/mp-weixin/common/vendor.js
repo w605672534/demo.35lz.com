@@ -8406,7 +8406,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/main": { "navigationBarTitleText": "首页", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/login/main": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-detail/main": { "navigationBarTitleText": "车辆信息", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-info/main": { "navigationBarTitleText": "检查登记", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-edit/main": { "navigationBarTitleText": "检查登记", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-record/main": { "navigationBarTitleText": "检查记录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-records/main": { "navigationBarTitleText": "车辆信息明细", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/record-detail/main": { "navigationBarTitleText": "车辆信息详情", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-dash/main": { "navigationBarTitleText": "车辆统计", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/authorize/main": { "navigationBarTitleText": "授权登录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/records/main": { "navigationBarTitleText": "车辆记录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "甘肃石油小程序", "navigationBarBackgroundColor": "#ffffff", "backgroundColor": "#F5F5F5" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/main": { "navigationBarTitleText": "首页", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/login/main": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-detail/main": { "navigationBarTitleText": "车辆信息", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-info/main": { "navigationBarTitleText": "检查登记", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-edit/main": { "navigationBarTitleText": "检查登记", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-record/main": { "navigationBarTitleText": "检查记录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-records/main": { "navigationBarTitleText": "站点检查明细", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/record-detail/main": { "navigationBarTitleText": "车辆检查详情", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-dash/main": { "navigationBarTitleText": "车辆统计", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/authorize/main": { "navigationBarTitleText": "授权登录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/records/main": { "navigationBarTitleText": "车辆记录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "甘肃石油小程序", "navigationBarBackgroundColor": "#ffffff", "backgroundColor": "#F5F5F5" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -26051,22 +26051,9 @@ webpackContext.id = 17;
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 146));var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 149));
 var _http = _interopRequireDefault(__webpack_require__(/*! ./http */ 150));
-var _api = _interopRequireDefault(__webpack_require__(/*! ./api */ 178));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} // 此处，引入存放对promise处理的文件
+var _api = _interopRequireDefault(__webpack_require__(/*! ./api */ 178));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} // 此处，引入存放对promise处理的文件
 
 _vue.default.use(_vuex.default, _http.default);
-var transformData = function transformData(data) {
-  var fd = new FormData();
-  for (var i in data) {
-    if (Array.isArray(data[i])) {
-      for (var j = 0; j < data[i].length; j++) {
-        fd.append("".concat(i), data[i][j]);
-      }
-    } else {
-      fd.append(i, data[i]);
-    }
-  }
-  return fd;
-};
 var getRequest = _api.default.httpsPromisify(uni.request);
 var request = function request(method, url) {var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var isUpload = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false; // method为请求方法，url为接口路径，data为传参
 
@@ -26118,8 +26105,8 @@ var fail = function fail(res, dispatch) {
 var store = new _vuex.default.Store({
 
   state: {
-    //server: 'http://train.35lz.com/oms',
-    server: 'http://192.168.2.55:8080/oms',
+    server: 'http://train.35lz.com/oms',
+    //server: 'http://192.168.2.55:8080/oms',
     imgURL: 'http://train.35lz.com/oms',
     site: '10000',
     store: [],
@@ -26255,9 +26242,21 @@ var store = new _vuex.default.Store({
 
     // 车辆信息记录途径地详情
     carRecordEdit: function () {var _carRecordEdit = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee10(_ref10, params) {var dispatch, commit, url;return _regenerator.default.wrap(function _callee10$(_context10) {while (1) {switch (_context10.prev = _context10.next) {case 0:dispatch = _ref10.dispatch, commit = _ref10.commit;
-                url = this.state.server + '/api/traffic-detail/check/' + params['detail_id'];
-                //let data = params ? transformData(params) : params
-                _context10.next = 4;return request('PUT', url, params);case 4:case "end":return _context10.stop();}}}, _callee10, this);}));function carRecordEdit(_x16, _x17) {return _carRecordEdit.apply(this, arguments);}return carRecordEdit;}() } });var _default =
+                url = this.state.server + '/api/traffic-detail/check/' + params['detail_id'];_context10.next = 4;return (
+                  request('PUT', url, params));case 4:case "end":return _context10.stop();}}}, _callee10, this);}));function carRecordEdit(_x16, _x17) {return _carRecordEdit.apply(this, arguments);}return carRecordEdit;}(),
+
+
+    // 文件上传
+    fileUpload: function () {var _fileUpload = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee11(_ref11, params) {var dispatch, commit, url, _ref12, _ref13, err, result;return _regenerator.default.wrap(function _callee11$(_context11) {while (1) {switch (_context11.prev = _context11.next) {case 0:dispatch = _ref11.dispatch, commit = _ref11.commit;
+                url = this.state.server + '/api/sys-file/upload';_context11.next = 4;return (
+                  uni.uploadFile({
+                    url: url,
+                    filePath: params.file,
+                    name: 'file',
+                    header: { 'Content-Type': 'multipart/form-data', 'Cookie': uni.getStorageSync('SET_COOKIE') },
+                    formData: {} }));case 4:_ref12 = _context11.sent;_ref13 = _slicedToArray(_ref12, 2);err = _ref13[0];result = _ref13[1];return _context11.abrupt("return",
+
+                JSON.parse(result.data).data);case 9:case "end":return _context11.stop();}}}, _callee11, this);}));function fileUpload(_x18, _x19) {return _fileUpload.apply(this, arguments);}return fileUpload;}() } });var _default =
 
 
 

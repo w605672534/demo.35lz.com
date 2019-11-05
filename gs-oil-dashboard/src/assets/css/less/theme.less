@@ -1,0 +1,270 @@
+body {
+  background-color: @bg-color;
+  background-image:@bg-texture;
+  background-attachment:fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.@{app-theme} .panel-title {
+  color: @neutral-color-85;
+  background: @panel-color;
+  border-bottom: 1px solid @panel-title-bottom;
+  padding: 15px;
+  font-size: 16px;
+  letter-spacing: 1px
+}
+
+.@{app-theme} .process-water-title{
+  color: @neutral-color-85;
+}
+
+.@{app-theme} .product-title{
+  color: @neutral-color-45;
+}
+
+.@{app-theme} .product-num{
+  color: @neutral-color-85;
+}
+
+.@{app-theme} .table-tr{
+  color: @neutral-color-85;
+  border-bottom: 1px solid rgba(0, 0, 0, .15);
+  font-size: 14px;
+  >th{
+    padding: 11px 3px;
+  };
+  >td{
+    padding: 11px 3px;
+    color: @neutral-color-45;
+  }
+}
+
+.@{app-theme} .bluedata-logo {
+  color: @neutral-color-100;
+}
+
+.@{app-theme} .process-water-num{
+  color: @neutral-color-100;
+}
+
+.@{app-theme} .navbar-brand{
+  color: @neutral-color-45 !important;
+}
+
+.@{app-theme} .count-title{
+  color:@neutral-color-45;
+  >.count-num{
+    font-size: 36px;
+    color: @num-color;
+    >span{
+      color: @neutral-color-45;
+    }
+  }
+}
+
+.@{app-theme} .circle-progress-content{
+  color:@neutral-color-45;
+  i{
+    color: @primary-color;
+  }
+  >.circle-progress-num{
+    color: @neutral-color-85;
+  }
+}
+
+.@{app-theme} .el-table{
+  color:@neutral-color-45;
+  margin-top: 0px;
+  height: 305px;
+  overflow: scroll;
+  th{
+    background-color: @stripe-color;
+    padding: 10px 5px;
+    border-bottom:1px solid @line-color;
+    >.cell{
+      color: @neutral-color-85;
+    }
+  }
+}
+
+.@{app-theme} .product-content-top{
+  border-top:1px solid @line-color;
+}
+
+.@{app-theme} .process-water-company{
+  color: @neutral-color-45;
+}
+
+.@{app-theme} .panel-noframe.panel-default{
+    >.panel-body {
+      background-color: @transparent-color;
+      border: @zero;
+      padding: @zero;
+    }
+}
+
+.@{app-theme} .panel-default{
+    >.panel-body {
+      background-color: @panel-color;
+      border: @zero;
+    }
+}
+
+.@{app-theme} .product-water>.panel-body>.block>.el-row>.el-col>.panel-body{
+  background-color: @panel-color;
+}
+
+.@{app-theme} .el-dialog{
+  background: @dialog-bg;
+  >.el-dialog__header{
+    border-bottom: 1px solid @line-color;
+    .el-dialog__title{
+      color: @neutral-color-85 !important;
+    }
+    .el-dialog__headerbtn .el-icon-close{
+      color: @neutral-color-85 !important;
+    }
+  };
+  >.el-dialog__body {
+    padding: 15px
+  }
+}
+
+.@{app-theme} .el-tabs--border-card{
+  background-color: @panel-color;
+  border: @zero;
+  >.el-tabs__content{
+    padding: @zero;
+  }
+  >.el-tabs__header{
+    background-color: @tabs-header-color;
+    border-bottom:1px solid @line-color;
+    .el-tabs__item{
+      line-height: 50px;
+      height: 50px;
+      color: @neutral-color-45;
+    }
+  }
+}
+
+.@{app-theme} .water-compare{
+  background: @line-color;
+  padding: 13px;
+  >h5{
+    color: @neutral-color-85;
+  };
+  &:after{
+    border-bottom: 1px solid @line-color;
+  };
+  &:before{
+    border-right: 1px solid @line-color;
+  };
+  &::before {
+    border-right: 1px solid @line-color;
+  }
+  &::after {
+      border-bottom: 1px solid @line-color;
+  }
+}
+
+.@{app-theme} .navbar-nav{
+    >a{
+      color:@neutral-color-45;
+      >i{
+        color:@neutral-color-45;
+      }
+    }
+    
+}
+
+// 告警
+.@{app-theme} .warning-monitor-num.monitor-num.circle-progress-num {
+  color: @warning-color;
+}
+
+// 正常
+.@{app-theme} .monitor-num.circle-progress-num {
+  color:@normal-color;
+}
+
+.@{app-theme} .progress-bar {
+  background-color: @primary-color;
+}
+
+.@{app-theme} .el-table--striped .el-table__body tr.el-table__row--striped td {
+  background-color: rgba(0, 0, 0, .10)
+}
+
+.@{app-theme} .el-table__body-wrapper {
+  tr{
+    &:hover{
+      >td {
+        background-color: @primary-color !important;
+      }
+    }
+  }
+}
+
+.@{app-theme} .fsize-13{
+  font-size: @fsize-13
+}
+
+.@{app-theme} .fsize-15{
+  font-size: @fsize-15
+}
+
+.@{app-theme} .fsize-18{
+  font-size: @fsize-18
+}
+
+.@{app-theme} .fsize-20{
+  font-size: @fsize-20
+}
+
+
+// 报警统计
+.@{app-theme} .unit-exception{
+  background-color: @unit-exception;
+}
+
+.@{app-theme} .key-parameter{
+  background-color: @key-parameter;
+}
+
+.@{app-theme} .online-analysis{
+  background-color: @online-analysis;
+}
+
+.@{app-theme} .test{
+  background-color: @test;
+}
+
+// 告警色
+.@{app-theme} .warning-color{
+  background-color: @warning-color;
+}
+
+// 正常色
+.@{app-theme} .normal-color{
+  background-color: @normal-color;
+}
+
+/*进度条底色*/
+.@{app-theme} .el-progress-circle__track {
+  stroke: rgba(0,0,0,.2);
+}
+
+.@{app-theme} .el-progress-bar__outer{
+  background-color: rgba(0,0,0,.2);
+}
+
+
+/*进度条颜色*/
+.@{app-theme} .el-progress-circle__path {
+  stroke: @primary-color;
+}
+
+.@{app-theme} .el-progress-bar__inner{
+  background-color: @primary-color;
+}

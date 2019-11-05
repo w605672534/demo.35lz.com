@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!--[if lte IE 9]>
+  <script>
+    window.location = '/static/browers.html';
+  </script>
+  <![endif]-->
+  <script>
+    var DASHBOARD_APP_NAME = '<%= htmlWebpackPlugin.options.title %>';
+  </script>
+</head>
+<body>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
+<script type="x-template" id="x-tpl-overview">
+  <div style="text-align:center; margin:15px 0;">
+    <el-progress type="circle" :percentage="progress" :status="status"></el-progress>
+    <div>{{data.car_code}}</div>
+  </div>
+</script>
+<script type="x-template" id="x-tpl-overview2">
+  <div style="margin: 10px;">
+    <el-row>
+      <el-col :span="8">
+        <x-circle-title>日</x-circle-title>
+      </el-col>
+      <el-col :span="16" style="text-align:center;">
+        <p>本日累计(吨)</p>
+        <p style="font-size: 24px;font-weight: 800;color: #1e66ca;">266</p>
+      </el-col>
+    </el-row>
+    <el-row style="text-align:center; font-size:12px;">
+      <el-col :span="8">
+        <p style="color:#495c77;">车次</p>
+        <p style="font-weight: bold;">58</p>
+      </el-col>
+      <el-col :span="8" style="text-align:center;">
+        <p style="color:#495c77;">昨日累计</p>
+        <p style="font-weight: bold;">289.65</p>
+      </el-col>
+      <el-col :span="8" style="text-align:center;">
+        <p style="color:#495c77;">增长</p>
+        <p style="font-weight: bold;">-24.2</p>
+      </el-col>
+    </el-row>
+    <hr>
+    <el-row>
+      <el-col :span="8">
+        <x-circle-title color="#8bc34a">月</x-circle-title>
+      </el-col>
+      <el-col :span="16" style="text-align:center;">
+        <p>本月累计(吨)</p>
+        <p style="font-size: 24px;font-weight: 800;color: #1e66ca;">266</p>
+      </el-col>
+    </el-row>
+    <el-row style="text-align:center; font-size:12px;">
+      <el-col :span="8">
+        <p style="color:#495c77;">车次</p>
+        <p style="font-weight: bold;">58</p>
+      </el-col>
+      <el-col :span="8" style="text-align:center;">
+        <p style="color:#495c77;">上月累计</p>
+        <p style="font-weight: bold;">289.65</p>
+      </el-col>
+      <el-col :span="8" style="text-align:center;">
+        <p style="color:#495c77;">增长</p>
+        <p style="font-weight: bold;">-24.2</p>
+      </el-col>
+    </el-row>
+  </div>
+</script>
+<script type="x-template" id="tpl-monitor-overview">
+<div class="monitor-overview">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="title">
+          <div class="shu"></div>
+          {{new Date().getFullYear()}}年累计收运
+        </div>
+        <div class="left-square">
+            <div class="left-content">餐厨废弃物</div>
+            <div class="number">{{data.ytd_rubbish}} <span>吨</span></div>
+        </div>
+        <div class="left-square">
+            <div class="left-content">废弃油脂</div>
+            <div class="number">{{data.ytd_waste_oil1}} <span>吨</span></div>
+        </div>
+        <div class="left-square">
+            <div class="left-content">粗油脂</div>
+            <div class="number">{{data.ytd_waste_oil2}} <span>吨</span></div>
+        </div>
+        <div class="left-square">
+            <div class="left-content">新区</div>
+            <div class="number">{{data.ytd_new}} <span>吨</span></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+          <div>
+              <p class="p1">收运处置餐厨废弃物（吨）</p>
+              <!--<div class="p2"><div class="number-3">4</div><div class="number-3">2</div ><div class="number-3">4</div><div class="number-3">4</div><div class="number-3">2</div><div class="number-3">4</div><div class="number-3">.</div><div class="number-3">4</div><div class="number-3">2</div></div>-->
+              <div class="p2">
+                <div class="p2-content" v-for=" s in ( data.td_weight + parseFloat(data.accumulation_base)).toFixed(2).toString()">
+                  {{s}}
+                </div>
+              </div>
+              <p class="p-content">自 <span>{{data.start_run_time}}</span> 运营以来 , 安全运营 <span>{{data.td_days + parseInt(data.start_calculate_time)}}</span> 天</p>
+          </div>
+          <div style="text-align: center"><img src="/static/image/cn-be-logo.png"></div>
+      </div>
+
+      <div class="col-md-3">
+          <div class="title">
+              <div class="shu"></div>
+              累计减排
+          </div>
+          <div class="right-square">
+              <div class="right-center">CO2</div>
+              <div  class="number">{{((data.td_weight + parseFloat(data.accumulation_base))* parseFloat(data.co2_ratio)).toFixed(2)}} <span >吨</span></div>
+              <div class="right-center">COD</div>
+              <div  class="number">{{((data.td_weight + parseFloat(data.accumulation_base)) * parseFloat(data.cod)).toFixed(2)}} <span >吨</span></div>
+          </div>
+          <div class="right-square">
+              <div class="right-square-1">氨氮</div>
+              <div class="number-1">{{((data.td_weight + parseFloat(data.accumulation_base)) * parseFloat(data.nh_ratio)).toFixed(2)}} <span>吨</span></div>
+              <div class="right-square-1">氯化物</div>
+              <div class="number-1">{{((data.td_weight + parseFloat(data.accumulation_base)) * parseFloat(data.cl_ratio)).toFixed(2)}} <span >吨</span></div>
+              <div class="right-square-1">二氧化硫</div>
+              <div class="number-1">{{((data.td_weight + parseFloat(data.accumulation_base)) * parseFloat(data.so2_ratio)).toFixed(2)}} <span >吨</span></div>
+              <div class="right-square-1">氮氧化物</div>
+              <div class="number-1">{{((data.td_weight + parseFloat(data.accumulation_base)) * parseFloat(data.no_ratio)).toFixed(2)}} <span >吨</span></div>
+          </div>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="x-template" id="tpl-carbon-emission">
+  <div class="text-center" style="margin-top:120px;">
+    <h3 style="color:red; font-size: 50px; margin-bottom:50px;">
+      累计减排 CO<sub>2</sub>
+    </h3>
+    <h1 style="color:red; font-family: DigifaceWide; font-size: 100px;">
+      <span class="s1">{{integerPart}}</span>
+      <span style="font-size: 50px; margin-left:-40px; ">.</span>
+      <span class="s2" style="font-size: 50px; margin-left:-40px; ">{{decimalPart<10?"00"+decimalPart:decimalPart<100?"0"+decimalPart:decimalPart}}</span>
+      <span class="s3" style="font-size: 50px;">吨</span>
+    </h1>
+  </div>
+</script>
+<script type="x-template" id="tpl-trans-period">
+  <div style="margin: 10px;">
+    <el-row>
+      <el-col :span="8">
+        <x-circle-title :color="color">{{data.type}}</x-circle-title>
+      </el-col>
+      <el-col :span="16" style="text-align:center;">
+        <p>本{{data.type}}累计(吨)</p>
+        <p style="font-size: 24px;font-weight: 800;color: #1e66ca;">{{data.weight}}</p>
+      </el-col>
+    </el-row>
+    <el-row style="text-align:center; font-size:12px;">
+      <el-col :span="8">
+        <p style="color:#495c77;">车次</p>
+        <p style="font-weight: bold;">{{data.qty}}</p>
+      </el-col>
+      <el-col :span="8" style="text-align:center;">
+        <p style="color:#495c77;">上{{data.type}}累计</p>
+        <p style="font-weight: bold;">{{data.past_weight}}</p>
+      </el-col>
+      <el-col :span="8" style="text-align:center;">
+        <p style="color:#495c77;">增长</p>
+        <p style="font-weight: bold;">{{vary}}</p>
+      </el-col>
+    </el-row>
+  </div>
+</script>
+<script type="x-template" id="tpl-yearly-category">
+  <div style="margin: 10px;">
+    <el-row>
+      <el-col :span="4">
+        <x-circle-title :color="color">总</x-circle-title>
+      </el-col>
+      <el-col :span="20" style="text-align:center;">
+        <p>年度货物累计(吨)</p>
+        <p style="font-size: 24px;font-weight: 800;color: #1e66ca;">{{tare}}</p>
+      </el-col>
+    </el-row>
+    <el-row style="text-align:center; font-size:12px;">
+      <el-col :span="6">
+        <p style="color:#495c77;">{{data.cargo_a_name}}</p>
+        <p style="font-weight: bold;">{{data.ytd_kitchen}}</p>
+      </el-col>
+      <el-col :span="6" style="text-align:center;">
+        <p style="color:#495c77;">{{data.cargo_b_name}}</p>
+        <p style="font-weight: bold;">{{data.ytd_crude_oil}}</p>
+      </el-col>
+      <el-col :span="6" style="text-align:center;">
+        <p style="color:#495c77;">{{data.cargo_c_name}}</p>
+        <p style="font-weight: bold;">{{data.ytd_waste_oil}}</p>
+      </el-col>
+      <el-col :span="6" style="text-align:center;">
+        <p style="color:#495c77;">{{data.cargo_d_name}}</p>
+        <p style="font-weight: bold;">{{data.ytd_new_waste}}</p>
+      </el-col>
+    </el-row>
+  </div>
+</script>
+<script type="x-template" id="tpl-video">
+  <div style="margin: 10px;">
+    <object classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921"
+            width="100%" height="315" id="vlc" events="True">
+      <param name="MRL" value=""/>
+      <param name="ShowDisplay" value="True"/>
+      <param name="AutoLoop" value="False"/>
+      <param name="AutoPlay" value="False"/>
+      <param name="Volume" value="50"/>
+      <param name="toolbar" value="true"/>
+      <param name="StartTime" value="0"/>
+      <EMBED pluginspage="http://www.videolan.org"
+             type="application/x-vlc-plugin"
+             version="VideoLAN.VLCPlugin.2"
+             width="100%"
+             height="315"
+             toolbar="true"
+             loop="true"
+             branding="true"
+             text="Waiting for video"
+             bgcolor="#000000"
+             allowfullscreen="true"
+             name="vlc">
+      </EMBED>
+    </object>
+  </div>
+</script>
+<script type="x-template" id="tpl-trans-order">
+  <div style="margin: 10px;">
+    <div style="width:30%;float:left;">
+      <img class="pull-left" src="static/image/cn-be-report-logo.png"
+           style="height:50px;margin-bottom: 6px;margin-left: 20px;">
+      <h3 class="pull-left text-center" style="margin:0;line-height: 40px;width:64%">收运车辆派车单</h3>
+      <h2 class="pull-left text-center" style="margin:0;line-height: 40px;width: 18%;">{{data.class_no}}</h2>
+      <table class="table table-bordered" style="table-layout: fixed;">
+        <tbody>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px" width="11.5%">日期</td>
+          <td style="line-height: 32px;text-align: center;" height="38px" width="31%">{{data.date}}</td>
+        </tr>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px" width="11.5%">时间</td>
+          <td style="line-height: 32px;text-align: center;" height="38px" width="31%">{{data.time}}</td>
+        </tr>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px">司机</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">{{data.driver?data.driver:''}}</td>
+        </tr>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px">车号</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">{{data.car}}</td>
+        </tr>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px">线路</td>
+          <td style="line-height: 32px;text-align: center;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;"
+              height="38px">{{data.line}}
+          </td>
+        </tr>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px">班组</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">{{data.team}}</td>
+        </tr>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px" width="11.5%">班次</td>
+          <td style="line-height: 32px;text-align: center;" height="38px" width="16%">{{data.class_no}}</td>
+        </tr>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px">收运货物</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">{{data.cargo}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="width:70%;float:left;">
+      <img class="pull-left" src="static/image/cn-be-report-logo.png"
+           style="height:50px;margin-bottom: 6px;margin-left: 20px;">
+      <h3 class="pull-left text-center" style="margin:0;line-height: 40px;width:64%">派车单存根</h3>
+      <h2 class="pull-left text-center" style="margin:0;line-height: 40px;width: 18%;">{{data.class_no}}</h2>
+      <table class="table table-bordered" style="table-layout: fixed;">
+        <tbody>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px" width="11.5%">日期</td>
+          <td style="line-height: 32px;text-align: center;" height="38px" width="31%">{{data.date}}</td>
+          <td style="line-height: 32px;text-align: center;" height="38px" width="14%">时间</td>
+          <td style="line-height: 32px;text-align: center;" height="38px" width="16%">{{data.time}}</td>
+          <td style="line-height: 32px;text-align: center;" height="38px" width="11.5%">班次</td>
+          <td style="line-height: 32px;text-align: center;" height="38px" width="16%">{{data.class_no}}</td>
+        </tr>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px">线路</td>
+          <td style="line-height: 32px;text-align: center;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;"
+              height="38px">{{data.line}}
+          </td>
+          <td style="line-height: 32px;text-align: center;" height="38px">班组</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">{{data.team}}</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">车号</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">{{data.car}}</td>
+        </tr>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px">收运货物</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">{{data.cargo}}</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">出发里程</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">{{data.start_mileage}}</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">结束里程</td>
+          <td style="line-height: 32px;text-align: center;" height="38px">{{data.return_mileage}}</td>
+        </tr>
+        <tr height="38px">
+          <td style="line-height: 32px;text-align: center;" height="38px">调度签字</td>
+          <td style="line-height: 32px;text-align: center;" height="38px"></td>
+          <td style="line-height: 32px;text-align: center;" height="38px">司机{{data.driver?'('+data.driver+')':''}}</td>
+          <td style="line-height: 32px;text-align: center;" height="38px"></td>
+          <td style="line-height: 32px;text-align: center;" height="38px">门卫签字</td>
+          <td style="line-height: 32px;text-align: center;" height="38px"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</script>
+<script type="x-template" id="tpl-business-overview">
+  <ul class="nav-overview nav navbar-nav">
+    <li>
+      <p class="overview-title">累计</p>
+      <div class="data-box bg-info img-circle">
+        <p class="text-data data-bg overview-data">{{data.business_total}}</p>
+      </div>
+    </li>
+    <li>
+      <p class="overview-title">有效</p>
+      <div class="data-box bg-info img-circle">
+        <p class="text-data data-bg overview-data">{{data.business_eff}}</p>
+      </div>
+    </li>
+    <li>
+      <p class="overview-title">新签</p>
+      <div class="data-box bg-info img-circle">
+        <p class="text-data data-bg overview-data">{{data.sign_num}}</p>
+      </div>
+    </li>
+    <li>
+      <p class="overview-title">续签</p>
+      <div class="data-box bg-info img-circle">
+        <p class="text-data data-bg overview-data">{{data.renewal_num}}</p>
+      </div>
+    </li>
+    <li>
+      <p class="overview-title">车次</p>
+      <div class="data-box bg-info img-circle">
+        <p class="text-data data-bg overview-data">{{data.car}}</p>
+      </div>
+    </li>
+    <li>
+      <p class="overview-title">已收</p>
+      <div class="data-box bg-info img-circle">
+        <p class="text-data data-bg overview-data">{{parseFloat(data.amount).toFixed(0)}}</p>
+      </div>
+    </li>
+    <li>
+      <p class="overview-title">异常</p>
+      <div class="data-box bg-danger img-circle">
+        <p class="text-danger data-bg overview-data">{{data.business_invalid}}</p>
+      </div>
+    </li>
+  </ul>
+</script>
+<script type="x-template" id="tpl-record-detail">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4 class="text-primary">调度信息</h4>
+      <table class="table table-bordered">
+        <tbody>
+        <tr>
+          <th width="15%">日期</th>
+          <td width="15%">{{data.date}}</td>
+          <th width="15%">调度流水号</th>
+          <td width="25%">{{data.serial_no}}</td>
+          <th width="15%">班次</th>
+          <td width="15%">{{data.team}}</td>
+        </tr>
+        <tr>
+          <th>路线</th>
+          <td>{{data.line}}</td>
+          <th>车号</th>
+          <td>{{data.car_code}}</td>
+          <th>司机</th>
+          <td>{{data.driver}}</td>
+        </tr>
+        <tr>
+          <th>收运货物</th>
+          <td>{{data.cargo}}</td>
+          <th>派车时间</th>
+          <td>{{data.dispatch_time}}</td>
+          <th>调度员</th>
+          <td>{{data.dispatcher}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <h4 class="text-primary">过磅记录</h4>
+      <table class="table table-bordered">
+        <tbody>
+        <tr>
+          <th width="15%">皮重</th>
+          <td width="15%">{{data.tare}}</td>
+          <th width="15%">净重</th>
+          <td width="25%">{{data.net}}</td>
+          <th width="15%">毛重</th>
+          <td width="15%">{{data.gross}}</td>
+        </tr>
+        <tr>
+          <th>过磅货物</th>
+          <td>{{data.cargo}}</td>
+          <th>过磅时间</th>
+          <td>{{data.weigh_time}}</td>
+          <th>过磅员</th>
+          <td>{{data.opman}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <h4 class="text-primary">监控拍照</h4>
+      <hr style="margin:10px 0;">
+    </div>
+    <div class="col-sm-12 col-xs-12" v-if="data.photo1">
+      <img
+        :src="'http://www.food-waste.net:8080/monitor/api/schedule-weigh-record/'+data.record_id+'/weigh_image/'+data.photo1+'?_username=dashboard&_password=123456&_mode=inline'"
+        border="0" width="100%">
+      <hr style="margin:10px 0;">
+    </div>
+    <div class="col-sm-12 col-xs-12" v-if="data.photo2">
+      <img
+        :src="'http://www.food-waste.net:8080/monitor/api/schedule-weigh-record/'+data.record_id+'/weigh_image/'+data.photo2+'?_username=dashboard&_password=123456&_mode=inline'"
+        border="0" width="100%">
+    </div>
+  </div>
+
+  <script type="text/template" id="tpl-count-one">
+    <div class="row" style="margin:20px;">
+      <div class="col-sm-3" data-status="off-track" style="cursor: pointer;">
+        <h3 class="text-primary text-center" style="  width: 90px;
+          height: 90px;
+          background-color: #1890ff;
+          border-radius: 60%;
+          color: #fff;
+          line-height: 90px;
+          margin: 20px auto;
+          font-size: 28px;" data-role="danger"><span style="color: #fff">{{data[0]['quality']}}</span>
+        </h3>
+        <h4 class="text-center" style="color: #000;">实时水质</h4>
+      </div>
+      <div class="col-sm-3" data-status="caution" style="cursor: pointer;">
+        <h3 class="text-primary text-center" style="  width: 90px;
+          height: 90px;
+          background-color: #13c2c2;
+          border-radius: 50%;
+          color: #fff;
+          line-height: 90px;
+          margin: 20px auto;
+          font-size: 28px;" data-role="warning"><span style="color: #fff">{{data[0]['test']}}</span>
+          </h3>
+        <h4 class="text-center" style="color: #000;">化验水质</h4>
+      </div>
+      <div class="col-sm-3" data-status="on-track" style="cursor: pointer;">
+
+        <h3 class="text-primary text-center" style="  width: 90px;
+          height: 90px;
+          background-color: #b76af7;
+          border-radius: 50%;
+          color: #fff;
+          line-height: 90px;
+          margin: 20px auto;
+          font-size: 28px;" data-role="success"><span style="color: #fff">{{data[0]['equ']}}</span>
+        </h3>
+        <h4 class="text-center" style="color: #000;">设备异常</h4>
+      </div>
+      <div class="col-sm-3" data-status="on-track" style="cursor: pointer;">
+
+        <h3 class="text-primary text-center" style="  width: 90px;
+          height: 90px;
+          background-color:#13c2c2;
+          border-radius: 50%;
+          color: #fff;
+          line-height: 90px;
+          margin: 20px auto;
+          font-size: 28px;" data-role="success"><span style="color: #fff">{{data[0]['param']}}</span>
+        </h3>
+        <h4 class="text-center" style="color: #000;">关键参数</h4>
+      </div>
+    </div>
+    </script>
+
+
+
+<script type="text/template" id="tpl-template-status-onoff">
+ 
+    <span class="status-round status-round-success"></span>
+    
+  </script>
+
+</script>
+</html>

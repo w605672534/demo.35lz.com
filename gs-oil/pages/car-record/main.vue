@@ -32,6 +32,7 @@ import { mapState } from 'vuex'
 		},
 		methods: {
          recordDetile(item) {
+            console.log(item)
             wx.navigateTo({
                url: `/pages/car-records/main?record_id=${item.record_id}`
             })

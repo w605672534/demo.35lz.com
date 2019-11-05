@@ -1,0 +1,227 @@
+
+/* home 页 */
+.home{
+    width: 100%;
+}
+.home-user{
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    margin-top: 45px;
+    border-bottom: #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    background: #2B717D;
+    color: #fff;
+    padding:0 16px;
+}
+.home-back{
+    position: relative;
+    top: -5px;
+}
+
+.content{
+    margin-left: 0;
+    width: 100%;
+    margin: 15px 0;
+}
+.home-title{
+    padding: 15px 0;
+    font-weight: 300;
+    font-size: 16px;
+}
+.content-station{
+    height: auto;
+    width: 100%;
+}
+.station{
+    line-height: 40px;
+    padding: 0 12px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+.station-alarm{
+    background-color: #f56c6c;
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 0 6px;
+    text-align: center;
+    white-space: nowrap;
+    float: right;
+    margin-top: 11px;
+}
+/* 站点页 station */
+.banner{
+    width: 100%;
+}
+.station-center{
+    text-align: center;
+    padding: 16px 0 8px;
+}
+.title{
+    font-size: 14px;
+}
+.station-content{
+    text-align: center;
+    margin-top: 15px;
+}
+.title-nus{
+    font-size: 16px;
+}
+
+/* 报警确认 */
+.alarm-user{
+    width: 100%;
+    margin: 15px 0 30px;
+}
+.alarm-center{
+    display: flex;
+    line-height: 45px;
+    justify-content: space-between;
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+p{
+    margin: 0;
+}
+a,a:hover{
+    color: #333333;
+}
+
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+/* 设备总览 */
+.equ-title{
+    padding: 15px;
+}
+
+/* 设备问题 */
+
+.equ-question{
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    background: rgb(82, 156, 218);
+    color: #fff;
+    padding:0 16px;
+}
+.textarea-position{
+    width: 100%;
+    border: 1px solid #e1e1e1;
+}
+
+.el-tabs--card>.el-tabs__header .el-tabs__nav {
+    border: 0;
+    border-bottom: none;
+    border-radius: 0;
+    width: 50%;
+}
+.el-tabs--card>.el-tabs__header .el-tabs__item{
+    border:0;
+    width: 100%;
+    text-align: center;
+}
+.el-tabs--top.el-tabs--card .el-tabs__item:nth-child(2) {
+    padding-left: 20px;
+    width: 100%;
+}
+.el-tabs__content {
+    overflow: hidden;
+    position: relative;
+    margin-top: 15px;
+}
+.el-tabs--card>.el-tabs__header {
+    border-bottom:transparent;
+}
+.start{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    padding: 0 8px;
+    font-size: 14px;
+}
+.parameter{
+    width: 100%;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e1e1e1;
+}
+.equ-history{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 7px;
+}
+.el-tabs__header {
+    padding: 0;
+    position: relative;
+    margin: 0;
+    margin-top: 2px;
+}
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.el-input__inner {
+    text-align: center;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border-radius: 0;
+    border: 0.5px solid #d8dce5;
+    box-sizing: border-box;
+    color: #5a5e66;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    line-height: 1;
+    outline: 0;
+    padding: 0;
+    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
+}
+.el-input {
+    position: relative;
+    font-size: 14px;
+    display: inline-block;
+    width: 85%;
+}
+.el-input__icon {
+    height: 100%;
+    width: 25px;
+    text-align: center;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    line-height: 40px;
+    display: none;
+}
+.el-input--prefix .el-input__inner {
+    padding-left: 0;
+}
+.el-input--suffix .el-input__inner {
+    padding-right: 0;
+}
+.operation-alarm{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-top: 3px;
+}
+.operation-title{
+    height: 30px;
+    line-height: 5px;
+}   

@@ -868,13 +868,7 @@ var _default = {
           console.log(res.data);
         } });
 
-    }
-    // carInfo() {
-    //    wx.navigateTo({
-    //     url: '/pages/goods/main'
-    //   })
-    // },
-  } };exports.default = _default;
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

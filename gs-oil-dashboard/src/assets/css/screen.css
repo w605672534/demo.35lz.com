@@ -1,0 +1,8 @@
+.alarm-sum{
+    width: 100%;
+    height: auto;
+}
+.alarm{
+    border-bottom: 1px solid #e0e0e0;
+    line-height: 20px;
+}
