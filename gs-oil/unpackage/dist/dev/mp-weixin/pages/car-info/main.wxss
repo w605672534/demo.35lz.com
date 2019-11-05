@@ -1,1 +1,183 @@
+.licensePlateShow.data-v-b4a5fa06 {
+  min-height: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.licensePlate_Bg.data-v-b4a5fa06 {
+  min-height: 100%;
+  width: 750rpx;
+  position: absolute;
+  z-index: 40;
+  overflow: hidden;
+}
+.licensePlate_provinces_Box.data-v-b4a5fa06 {
+  background-color: #d0d4da;
+  margin: 0 auto;
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  z-index: 55;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  height: 100rpx;
+  line-height: 100rpx;
+  bottom: 510rpx;
+  width: 100%;
+  color: #333333;
+  background: #E36803;
+  font-size: 38rpx;
+  text-align: center;
+  left: 0;
+}
+.licensePlate_provincesTist.data-v-b4a5fa06 {
+  -webkit-box-flex: 15%;
+  -webkit-flex: 15%;
+      -ms-flex: 15%;
+          flex: 15%;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #ffffff;
+  border-top: 1px solid #abb2bd;
+  border-left: 1px solid #abb2bd;
+}
+.licensePlate_provincesTist.data-v-b4a5fa06:nth-child(6n) {
+  border-right: 1px solid #abb2bd;
+}
+.licensePlate_letter_Box.data-v-b4a5fa06 {
+  background-color: #d0d4da;
+  margin: 0 auto;
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  z-index: 55;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  height: 100rpx;
+  line-height: 100rpx;
+  bottom: 510rpx;
+  width: 100%;
+  color: #333333;
+  background: #E36803;
+  font-size: 38rpx;
+  text-align: center;
+  left: 0;
+}
+.licensePlate_letterTist.data-v-b4a5fa06 {
+  -webkit-box-flex: 15%;
+  -webkit-flex: 15%;
+      -ms-flex: 15%;
+          flex: 15%;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #ffffff;
+  border-top: 1px solid #abb2bd;
+  border-left: 1px solid #abb2bd;
+}
+.licensePlate_letterTist.data-v-b4a5fa06:nth-child(6n) {
+  border-right: 1px solid #abb2bd;
+}
+.licensePlate_letterTist.data-v-b4a5fa06:nth-child(26) {
+  border-right: 1px solid #abb2bd;
+}
+.licensePlate_letterTist_but.data-v-b4a5fa06 {
+  position: fixed;
+  height: 100rpx;
+  line-height: 100rpx;
+  bottom: 0;
+  width: 100%;
+  color: #ffffff;
+  background: #E36803;
+  font-size: 38rpx;
+  text-align: center;
+  left: 0;
+}
+.licensePlate_digital_Box.data-v-b4a5fa06 {
+  background-color: #d0d4da;
+  margin: 0 auto;
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  z-index: 55;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  height: 100rpx;
+  line-height: 100rpx;
+  bottom: 420rpx;
+  width: 100%;
+  color: #333333;
+  background: #E36803;
+  font-size: 38rpx;
+  text-align: center;
+  left: 0;
+}
+.licensePlate_digitalTist.data-v-b4a5fa06 {
+  -webkit-box-flex: 25%;
+  -webkit-flex: 25%;
+      -ms-flex: 25%;
+          flex: 25%;
+  height: 105rpx;
+  line-height: 105rpx;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #ffffff;
+  border-top: 1px solid #eeeeee;
+  border-left: 1px solid #eeeeee;
+}
+.licensePlate_digital_but.data-v-b4a5fa06 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  height: 100rpx;
+  line-height: 100rpx;
+  bottom: 0;
+  width: 100%;
+  color: #ffffff;
+  background: #E36803;
+  font-size: 38rpx;
+  text-align: center;
+  left: 0;
+}
+.licensePlate_but.data-v-b4a5fa06 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #ffffff;
+  background-color: #E36803;
+  border-top: 2rpx solid #eeeeee;
+  border-left: 2rpx solid #eeeeee;
+}
+.licensePlate_but.data-v-b4a5fa06:last-child {
+  border-right: 1px solid #abb2bd;
+}
 

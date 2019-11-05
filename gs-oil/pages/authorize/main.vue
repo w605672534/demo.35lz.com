@@ -2,7 +2,7 @@
 	<div>
     <div class="logo">
       <img src="http://hp-coffee.hulu.io/gs-oil/oil-logo.png">
-      <div class="logo-title">陇油风暴</div>
+      <div class="logo-title">陇油稽查</div>
     </div>
     <div class="info">中国石油天然气股份有限公司甘肃销售公司（以下简称甘肃销售）的前身为甘肃省石油总公司，成立于1953年，主要从事汽油、煤油、柴油、润滑油及特种油品的批发、零售业务，承担着甘肃省工农业生产和人民群众生产、生活用油的供应任务。</div>
     <div class="login">
@@ -27,14 +27,7 @@ import { mapState } from 'vuex'
       user: 'user'
     })
   },
-		onLoad() {
-      // let userInfo = wx.getStorageSync(USER_INFO)
-      // if (userInfo) {
-      //   wx.redirectTo({
-      //     url: '/pages/index/main'
-      //   })
-      // }
-		},
+		onLoad() {},
 		methods: {
       async bindGetUserInfo (e) {
         if (e.mp.detail.errMsg === 'getUserInfo:ok') {
@@ -42,7 +35,6 @@ import { mapState } from 'vuex'
           wx.login({
             async success (res) {
               if (res.code) {
-                // tip.loading()
                 _this.userinfo = e.mp.detail.userInfo
                 await _this.$store.dispatch('wechatAcommituth', {code: res.code, userId: '', password: '', page: 'auth'})
                 wx.setStorageSync('user', _this.user)

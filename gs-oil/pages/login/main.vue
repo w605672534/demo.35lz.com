@@ -32,14 +32,7 @@ import { mapState } from 'vuex'
         user: 'user'
       })
     },
-		onLoad() {
-      // let userInfo = wx.getStorageSync('user')
-      // if (userInfo) {
-      //   wx.redirectTo({
-      //     url: '/pages/index/main'
-      //   })
-      // }
-		},
+		onLoad() {},
 		methods: {
       getNameValue: function(e) {
         this.account = e.target.value;
@@ -61,23 +54,10 @@ import { mapState } from 'vuex'
             wx.login({
               async success (res) {
                 if (res.code) {
-                  // tip.loading()
                   _this.userinfo = e.mp.detail.userInfo
                   await _this.$store.dispatch('wechatAcommituth', {code:res.code, userId: _this.account, password: _this.password, page: 'login'})
+                  console.log(_this.user)
                   wx.setStorageSync('user', _this.user)
-                  // if(_this.user) {
-                  //   console.log(_this.user,'10100100')
-                  //   wx.redirectTo({
-                  //     url: '/pages/index/main'
-                  //   })
-                  // } else {
-                  //   wx.showToast({
-                  //     title: '请输入正确的账号和密码',
-                  //     icon: 'none',
-                  //     mask: true,
-                  //     duration: 2000
-                  //   })
-                  // }
                 } else {
                   const meg = '124'
                   tip.errorTip(meg)

@@ -525,12 +525,10 @@ import { mapState } from 'vuex'
         })
       },
       // 提交
-      submit() {
+      async submit() {
         const arriveTime = this.inDate + ' ' + this.inTime;
         const leaveTime = this.outDate + ' ' + this.outTime;
-        const requestTask3 = uni.request({
-          url: `http://train.35lz.com/oms/api/traffic-detail/check/${this.detailId}?_username=yangxiaoyan&_password=123456`,
-          data: { 
+        let data = { 
             car_numbers: this.detail.car_numbers,
             material_id: this.detail.material_id,
             material_name: this.detail.material_name,
@@ -560,26 +558,11 @@ import { mapState } from 'vuex'
             is_assist: this.apply == '0' ? '是' : '否',
             is_late: this.sluggish == '0' ? '是' : '否',
             update_time: this.detail.update_time,
-            way: '016e0adc13932c92ff8e6bc185570ed4',
-            way_name: '张掖市'
-            // full_face_photo: this.facadeTempFilePaths,
-            // voucher_photo: this.invoiceTempFilePaths,
-          },
-          method:"PUT",
-          header : {'content-type':'application/json'},
-          success: function (res) {
-            wx.navigateBack({
-              delta: 1
-            })
-            console.log(res.data);
+            full_face_photo: this.facadeTempFilePaths,
+            voucher_photo: this.invoiceTempFilePaths,
           }
-        });
+          await this.$store.dispatch('carRecordEdit', data)
       }
-      // carInfo() {
-      //    wx.navigateTo({
-      //     url: '/pages/goods/main'
-      //   })
-      // },
 		}
 	}
 </script>

@@ -4,10 +4,21 @@ import http from './http'
 import api from './api' // 此处，引入存放对promise处理的文件
 
 Vue.use(Vuex, http)
-
+const transformData = function (data) {
+  const fd = new FormData()
+  for (let i in data) {
+    if (Array.isArray(data[i])) {
+      for (let j=0; j < data[i].length; j++) {
+        fd.append(`${i}`, data[i][j])
+      }
+    } else {
+      fd.append(i, data[i])
+    }
+  }
+  return fd
+}
 const getRequest = api.httpsPromisify(uni.request)
 const request = (method, url, data = {}, isUpload = false) => { // method为请求方法，url为接口路径，data为传参
-
   //  #ifdef H5
   return getRequest({
     url: url,
@@ -57,8 +68,8 @@ const fail = (res, dispatch) => {
 const store = new Vuex.Store({
 
   state: {
-    server: 'http://train.35lz.com/oms',
-    // server: 'http://192.168.2.30:8080/oms',
+    //server: 'http://train.35lz.com/oms',
+    server: 'http://192.168.2.55:8080/oms',
     imgURL: 'http://train.35lz.com/oms',
     site: '10000',
     store: [],
@@ -128,7 +139,6 @@ const store = new Vuex.Store({
     async getArea ({ dispatch, commit }) {
       const url = this.state.server + '/api/sys-area';
       let result = await request('GET', url, {});
-      console.log(123,result)
       if(result) {
         commit('setArea', result.data)
       }
@@ -137,7 +147,6 @@ const store = new Vuex.Store({
     async getUnChek ({ dispatch, commit }) {
       const url = this.state.server + '/api/traffic-detail';
       let result = await request('GET', url, {status: '未检查'});
-      console.log(result,'0000')
       if(result) {
         commit('setUnCheck', result.data.collection)
       }
@@ -146,7 +155,6 @@ const store = new Vuex.Store({
     async getChek ({ dispatch, commit }) {
       const url = this.state.server + '/api/traffic-detail';
       let result = await request('GET', url, {status: '已检查'});
-      console.log(result,'111')
       if(result) {
         commit('setCheck', result.data.collection)
       }
@@ -155,7 +163,6 @@ const store = new Vuex.Store({
     async editRecordDetail ({ dispatch, commit },params) {
       const url = this.state.server + '/api/traffic-detail/' + params.id;
       let result = await request('GET', url, {});
-      console.log(result,'222')
       if(result) {
         commit('seteditRecordDetail', result.data)
       }
@@ -164,37 +171,43 @@ const store = new Vuex.Store({
     async carRecordDetail ({ dispatch, commit },params) {
       const url = this.state.server + '/api/traffic-detail/' + params.id;
       let result = await request('GET', url, {});
-      console.log(result,'222')
       if(result) {
         commit('setCarRecordDetail', result.data.model)
       }
     },
+
     // 车辆信息记录
     async carRecord ({ dispatch, commit },params) {
       const url = this.state.server + '/api/traffic-detail/';
       let result = await request('GET', url, {size: 1000});
-      console.log(result,'222')
       if(result) {
         commit('setCarRecord', result.data.collection)
       }
     },
+
     // 车辆信息记录途径地
     async carRecordWay ({ dispatch, commit },params) {
       const url = this.state.server + '/api/traffic-record/' + params.id + '/detail';
       let result = await request('GET', url);
-      console.log(result,'222')
       if(result) {
         commit('setCarRecordWay', result.data.collection)
       }
     },
+
     // 车辆信息记录途径地详情
     async carRecordWayDetail ({ dispatch, commit },params) {
       const url = this.state.server + '/api/traffic-record/' + params.recordId + '/detail/' + params.detailId;
       let result = await request('GET', url);
-      console.log(result,'222')
       if(result) {
         commit('setCarRecordWay', result.data.collection)
       }
+    },
+
+    // 车辆信息记录途径地详情
+    async carRecordEdit ({ dispatch, commit },params) {
+      const url = this.state.server + '/api/traffic-detail/check/' + params['detail_id'];
+      //let data = params ? transformData(params) : params
+      await request('PUT', url, params);
     },
   }
 })

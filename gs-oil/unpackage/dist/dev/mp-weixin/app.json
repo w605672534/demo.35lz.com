@@ -1,10 +1,16 @@
 {
   "pages": [
     "pages/index/main",
+    "pages/login/main",
+    "pages/car-detail/main",
     "pages/car-info/main",
+    "pages/car-edit/main",
     "pages/car-record/main",
+    "pages/car-records/main",
     "pages/record-detail/main",
-    "pages/car-dash/main"
+    "pages/car-dash/main",
+    "pages/authorize/main",
+    "pages/records/main"
   ],
   "subPackages": [],
   "window": {
@@ -13,6 +19,5 @@
     "navigationBarBackgroundColor": "#ffffff",
     "backgroundColor": "#F5F5F5"
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

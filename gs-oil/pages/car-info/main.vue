@@ -394,23 +394,7 @@
         LicensePlateNumber:'',
 			}
 		},
-		async onLoad() {
-      // 途径地
-      // await this.$store.dispatch('getArea')
-      // uni.request({
-      //   url: 'http://train.35lz.com/oms/api/sys-area?_username=yangxiaoyan&_password=123456',
-      // }).then((success, error) =>{
-      //   this.passWay = success[1].data.data.collection;
-      //   console.log(this.passWay,'ssss')
-      // });
-      // 化学品名称
-      // uni.request({
-      //   url: 'http://train.35lz.com/oms/api/sys-chemical?_username=yangxiaoyan&_password=123456',
-      // }).then((success, error) =>{
-      //   this.material = success[1].data.data.collection;
-      //   console.log(this.material,'2222222')
-      // });
-    },
+		async onLoad() {},
     onShow() {
       const date = new Date();
       const month = date.getMonth() + 1;
@@ -704,7 +688,7 @@
         const arriveTime = this.inDate + ' ' + this.inTime;
         const leaveTime = this.outDate + ' ' + this.outTime;
         const requestTask3 = uni.request({
-          url: 'http://train.35lz.com/oms/api/traffic-detail?_username=yangxiaoyan&_password=123456',
+          url: this.$store.state.server + '/api/traffic-detail',
           data: { 
             car_numbers: this.LicensePlateNumber,
             material_id: this.name,
