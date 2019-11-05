@@ -4,13 +4,13 @@
     <div class="title">基本信息</div>
     <div class="content">
       <div class="input-info LicensePlateNumber" @click='LicensePlateNumber_ok'>
-        <div class="input-info-title">车号<span class="radio-info-flag">*</span></div>
+        <div class="input-info-title">车牌号<span class="radio-info-flag">*</span></div>
         <input :value='LicensePlateNumber' disabled='true' placeholder='请选择车牌号'>
       </div>
       <div class="radio-info">
-        <div class="radio-info-title">危险化学品名称</div>
+        <div class="radio-info-title">危险化学品名称<span class="radio-info-flag">*</span></div>
         <div class="radio-info-content"
-          :class="{'checked' : item.material_id == name}"
+          :class="{'checked' : item.material_id == materialId}"
           @click="getNameValue(item)"
           v-for="(item,index) in material"
           :key="index" 
@@ -61,24 +61,13 @@
     <div class="title">运输区间</div>
     <div class="content">
       <div class="input-info">
-        <div class="input-info-title">出发地</div>
+        <div class="input-info-title">出发地<span class="radio-info-flag">*</span></div>
         <input type="text" @input="getDepartureValue" :value="departure" placeholder="请填写出发地">
       </div>
       <div class="input-info">
         <div class="input-info-title">目的地<span class="radio-info-flag">*</span></div>
         <input type="text" @input="getDestinationValue" :value="destination" placeholder="请填写目的地">
       </div>
-      <!-- <div class="check-info">
-        <div class="check-info-title">途径地</div>
-        <div class="check-info-content" 
-          :class="{'checked' : index == pass}" 
-          @click="getPassValue(index)"
-          v-for="(item,index) in passWay"
-          :key="item.address_id" 
-        >
-        {{item.address_name_cn}}
-        </div>
-      </div> -->
       <div class="check-info">
         <div class="check-info-title">完整途径地</div>
         <div class="check-info-content" 
@@ -161,7 +150,7 @@
         </div>
       </div>
       <div class="radio-info">
-        <div class="radio-info-title">是否具有驾驶员、押运员从业资格证</div>
+        <div class="radio-info-title">是否具有驾驶员、押运员从业资格证<span class="radio-info-flag">*</span></div>
         <div class="radio-info-content" 
           :class="{'checked' : index == driverLicense}" 
           @click="bindDriverLicenseChange(index)"
@@ -172,7 +161,7 @@
         </div>
       </div>
       <div class="radio-info">
-        <div class="radio-info-title">是否具有车辆警示标志灯、牌、喷涂</div>
+        <div class="radio-info-title">是否具有车辆警示标志灯、牌、喷涂<span class="radio-info-flag">*</span></div>
         <div class="radio-info-content" 
           :class="{'checked' : index == warningSign}" 
           @click="bindWarningSignChange(index)"
@@ -183,7 +172,7 @@
         </div>
       </div>
       <div class="radio-info">
-        <div class="radio-info-title">是否存在违规事项</div>
+        <div class="radio-info-title">是否存在违规事项<span class="radio-info-flag">*</span></div>
         <div class="radio-info-content" 
           :class="{'checked' : index == violation}" 
           @click="bindViolationChange(index)"
@@ -213,6 +202,10 @@
           </picker>
         </div>
       </div>
+      <div class="input-info">
+        <div class="input-info-title">发票金额</div>
+        <input type="text" @input="getMoney" :value="money" placeholder="请填写发票金额">
+      </div>
       <div class="uni-list-cell picker-info">
         <div class="uni-list-cell-left">目测油品是否合格<span class="radio-info-flag">*</span></div>
         <div class="uni-list-cell-db">
@@ -222,7 +215,7 @@
         </div>
       </div>
       <div class="uni-list-cell picker-info">
-        <div class="uni-list-cell-left">是否需要申请其它部门进行查处</div>
+        <div class="uni-list-cell-left">是否需要申请其它部门进行查处<span class="radio-info-flag">*</span></div>
         <div class="uni-list-cell-db">
           <picker @change="bindApplyChange" :value="apply" :range="isApply">
             <div class="uni-input picker-info-content">{{isApply[apply]}}</div>
@@ -230,7 +223,7 @@
         </div>
       </div>
       <div class="uni-list-cell picker-info">
-        <div class="uni-list-cell-left">运输车辆是否迟滞</div>
+        <div class="uni-list-cell-left">运输车辆是否迟滞<span class="radio-info-flag">*</span></div>
         <div class="uni-list-cell-db">
           <picker @change="bindSluggishChange" :value="sluggish" :range="isSluggish">
             <div class="uni-input picker-info-content">{{isSluggish[sluggish]}}</div>
@@ -251,17 +244,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="photo" style="margin: 0 32rpx">
-        <div class="photo-title">上传车尾照片<span class="photo-title-flag">*</span></div>
-        <div class="photo-content">
-          <div class="photo-image-upload" @click="takePhotoObverse()">
-            <i class="iconfont icon-paizhao" style="font-size: 50rpx"></i>
-          </div>
-          <div class="photo-image-upload" style="margin-left: 32rpx" v-if="obverseTempFilePaths">
-            <image :src="obverseTempFilePaths" style="width: 100%;height: 100%;" @click="obverseChangeImage()" mode="aspectFill"/>
-          </div>
-        </div>
-      </div> -->
       <div class="photo" style="margin: 0 32rpx">
         <div class="photo-title">上传运输单据照片<span class="photo-title-flag">*</span></div>
         <div class="photo-content">
@@ -308,19 +290,20 @@
 </template>
 
 <script>
-// import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 	export default {
     components: {
     },
-    // computed: {
-    //   ...mapState({
-    //     passWay: 'passWay'
-    //   })
-    // },
+    computed: {
+      ...mapState({
+        passWay: 'passWay',
+        material: 'material'
+      })
+    },
 		data() {
 			return {
         carNum: '', // 车号
-        name: '', // 危险化学品名称
+        materialId: '', // 危险化学品名称
         number: '', // 数量（吨） 
         inTime: '', // 进站检查时间
         outTime: '', // 离站时间
@@ -354,6 +337,7 @@
         oilType: ['汽油', '柴油', '煤油', '其它化工产品'], // 油品类型
         type: 0, // 油品类型标识
         isInvoice: ['是', '否'], // 是否提供油品发票
+        money: '', //发票金额
         invoice: 0, // 发票标识
         isQualified: ['是', '否'], // 目测油品是否合格
         qualified: 0, // 合格标识
@@ -362,10 +346,9 @@
         isSluggish: ['是', '否'], // 运输车辆是否迟滞
         sluggish: 0, // 迟滞标识
         facadeTempFilePaths: '', // 车辆正面照片
-        obverseTempFilePaths: '', // 车辆尾部照片
         invoiceTempFilePaths: '',// 运输单据照片
-        passWay: [],
-        material: [],
+        full_face_photo: '',
+        voucher_photo: '',
         licensePlateShowHidden: false,
         licensePlate_provinces_Box: false,
         licensePlate_letter_Box: false, 
@@ -394,7 +377,10 @@
         LicensePlateNumber:'',
 			}
 		},
-		async onLoad() {},
+		async onLoad() {
+      await this.$store.dispatch('getMaterial')
+      await this.$store.dispatch('getArea')
+    },
     onShow() {
       const date = new Date();
       const month = date.getMonth() + 1;
@@ -513,12 +499,7 @@
       },
       // 危险化学品名称
       getNameValue: function(item) {
-        this.name = item.material_id;
-        // if (this.name.indexOf(item.material_id) !== -1) {
-        //   this.name.splice(this.name.indexOf(item.material_id));
-        // } else {
-        //   this.name.push(item.material_id);
-        // }
+        this.materialId = item.material_id;
       },
       // 数量（吨） 
       getNumValue: function(e) {
@@ -551,6 +532,10 @@
       // 出发地
       getDepartureValue: function(e) {
         this.departure = e.target.value;
+      },
+      // 发票
+      getMoney: function(e) {
+        this.money = e.target.value;
       },
       // 目的地
       getDestinationValue: function(e) {
@@ -628,22 +613,11 @@
           count: 1,
           sizeType: ['original', 'compressed'],
           sourceType: ['album', 'camera'],
-          success(res) {
+          async success(res) {
             // tempFilePath可以作为img标签的src属性显示图片
             _this.facadeTempFilePaths = res.tempFilePaths[0]
-          }
-        })
-      },
-      // 车辆尾部照片
-      takePhotoObverse() {
-        const _this = this;
-        wx.chooseImage({
-          count: 1,
-          sizeType: ['original', 'compressed'],
-          sourceType: ['album', 'camera'],
-          success(res) {
-            // tempFilePath可以作为img标签的src属性显示图片
-            _this.obverseTempFilePaths = res.tempFilePaths[0]
+            _this.full_face_photo = await _this.$store.dispatch('fileUpload', {file: _this.facadeTempFilePaths})
+
           }
         })
       },
@@ -654,9 +628,10 @@
           count: 1,
           sizeType: ['original', 'compressed'],
           sourceType: ['album', 'camera'],
-          success(res) {
+          async success(res) {
             // tempFilePath可以作为img标签的src属性显示图片
             _this.invoiceTempFilePaths = res.tempFilePaths[0]
+            _this.voucher_photo = await _this.$store.dispatch('fileUpload', {file: _this.invoiceTempFilePaths})
           }
         })
       },
@@ -667,13 +642,6 @@
           urls: [this.facadeTempFilePaths] // 需要预览的图片http链接列表
         })
       },
-      // 点击放大反面图片
-      obverseChangeImage() {
-        wx.predivImage({
-          current: 'tempFilePaths', // 当前显示图片的http链接
-          urls: [this.obverseTempFilePaths] // 需要预览的图片http链接列表
-        })
-      },
       // 点击放大运输单据照片
       invoiceChangeImage() {
         wx.predivImage({
@@ -682,16 +650,13 @@
         })
       },
       // 提交
-      submit() {
-        // const name = this.name.join(',');
+     async submit() {
         const pass = this.pass.join(',');
         const arriveTime = this.inDate + ' ' + this.inTime;
         const leaveTime = this.outDate + ' ' + this.outTime;
-        const requestTask3 = uni.request({
-          url: this.$store.state.server + '/api/traffic-detail',
-          data: { 
+        let data = {
             car_numbers: this.LicensePlateNumber,
-            material_id: this.name,
+            material_id: this.materialId,
             arrive_time: arriveTime,
             leave_time: leaveTime,
             traffic_org: this.transUnit,
@@ -700,9 +665,10 @@
             destination: this.destination,
             load: this.number,
             record_way: pass,
-            is_driving_licence: this.driving == 0 ? '是' : '否',
-            is_driving_permit: this.drivingPermit == 0 ? '是' : '否',
-            have_inspection: this.qualityInspection == 0 ? '是' : '否',
+            invoice_money: this.money,
+            is_driving_licence: this.driving == '0' ? '是' : '否',
+            is_driving_permit: this.drivingPermit == '0' ? '是' : '否',
+            have_inspection: this.qualityInspection == '0' ? '是' : '否',
             have_danger_license: this.transportationPermit == '0' ? '是' : '否',
             have_toxic_license: this.transportPass == '0' ? '是' : '否',
             have_supercargo: this.supercargo == '0' ? '是' : '否',
@@ -714,23 +680,21 @@
             is_qualified: this.qualified == '0' ? '是' : '否',
             is_assist: this.apply == '0' ? '是' : '否',
             is_late: this.sluggish == '0' ? '是' : '否',
-            // full_face_photo: this.facadeTempFilePaths,
-            // voucher_photo: this.invoiceTempFilePaths,
-          },
-          method:"POST",
-          header : {'content-type':'application/json'},
-          success: function (res) {
-            // if (res.data.code == 200) {
-              wx.navigateBack({
-                delta: 1
-              })
-            // }
-            console.log(res.data);
+            full_face_photo: this.full_face_photo ? [this.full_face_photo] : [],
+            voucher_photo: this.voucher_photo ? [this.voucher_photo] : []
           }
-        });
+          await this.$store.dispatch('carRecordCreate', data)
+          uni.showToast({
+            icon: 'none',
+            title: '登记成功',
+            duration: 2000
+          })
+          wx.navigateTo({
+            url: '/pages/car-detail/main'
+          })
       }
-		}
 	}
+}
 </script>
 
 <style lang="less" scoped>

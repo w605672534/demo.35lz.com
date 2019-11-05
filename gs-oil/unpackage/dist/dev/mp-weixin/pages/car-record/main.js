@@ -173,7 +173,6 @@ var _vuex = __webpack_require__(/*! vuex */ 149);function _interopRequireDefault
 
   methods: {
     recordDetile: function recordDetile(item) {
-      console.log(item);
       wx.navigateTo({
         url: "/pages/car-records/main?record_id=".concat(item.record_id) });
 

@@ -1,17 +1,8 @@
-/**
- * Created by xyt-imac-02 on 2018/3/13.
- */
 define({
     widget: 'echart',
     dataset: {
         items: [{
-            name: 'company-manage-kpi',
-            params: [
-                {
-                  name: 'current_month',
-                  value: ''
-                }
-              ]
+            name: 'status-num',
         }]
     },
     option: {
@@ -28,17 +19,8 @@ define({
                 }
             }
         },
-
-        // legend: {
-        //   show: true,
-        //   data:function(rows){
-        //     return rows.map(function(item){
-        //       return {name: item.income}
-        //     });
-        //   }
-        // },
         legend: {
-            data: ['收入', '成本', '净利润']
+            data: ['已检查（车次）', '未检查（车次）']
         },
         grid: {
             left: '3%',
@@ -48,7 +30,7 @@ define({
         },
         xAxis: [{
             type: 'category',
-            data: 'company_name',
+            data: 'way',
             axisLabel: {
                 rotate: 45,
                 type: 'shadow'
@@ -56,39 +38,29 @@ define({
         }, ],
         yAxis: [{
                 type: 'value',
-                name: '单位（万元）',
+                name: '已检查（车次）',
 
             },
             {
                 type: 'value',
-                name: '净利润（万元）',
+                name: '未检查（车次）',
             }
         ],
         series: [{
-                name: '收入',
+                name: '已检查',
                 type: 'bar',
                 data: function(rows) {
                     return rows.map(function(item) {
-                        return { name: item.company_name, value: item.income }
+                        return { name: item.way, value: item.finish_num }
                     });
                 }
             },
             {
-                name: '成本',
+                name: '未检查',
                 type: 'bar',
                 data: function(rows) {
                     return rows.map(function(item) {
-                        return { name: item.company_name, value: item.cost_count }
-                    });
-                }
-            },
-            {
-                name: '净利润',
-                type: 'line',
-                yAxisIndex: 1,
-                data: function(rows) {
-                    return rows.map(function(item) {
-                        return { name: item.company_name, value: item.net_profit }
+                        return { name: item.way, value: item.going_num }
                     });
                 }
             }

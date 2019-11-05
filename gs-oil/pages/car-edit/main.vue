@@ -3,47 +3,35 @@
     <!-- 基本信息 -->
     <div class="title">基本信息</div>
     <div class="content">
-      <div class="input-info" v-if="this.detailId">
-        <div class="input-info-title">车号<span class="radio-info-flag">*</span></div>
+      <div class="input-info" v-if="detailId">
+        <div class="input-info-title">车牌号<span class="radio-info-flag">*</span></div>
         <div class="record-item-content">
           <span>{{detail.car_numbers}}</span>
         </div>
-        <!-- <input type="text" :id="detail.car_numbers" @input="getCarnumValue" placeholder="请填写车号"> -->
       </div>
-      <div class="input-info" v-if="this.detailId">
-        <div class="input-info-title">危险化学品名称</div>
-        <!-- <div class="check-info-content"
-          :class="{'checked' : name.indexOf(item.material_id) !== -1}"
-          @click="getNameValue(item)"
-          v-for="item in material"
-          :key="item.material_id" 
-        >
-        {{item.material_name}}
-        </div> -->
+      <div class="input-info" v-if="detailId">
+        <div class="input-info-title">危险化学品名称<span class="radio-info-flag">*</span></div>
         <div class="record-item-content">
           <span>{{detail.material_name}}</span>
         </div>
       </div>
-      <div class="input-info" v-if="this.detailId">
+      <div class="input-info" v-if="detailId">
         <div class="input-info-title">数量（吨）<span class="radio-info-flag">*</span></div>
         <div class="record-item-content">
           <span>{{detail.load}}</span>
         </div>
-        <!-- <input type="text" @input="getNumValue" :value="number" placeholder="请填写数量（吨）"> -->
       </div>
-      <div class="input-info" v-if="this.detailId">
+      <div class="input-info" v-if="detailId">
         <div class="input-info-title">运输单位</div>
         <div class="record-item-content">
           <span>{{detail.traffic_org}}</span>
         </div>
-        <!-- <input type="text" :value="transUnit" @input="getTransUnitValue" placeholder="请填写运输单位"> -->
       </div>
-      <div class="input-info" v-if="this.detailId">
+      <div class="input-info" v-if="detailId">
         <div class="input-info-title">运/提货单号</div>
         <div class="record-item-content">
           <span>{{detail.Invoice_no}}</span>
         </div>
-        <!-- <input type="text" :value="cargoNumber" @input="getCargoNumValue" placeholder="请填写运/提货单号"> -->
       </div>
       <div class="input-info">
         <div class="input-info-title">进站检查时间<span class="radio-info-flag">*</span></div>
@@ -73,44 +61,30 @@
       </div>
     </div>
     <!-- 运输区间 -->
-    <div class="title" v-if="this.detailId">运输区间</div>
-    <div class="content" v-if="this.detailId">
+    <div class="title" v-if="detailId">运输区间</div>
+    <div class="content" v-if="detailId">
       <div class="input-info">
         <div class="input-info-title">出发地</div>
         <div class="record-item-content">
           <span>{{detail.starting}}</span>
         </div>
-        <!-- <input type="text" @input="getDepartureValue" :value="departure" placeholder="请填写出发地"> -->
       </div>
       <div class="input-info">
         <div class="input-info-title">目的地<span class="radio-info-flag">*</span></div>
         <div class="record-item-content">
           <span>{{detail.destination}}</span>
         </div>
-        <!-- <input type="text" @input="getDestinationValue" :value="destination" placeholder="请填写目的地"> -->
       </div>
-      <!-- <div class="check-info">
-        <div class="check-info-title">途径地</div>
-        <div class="check-info-content" 
-          :class="{'checked' : index == pass}" 
-          @click="getPassValue(index)"
-          v-for="(item,index) in passWay"
-          :key="item.address_id" 
-        >
-        {{item.address_name_cn}}
-        </div>
-      </div> -->
-      <!-- <div class="check-info">
+      <div class="check-info">
         <div class="check-info-title">完整途径地</div>
         <div class="check-info-content" 
-          :class="{'checked' : pass.indexOf(item.address_id) !== -1}" 
-          @click="getPassValue(item)"
+          :class="{'checked' : detail.record_way.indexOf(item.address_id) !== -1}"
           v-for="item in passWay"
           :key="item.address_id"
         >
         {{item.address_name_cn}}
         </div>
-      </div> -->
+      </div>
     </div>
     <!-- 公安检查 -->
     <div class="title">公安检查</div>
@@ -234,6 +208,10 @@
           </picker>
         </div>
       </div>
+      <div class="input-info">
+        <div class="input-info-title">发票金额</div>
+        <input type="text" @input="getMoney" :value="money" placeholder="请填写发票金额">
+      </div>
       <div class="uni-list-cell picker-info">
         <div class="uni-list-cell-left">目测油品是否合格<span class="radio-info-flag">*</span></div>
         <div class="uni-list-cell-db">
@@ -296,6 +274,7 @@ import { mapState } from 'vuex'
     computed: {
       ...mapState({
         detail: 'detail',
+        passWay: 'passWay',
       })
     },
 		data() {
@@ -310,7 +289,6 @@ import { mapState } from 'vuex'
         outTime: '', // 出站时间
         departure: '', // 出发地
         destination: '', // 目的地
-        pass: [], // 途径地
         driving: 0, //驾驶证
         isDriving: ['是', '否'], // 是否具有驾驶证
         drivingPermit: 0, // 行驶证
@@ -333,6 +311,7 @@ import { mapState } from 'vuex'
         type: 0, // 油品类型标识
         isInvoice: ['是', '否'], // 是否提供油品发票
         invoice: 0, // 发票标识
+        money: '',
         isQualified: ['是', '否'], // 目测油品是否合格
         qualified: 0, // 合格标识
         isApply: ['是', '否'], // 是否需要申请其它部门进行查处
@@ -343,14 +322,13 @@ import { mapState } from 'vuex'
         invoiceTempFilePaths: '',// 运输单据照片
         full_face_photo: '',
         voucher_photo: '',
-        passWay: [],
-        material: [],
         detailId: ''
 			}
 		},
 		async onLoad(option) {
       this.detailId = option.detail_id
       await this.$store.dispatch('editRecordDetail', { id: this.detailId})
+      await this.$store.dispatch('getArea')
     },
     onShow() {
       const date = new Date();
@@ -396,6 +374,10 @@ import { mapState } from 'vuex'
         } else {
           this.pass.push(item.address_id);
         }
+      },
+      // 发票
+      getMoney: function(e) {
+        this.money = e.target.value;
       },
       // 是否具有驾驶证
       bindDrivingChange(index) {
@@ -529,6 +511,7 @@ import { mapState } from 'vuex'
             have_identification_light: this.warningSign == '0' ? '是' : '否',
             have_illegal: this.violation == '0' ? '是' : '否',
             record_id: this.detail.record_id,
+            invoice_money: this.money,
             record_way: this.detail.record_way,
             oils_type: this.type == '0' ? '汽油' : this.type == '1' ? '柴油' : this.type == '2' ? '煤油' : '其它化工产品',
             oils_invoice: this.invoice == '0' ? '是' : '否',

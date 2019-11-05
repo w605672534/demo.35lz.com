@@ -8406,7 +8406,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/main": { "navigationBarTitleText": "首页", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/login/main": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-detail/main": { "navigationBarTitleText": "车辆信息", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-info/main": { "navigationBarTitleText": "检查登记", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-edit/main": { "navigationBarTitleText": "检查登记", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-record/main": { "navigationBarTitleText": "检查记录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-records/main": { "navigationBarTitleText": "站点检查明细", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/record-detail/main": { "navigationBarTitleText": "车辆检查详情", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/car-dash/main": { "navigationBarTitleText": "车辆统计", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/authorize/main": { "navigationBarTitleText": "授权登录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} }, "pages/records/main": { "navigationBarTitleText": "车辆记录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "甘肃石油小程序", "navigationBarBackgroundColor": "#ffffff", "backgroundColor": "#F5F5F5" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/main": { "navigationBarTitleText": "首页", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" }, "pages/login/main": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" }, "pages/car-detail/main": { "navigationBarTitleText": "车辆信息", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" }, "pages/car-info/main": { "navigationBarTitleText": "检查登记", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" }, "pages/car-edit/main": { "navigationBarTitleText": "检查登记", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" }, "pages/car-record/main": { "navigationBarTitleText": "检查记录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" }, "pages/car-records/main": { "navigationBarTitleText": "站点检查明细", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" }, "pages/record-detail/main": { "navigationBarTitleText": "车辆检查详情", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" }, "pages/car-dash/main": { "navigationBarTitleText": "车辆统计", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" }, "pages/authorize/main": { "navigationBarTitleText": "授权登录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" }, "pages/records/main": { "navigationBarTitleText": "车辆记录", "navigationBarBackgroundColor": "#E36803", "navigationBarTextStyle": "white" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "甘肃石油小程序", "navigationBarBackgroundColor": "#ffffff", "backgroundColor": "#F5F5F5" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -26105,9 +26105,10 @@ var fail = function fail(res, dispatch) {
 var store = new _vuex.default.Store({
 
   state: {
-    server: 'http://train.35lz.com/oms',
+    server: 'https://train.35lz.com/oms',
     //server: 'http://192.168.2.55:8080/oms',
-    imgURL: 'http://train.35lz.com/oms',
+    imgURL: 'https://train.35lz.com/oms',
+    //imgURL: 'http://192.168.2.55:8080/oms',
     site: '10000',
     store: [],
     user: {},
@@ -26117,7 +26118,8 @@ var store = new _vuex.default.Store({
     detail: {},
     record: {},
     recordList: [],
-    wayList: [] },
+    wayList: [],
+    material: [] },
 
   mutations: {
     wechatInfo: function wechatInfo(state, payload) {
@@ -26143,6 +26145,9 @@ var store = new _vuex.default.Store({
     },
     setCarRecordWay: function setCarRecordWay(state, payload) {
       state.wayList = payload;
+    },
+    setMaterial: function setMaterial(state, payload) {
+      state.material = payload;
     } },
 
   actions: {
@@ -26177,86 +26182,100 @@ var store = new _vuex.default.Store({
                 url = this.state.server + '/api/sys-area';_context2.next = 4;return (
                   request('GET', url, {}));case 4:result = _context2.sent;
                 if (result) {
-                  commit('setArea', result.data);
+                  commit('setArea', result.data.collection);
                 }case 6:case "end":return _context2.stop();}}}, _callee2, this);}));function getArea(_x3) {return _getArea.apply(this, arguments);}return getArea;}(),
 
+    // 获取途径地
+    getMaterial: function () {var _getMaterial = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(_ref3) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:dispatch = _ref3.dispatch, commit = _ref3.commit;
+                url = this.state.server + '/api/sys-chemical';_context3.next = 4;return (
+                  request('GET', url, {}));case 4:result = _context3.sent;
+                if (result) {
+                  commit('setMaterial', result.data.collection);
+                }case 6:case "end":return _context3.stop();}}}, _callee3, this);}));function getMaterial(_x4) {return _getMaterial.apply(this, arguments);}return getMaterial;}(),
+
     // 未检查记录
-    getUnChek: function () {var _getUnChek = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(_ref3) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:dispatch = _ref3.dispatch, commit = _ref3.commit;
-                url = this.state.server + '/api/traffic-detail';_context3.next = 4;return (
-                  request('GET', url, { status: '未检查' }));case 4:result = _context3.sent;
+    getUnChek: function () {var _getUnChek = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(_ref4) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:dispatch = _ref4.dispatch, commit = _ref4.commit;
+                url = this.state.server + '/api/traffic-detail';_context4.next = 4;return (
+                  request('GET', url, { status: '未检查' }));case 4:result = _context4.sent;
                 if (result) {
                   commit('setUnCheck', result.data.collection);
-                }case 6:case "end":return _context3.stop();}}}, _callee3, this);}));function getUnChek(_x4) {return _getUnChek.apply(this, arguments);}return getUnChek;}(),
+                }case 6:case "end":return _context4.stop();}}}, _callee4, this);}));function getUnChek(_x5) {return _getUnChek.apply(this, arguments);}return getUnChek;}(),
 
     // 已检查记录
-    getChek: function () {var _getChek = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(_ref4) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:dispatch = _ref4.dispatch, commit = _ref4.commit;
-                url = this.state.server + '/api/traffic-detail';_context4.next = 4;return (
-                  request('GET', url, { status: '已检查' }));case 4:result = _context4.sent;
+    getChek: function () {var _getChek = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(_ref5) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:dispatch = _ref5.dispatch, commit = _ref5.commit;
+                url = this.state.server + '/api/traffic-detail';_context5.next = 4;return (
+                  request('GET', url, { status: '已检查' }));case 4:result = _context5.sent;
                 if (result) {
                   commit('setCheck', result.data.collection);
-                }case 6:case "end":return _context4.stop();}}}, _callee4, this);}));function getChek(_x5) {return _getChek.apply(this, arguments);}return getChek;}(),
+                }case 6:case "end":return _context5.stop();}}}, _callee5, this);}));function getChek(_x6) {return _getChek.apply(this, arguments);}return getChek;}(),
 
     // 记录详情
-    editRecordDetail: function () {var _editRecordDetail = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(_ref5, params) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:dispatch = _ref5.dispatch, commit = _ref5.commit;
-                url = this.state.server + '/api/traffic-detail/' + params.id;_context5.next = 4;return (
-                  request('GET', url, {}));case 4:result = _context5.sent;
-                if (result) {
-                  commit('seteditRecordDetail', result.data);
-                }case 6:case "end":return _context5.stop();}}}, _callee5, this);}));function editRecordDetail(_x6, _x7) {return _editRecordDetail.apply(this, arguments);}return editRecordDetail;}(),
-
-    // 车辆信息详情
-    carRecordDetail: function () {var _carRecordDetail = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6(_ref6, params) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:dispatch = _ref6.dispatch, commit = _ref6.commit;
+    editRecordDetail: function () {var _editRecordDetail = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6(_ref6, params) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:dispatch = _ref6.dispatch, commit = _ref6.commit;
                 url = this.state.server + '/api/traffic-detail/' + params.id;_context6.next = 4;return (
                   request('GET', url, {}));case 4:result = _context6.sent;
                 if (result) {
+                  commit('seteditRecordDetail', result.data.model);
+                }case 6:case "end":return _context6.stop();}}}, _callee6, this);}));function editRecordDetail(_x7, _x8) {return _editRecordDetail.apply(this, arguments);}return editRecordDetail;}(),
+
+    // 车辆信息详情
+    carRecordDetail: function () {var _carRecordDetail = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7(_ref7, params) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:dispatch = _ref7.dispatch, commit = _ref7.commit;
+                url = this.state.server + '/api/traffic-detail/' + params.id;_context7.next = 4;return (
+                  request('GET', url, {}));case 4:result = _context7.sent;
+                if (result) {
                   commit('setCarRecordDetail', result.data.model);
-                }case 6:case "end":return _context6.stop();}}}, _callee6, this);}));function carRecordDetail(_x8, _x9) {return _carRecordDetail.apply(this, arguments);}return carRecordDetail;}(),
+                }case 6:case "end":return _context7.stop();}}}, _callee7, this);}));function carRecordDetail(_x9, _x10) {return _carRecordDetail.apply(this, arguments);}return carRecordDetail;}(),
 
 
     // 车辆信息记录
-    carRecord: function () {var _carRecord = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7(_ref7, params) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:dispatch = _ref7.dispatch, commit = _ref7.commit;
-                url = this.state.server + '/api/traffic-detail/';_context7.next = 4;return (
-                  request('GET', url, { size: 1000 }));case 4:result = _context7.sent;
+    carRecord: function () {var _carRecord = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee8(_ref8, params) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:dispatch = _ref8.dispatch, commit = _ref8.commit;
+                url = this.state.server + '/api/traffic-detail/';_context8.next = 4;return (
+                  request('GET', url, { size: 1000 }));case 4:result = _context8.sent;
                 if (result) {
                   commit('setCarRecord', result.data.collection);
-                }case 6:case "end":return _context7.stop();}}}, _callee7, this);}));function carRecord(_x10, _x11) {return _carRecord.apply(this, arguments);}return carRecord;}(),
+                }case 6:case "end":return _context8.stop();}}}, _callee8, this);}));function carRecord(_x11, _x12) {return _carRecord.apply(this, arguments);}return carRecord;}(),
 
 
     // 车辆信息记录途径地
-    carRecordWay: function () {var _carRecordWay = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee8(_ref8, params) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:dispatch = _ref8.dispatch, commit = _ref8.commit;
-                url = this.state.server + '/api/traffic-record/' + params.id + '/detail';_context8.next = 4;return (
-                  request('GET', url));case 4:result = _context8.sent;
-                if (result) {
-                  commit('setCarRecordWay', result.data.collection);
-                }case 6:case "end":return _context8.stop();}}}, _callee8, this);}));function carRecordWay(_x12, _x13) {return _carRecordWay.apply(this, arguments);}return carRecordWay;}(),
-
-
-    // 车辆信息记录途径地详情
-    carRecordWayDetail: function () {var _carRecordWayDetail = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee9(_ref9, params) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee9$(_context9) {while (1) {switch (_context9.prev = _context9.next) {case 0:dispatch = _ref9.dispatch, commit = _ref9.commit;
-                url = this.state.server + '/api/traffic-record/' + params.recordId + '/detail/' + params.detailId;_context9.next = 4;return (
+    carRecordWay: function () {var _carRecordWay = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee9(_ref9, params) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee9$(_context9) {while (1) {switch (_context9.prev = _context9.next) {case 0:dispatch = _ref9.dispatch, commit = _ref9.commit;
+                url = this.state.server + '/api/traffic-record/' + params.id + '/detail';_context9.next = 4;return (
                   request('GET', url));case 4:result = _context9.sent;
                 if (result) {
                   commit('setCarRecordWay', result.data.collection);
-                }case 6:case "end":return _context9.stop();}}}, _callee9, this);}));function carRecordWayDetail(_x14, _x15) {return _carRecordWayDetail.apply(this, arguments);}return carRecordWayDetail;}(),
+                }case 6:case "end":return _context9.stop();}}}, _callee9, this);}));function carRecordWay(_x13, _x14) {return _carRecordWay.apply(this, arguments);}return carRecordWay;}(),
 
 
     // 车辆信息记录途径地详情
-    carRecordEdit: function () {var _carRecordEdit = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee10(_ref10, params) {var dispatch, commit, url;return _regenerator.default.wrap(function _callee10$(_context10) {while (1) {switch (_context10.prev = _context10.next) {case 0:dispatch = _ref10.dispatch, commit = _ref10.commit;
-                url = this.state.server + '/api/traffic-detail/check/' + params['detail_id'];_context10.next = 4;return (
-                  request('PUT', url, params));case 4:case "end":return _context10.stop();}}}, _callee10, this);}));function carRecordEdit(_x16, _x17) {return _carRecordEdit.apply(this, arguments);}return carRecordEdit;}(),
+    carRecordWayDetail: function () {var _carRecordWayDetail = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee10(_ref10, params) {var dispatch, commit, url, result;return _regenerator.default.wrap(function _callee10$(_context10) {while (1) {switch (_context10.prev = _context10.next) {case 0:dispatch = _ref10.dispatch, commit = _ref10.commit;
+                url = this.state.server + '/api/traffic-record/' + params.recordId + '/detail/' + params.detailId;_context10.next = 4;return (
+                  request('GET', url));case 4:result = _context10.sent;
+                if (result) {
+                  commit('setCarRecordWay', result.data.collection);
+                }case 6:case "end":return _context10.stop();}}}, _callee10, this);}));function carRecordWayDetail(_x15, _x16) {return _carRecordWayDetail.apply(this, arguments);}return carRecordWayDetail;}(),
+
+
+    // 车辆信息记录途径地详情
+    carRecordCreate: function () {var _carRecordCreate = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee11(_ref11, params) {var dispatch, commit, url;return _regenerator.default.wrap(function _callee11$(_context11) {while (1) {switch (_context11.prev = _context11.next) {case 0:dispatch = _ref11.dispatch, commit = _ref11.commit;
+                url = this.state.server + '/api/traffic-detail';_context11.next = 4;return (
+                  request('POST', url, params));case 4:case "end":return _context11.stop();}}}, _callee11, this);}));function carRecordCreate(_x17, _x18) {return _carRecordCreate.apply(this, arguments);}return carRecordCreate;}(),
+
+
+    // 车辆信息记录途径地详情
+    carRecordEdit: function () {var _carRecordEdit = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee12(_ref12, params) {var dispatch, commit, url;return _regenerator.default.wrap(function _callee12$(_context12) {while (1) {switch (_context12.prev = _context12.next) {case 0:dispatch = _ref12.dispatch, commit = _ref12.commit;
+                url = this.state.server + '/api/traffic-detail/check/' + params['detail_id'];_context12.next = 4;return (
+                  request('PUT', url, params));case 4:case "end":return _context12.stop();}}}, _callee12, this);}));function carRecordEdit(_x19, _x20) {return _carRecordEdit.apply(this, arguments);}return carRecordEdit;}(),
 
 
     // 文件上传
-    fileUpload: function () {var _fileUpload = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee11(_ref11, params) {var dispatch, commit, url, _ref12, _ref13, err, result;return _regenerator.default.wrap(function _callee11$(_context11) {while (1) {switch (_context11.prev = _context11.next) {case 0:dispatch = _ref11.dispatch, commit = _ref11.commit;
-                url = this.state.server + '/api/sys-file/upload';_context11.next = 4;return (
+    fileUpload: function () {var _fileUpload = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee13(_ref13, params) {var dispatch, commit, url, _ref14, _ref15, err, result;return _regenerator.default.wrap(function _callee13$(_context13) {while (1) {switch (_context13.prev = _context13.next) {case 0:dispatch = _ref13.dispatch, commit = _ref13.commit;
+                url = this.state.server + '/api/sys-file/upload';_context13.next = 4;return (
                   uni.uploadFile({
                     url: url,
                     filePath: params.file,
                     name: 'file',
                     header: { 'Content-Type': 'multipart/form-data', 'Cookie': uni.getStorageSync('SET_COOKIE') },
-                    formData: {} }));case 4:_ref12 = _context11.sent;_ref13 = _slicedToArray(_ref12, 2);err = _ref13[0];result = _ref13[1];return _context11.abrupt("return",
+                    formData: {} }));case 4:_ref14 = _context13.sent;_ref15 = _slicedToArray(_ref14, 2);err = _ref15[0];result = _ref15[1];return _context13.abrupt("return",
 
-                JSON.parse(result.data).data);case 9:case "end":return _context11.stop();}}}, _callee11, this);}));function fileUpload(_x18, _x19) {return _fileUpload.apply(this, arguments);}return fileUpload;}() } });var _default =
+                JSON.parse(result.data).data);case 9:case "end":return _context13.stop();}}}, _callee13, this);}));function fileUpload(_x21, _x22) {return _fileUpload.apply(this, arguments);}return fileUpload;}() } });var _default =
 
 
 

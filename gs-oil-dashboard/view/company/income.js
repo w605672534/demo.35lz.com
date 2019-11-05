@@ -2,18 +2,12 @@ define({
   widget: 'echart',
   dataset: {
     items: [{
-      name: 'company-income',
-      params: [
-        {
-          name: 'current_month',
-          value: ''
-        }
-      ]
+      name: 'material-group'
     }]
   },
   option: {
     title: {
-      subtext: '单位：万元',
+      subtext: '单位：吨',
       top: -15,
       x: 'right',
     },
@@ -23,11 +17,10 @@ define({
     },
     legend: {
       bottom: 10,
-      left: 'center',
-      data: ['绵竹','吴忠','汝州','什邡','大同','黄石','安阳','榆林'],
+      left: 'center'
     },
     series: [{
-      name: '收入占比',
+      name: '化学品占比',
       type: 'pie',
       radius: ['50%', '75%'],
       center: ['50%', '45%'],
@@ -47,8 +40,8 @@ define({
       data: function (rows) {
         return rows.map(function (item) {
           return {
-            name: item.abbreviation,
-            value: item.income
+            name: item.material_name,
+            value: item.load
           }
         });
       },

@@ -138,329 +138,312 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 146));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 146));
 
-// import { mapState } from 'vuex'
-var _default = {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 149);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+{
   components: {},
 
-  // computed: {
-  //   ...mapState({
-  //     passWay: 'passWay'
-  //   })
-  // },
+  computed: _objectSpread({},
+  (0, _vuex.mapState)({
+    passWay: 'passWay',
+    material: 'material' })),
+
+
   data: function data() {var _ref;
     return _ref = {
       carNum: '', // 车号
-      name: '', // 危险化学品名称
+      materialId: '', // 危险化学品名称
       number: '', // 数量（吨） 
       inTime: '', // 进站检查时间
       outTime: '', // 离站时间
@@ -493,7 +476,8 @@ var _default = {
     ['是', '否']), _defineProperty(_ref, "oilType",
     ['汽油', '柴油', '煤油', '其它化工产品']), _defineProperty(_ref, "type",
     0), _defineProperty(_ref, "isInvoice",
-    ['是', '否']), _defineProperty(_ref, "invoice",
+    ['是', '否']), _defineProperty(_ref, "money",
+    ''), _defineProperty(_ref, "invoice",
     0), _defineProperty(_ref, "isQualified",
     ['是', '否']), _defineProperty(_ref, "qualified",
     0), _defineProperty(_ref, "isApply",
@@ -501,11 +485,10 @@ var _default = {
     0), _defineProperty(_ref, "isSluggish",
     ['是', '否']), _defineProperty(_ref, "sluggish",
     0), _defineProperty(_ref, "facadeTempFilePaths",
-    ''), _defineProperty(_ref, "obverseTempFilePaths",
     ''), _defineProperty(_ref, "invoiceTempFilePaths",
-    ''), _defineProperty(_ref, "passWay",
-    []), _defineProperty(_ref, "material",
-    []), _defineProperty(_ref, "licensePlateShowHidden",
+    ''), _defineProperty(_ref, "full_face_photo",
+    ''), _defineProperty(_ref, "voucher_photo",
+    ''), _defineProperty(_ref, "licensePlateShowHidden",
     false), _defineProperty(_ref, "licensePlate_provinces_Box",
     false), _defineProperty(_ref, "licensePlate_letter_Box",
     false), _defineProperty(_ref, "licensePlate_digital_Box",
@@ -534,7 +517,10 @@ var _default = {
     ''), _ref;
 
   },
-  onLoad: function () {var _onLoad = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:case "end":return _context.stop();}}}, _callee, this);}));function onLoad() {return _onLoad.apply(this, arguments);}return onLoad;}(),
+  onLoad: function () {var _onLoad = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                this.$store.dispatch('getMaterial'));case 2:_context.next = 4;return (
+                this.$store.dispatch('getArea'));case 4:case "end":return _context.stop();}}}, _callee, this);}));function onLoad() {return _onLoad.apply(this, arguments);}return onLoad;}(),
+
   onShow: function onShow() {
     var date = new Date();
     var month = date.getMonth() + 1;
@@ -653,12 +639,7 @@ var _default = {
     },
     // 危险化学品名称
     getNameValue: function getNameValue(item) {
-      this.name = item.material_id;
-      // if (this.name.indexOf(item.material_id) !== -1) {
-      //   this.name.splice(this.name.indexOf(item.material_id));
-      // } else {
-      //   this.name.push(item.material_id);
-      // }
+      this.materialId = item.material_id;
     },
     // 数量（吨） 
     getNumValue: function getNumValue(e) {
@@ -691,6 +672,10 @@ var _default = {
     // 出发地
     getDepartureValue: function getDepartureValue(e) {
       this.departure = e.target.value;
+    },
+    // 发票
+    getMoney: function getMoney(e) {
+      this.money = e.target.value;
     },
     // 目的地
     getDestinationValue: function getDestinationValue(e) {
@@ -768,23 +753,12 @@ var _default = {
         count: 1,
         sizeType: ['original', 'compressed'],
         sourceType: ['album', 'camera'],
-        success: function success(res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          _this.facadeTempFilePaths = res.tempFilePaths[0];
-        } });
+        success: function () {var _success = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(res) {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                    // tempFilePath可以作为img标签的src属性显示图片
+                    _this.facadeTempFilePaths = res.tempFilePaths[0];_context2.next = 3;return (
+                      _this.$store.dispatch('fileUpload', { file: _this.facadeTempFilePaths }));case 3:_this.full_face_photo = _context2.sent;case 4:case "end":return _context2.stop();}}}, _callee2, this);}));function success(_x) {return _success.apply(this, arguments);}return success;}() });
 
-    },
-    // 车辆尾部照片
-    takePhotoObverse: function takePhotoObverse() {
-      var _this = this;
-      wx.chooseImage({
-        count: 1,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['album', 'camera'],
-        success: function success(res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          _this.obverseTempFilePaths = res.tempFilePaths[0];
-        } });
+
 
     },
     // 运输单据照片
@@ -794,10 +768,11 @@ var _default = {
         count: 1,
         sizeType: ['original', 'compressed'],
         sourceType: ['album', 'camera'],
-        success: function success(res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          _this.invoiceTempFilePaths = res.tempFilePaths[0];
-        } });
+        success: function () {var _success2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(res) {return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+                    // tempFilePath可以作为img标签的src属性显示图片
+                    _this.invoiceTempFilePaths = res.tempFilePaths[0];_context3.next = 3;return (
+                      _this.$store.dispatch('fileUpload', { file: _this.invoiceTempFilePaths }));case 3:_this.voucher_photo = _context3.sent;case 4:case "end":return _context3.stop();}}}, _callee3, this);}));function success(_x2) {return _success2.apply(this, arguments);}return success;}() });
+
 
     },
     // 点击放大正面图片
@@ -805,13 +780,6 @@ var _default = {
       wx.predivImage({
         current: 'tempFilePaths', // 当前显示图片的http链接
         urls: [this.facadeTempFilePaths] // 需要预览的图片http链接列表
-      });
-    },
-    // 点击放大反面图片
-    obverseChangeImage: function obverseChangeImage() {
-      wx.predivImage({
-        current: 'tempFilePaths', // 当前显示图片的http链接
-        urls: [this.obverseTempFilePaths] // 需要预览的图片http链接列表
       });
     },
     // 点击放大运输单据照片
@@ -822,53 +790,47 @@ var _default = {
       });
     },
     // 提交
-    submit: function submit() {
-      // const name = this.name.join(',');
-      var pass = this.pass.join(',');
-      var arriveTime = this.inDate + ' ' + this.inTime;
-      var leaveTime = this.outDate + ' ' + this.outTime;
-      var requestTask3 = uni.request({
-        url: this.$store.state.server + '/api/traffic-detail',
-        data: {
-          car_numbers: this.LicensePlateNumber,
-          material_id: this.name,
-          arrive_time: arriveTime,
-          leave_time: leaveTime,
-          traffic_org: this.transUnit,
-          Invoice_no: this.cargoNumber,
-          starting: this.departure,
-          destination: this.destination,
-          load: this.number,
-          record_way: pass,
-          is_driving_licence: this.driving == 0 ? '是' : '否',
-          is_driving_permit: this.drivingPermit == 0 ? '是' : '否',
-          have_inspection: this.qualityInspection == 0 ? '是' : '否',
-          have_danger_license: this.transportationPermit == '0' ? '是' : '否',
-          have_toxic_license: this.transportPass == '0' ? '是' : '否',
-          have_supercargo: this.supercargo == '0' ? '是' : '否',
-          have_certification: this.driverLicense == '0' ? '是' : '否',
-          have_identification_light: this.warningSign == '0' ? '是' : '否',
-          have_illegal: this.violation == '0' ? '是' : '否',
-          oils_type: this.type == '0' ? '汽油' : this.type == '1' ? '柴油' : this.type == '2' ? '煤油' : '其它化工产品',
-          oils_invoice: this.invoice == '0' ? '是' : '否',
-          is_qualified: this.qualified == '0' ? '是' : '否',
-          is_assist: this.apply == '0' ? '是' : '否',
-          is_late: this.sluggish == '0' ? '是' : '否'
-          // full_face_photo: this.facadeTempFilePaths,
-          // voucher_photo: this.invoiceTempFilePaths,
-        },
-        method: "POST",
-        header: { 'content-type': 'application/json' },
-        success: function success(res) {
-          // if (res.data.code == 200) {
-          wx.navigateBack({
-            delta: 1 });
+    submit: function () {var _submit = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var pass, arriveTime, leaveTime, data;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+                pass = this.pass.join(',');
+                arriveTime = this.inDate + ' ' + this.inTime;
+                leaveTime = this.outDate + ' ' + this.outTime;
+                data = {
+                  car_numbers: this.LicensePlateNumber,
+                  material_id: this.materialId,
+                  arrive_time: arriveTime,
+                  leave_time: leaveTime,
+                  traffic_org: this.transUnit,
+                  Invoice_no: this.cargoNumber,
+                  starting: this.departure,
+                  destination: this.destination,
+                  load: this.number,
+                  record_way: pass,
+                  invoice_money: this.money,
+                  is_driving_licence: this.driving == '0' ? '是' : '否',
+                  is_driving_permit: this.drivingPermit == '0' ? '是' : '否',
+                  have_inspection: this.qualityInspection == '0' ? '是' : '否',
+                  have_danger_license: this.transportationPermit == '0' ? '是' : '否',
+                  have_toxic_license: this.transportPass == '0' ? '是' : '否',
+                  have_supercargo: this.supercargo == '0' ? '是' : '否',
+                  have_certification: this.driverLicense == '0' ? '是' : '否',
+                  have_identification_light: this.warningSign == '0' ? '是' : '否',
+                  have_illegal: this.violation == '0' ? '是' : '否',
+                  oils_type: this.type == '0' ? '汽油' : this.type == '1' ? '柴油' : this.type == '2' ? '煤油' : '其它化工产品',
+                  oils_invoice: this.invoice == '0' ? '是' : '否',
+                  is_qualified: this.qualified == '0' ? '是' : '否',
+                  is_assist: this.apply == '0' ? '是' : '否',
+                  is_late: this.sluggish == '0' ? '是' : '否',
+                  full_face_photo: this.full_face_photo ? [this.full_face_photo] : [],
+                  voucher_photo: this.voucher_photo ? [this.voucher_photo] : [] };_context4.next = 6;return (
 
-          // }
-          console.log(res.data);
-        } });
+                  this.$store.dispatch('carRecordCreate', data));case 6:
+                uni.showToast({
+                  icon: 'none',
+                  title: '登记成功',
+                  duration: 2000 });
 
-    } } };exports.default = _default;
+                wx.navigateTo({
+                  url: '/pages/car-detail/main' });case 8:case "end":return _context4.stop();}}}, _callee4, this);}));function submit() {return _submit.apply(this, arguments);}return submit;}() } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

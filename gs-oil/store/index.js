@@ -55,9 +55,10 @@ const fail = (res, dispatch) => {
 const store = new Vuex.Store({
 
   state: {
-    server: 'http://train.35lz.com/oms',
+    server: 'https://train.35lz.com/oms',
     //server: 'http://192.168.2.55:8080/oms',
-    imgURL: 'http://train.35lz.com/oms',
+    imgURL: 'https://train.35lz.com/oms',
+    //imgURL: 'http://192.168.2.55:8080/oms',
     site: '10000',
     store: [],
     user: {},
@@ -67,7 +68,8 @@ const store = new Vuex.Store({
     detail: {},
     record: {},
     recordList: [],
-    wayList: []
+    wayList: [],
+    material: []
   },
   mutations: {
     wechatInfo (state, payload) {
@@ -94,6 +96,9 @@ const store = new Vuex.Store({
     setCarRecordWay(state, payload) {
       state.wayList = payload
     },
+    setMaterial(state, payload) {
+      state.material = payload
+    }
   },
   actions: {
     // 授权登录
@@ -127,7 +132,15 @@ const store = new Vuex.Store({
       const url = this.state.server + '/api/sys-area';
       let result = await request('GET', url, {});
       if(result) {
-        commit('setArea', result.data)
+        commit('setArea', result.data.collection)
+      }
+    },
+    // 获取途径地
+    async getMaterial ({ dispatch, commit }) {
+      const url = this.state.server + '/api/sys-chemical';
+      let result = await request('GET', url, {});
+      if(result) {
+        commit('setMaterial', result.data.collection)
       }
     },
     // 未检查记录
@@ -151,7 +164,7 @@ const store = new Vuex.Store({
       const url = this.state.server + '/api/traffic-detail/' + params.id;
       let result = await request('GET', url, {});
       if(result) {
-        commit('seteditRecordDetail', result.data)
+        commit('seteditRecordDetail', result.data.model)
       }
     },
     // 车辆信息详情
@@ -188,6 +201,12 @@ const store = new Vuex.Store({
       if(result) {
         commit('setCarRecordWay', result.data.collection)
       }
+    },
+
+    // 车辆信息记录途径地详情
+    async carRecordCreate ({ dispatch, commit },params) {
+      const url = this.state.server + '/api/traffic-detail';
+      await request('POST', url, params);
     },
 
     // 车辆信息记录途径地详情

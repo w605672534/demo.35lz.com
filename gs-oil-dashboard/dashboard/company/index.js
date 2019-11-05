@@ -16,6 +16,13 @@ define({
             xs: 24
         },
         {
+            id: '1',
+            title: '化学品占比分析',
+            xs: 24,
+            view: 'view/company/income.js',
+            height: 340
+        },
+        {
             id: '7',
             column: 6,
             view: 'view/company/real-total-amount.js',
@@ -46,27 +53,18 @@ define({
             xs: 24,
         },
         {
-            id: '1',
-            title: '月度收入占比',
-            column: 3,
+            id: '112',
+            title: '油品占比分析',
+            view: 'view/company/company-asset-type.js',
+            height: 340,
             xs: 24,
-            view: 'view/company/income.js',
-            height: 340
         },
         {
             id: '5',
-            title: '月度收入成本对比',
-            column: 6,
+            title: '各市检查未检查数分析',
+            column: 12,
             xs: 24,
             view: 'view/company/manage-trend.js',
-            height: 340
-        },
-        {
-            id: '3',
-            title: '月度成本占比',
-            column: 3,
-            xs: 24,
-            view: 'view/company/cost.js',
             height: 340
         }
     ]

@@ -2,7 +2,7 @@ define({
   widget: 'echart',
   dataset: {
     items: [{
-      name: 'company-factory-asset'
+      name: 'oils-group'
     }]
   },
   option: {
@@ -38,8 +38,8 @@ define({
       data: function (rows) {
         return rows.map(function (item) {
           return {
-            name: item.asset_type,
-            value: item.factory_num
+            name: item.oils_type,
+            value: item.load
           }
         });
       },
