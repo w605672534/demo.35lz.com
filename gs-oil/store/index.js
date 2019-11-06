@@ -57,7 +57,7 @@ const store = new Vuex.Store({
   state: {
     server: 'https://train.35lz.com/oms',
     imgURL: 'https://train.35lz.com/oms',
-    dashboard: 'https://train.35lz.com/home/index.html',
+    dashboard: 'https://demo.35lz.com/dash/index.html',
     //server: 'http://192.168.1.2:8080/oms',
     //imgURL: 'http://192.168.1.2:8080/oms',
     site: '10000',
