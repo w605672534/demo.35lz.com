@@ -1,6 +1,6 @@
 <template>
    <div style="background: #eeeeee">
-      <web-view src="http://poten.35lz.com/home/index.html#/sign/"></web-view>
+      <web-view :src="viewUrl"></web-view>
    </div>
 </template>
 
@@ -10,7 +10,7 @@
     },
 		data() {
 			return {
-        
+        viewUrl: this.$store.state.dashboard
 			}
 		},
 		onLoad() {

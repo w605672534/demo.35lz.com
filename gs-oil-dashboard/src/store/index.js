@@ -13,7 +13,7 @@ export default new Vuex.Store({
         corpId: window.location.hostname == 'poten.35lz.com' ? 'dinge63fd07c8dbfdcc1' : 'ding14726d2e2b8beb6e35c2f4657eb6378f',
         resources: localStorage.getItem('store.resources') ? JSON.parse(localStorage.getItem('store.resources')) : [],
         user: localStorage.getItem('store.user') ? JSON.parse(localStorage.getItem('store.user')) : {},
-        theme: localStorage.getItem('theme') ? localStorage.getItem('theme') : 'aurora',
+        theme: localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark',
         realTimer: null
     },
     mutations: {

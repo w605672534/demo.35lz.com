@@ -133,8 +133,8 @@ var _default =
   components: {},
 
   data: function data() {
-    return {};
-
+    return {
+      viewUrl: this.$store.state.dashboard };
 
   },
   onLoad: function onLoad() {
