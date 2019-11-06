@@ -9,7 +9,7 @@ Vue.http.options.credentials = true;
 export default new Vuex.Store({
     state: {
         params: {},
-        server: window.location.hostname == 'rainbow2.hulu.io' ? 'http://localhost:8080' : '',
+        server: window.location.hostname == 'rainbow2.hulu.io' ? 'http://localhost:8080' : 'http://train.35lz.com',
         corpId: window.location.hostname == 'poten.35lz.com' ? 'dinge63fd07c8dbfdcc1' : 'ding14726d2e2b8beb6e35c2f4657eb6378f',
         resources: localStorage.getItem('store.resources') ? JSON.parse(localStorage.getItem('store.resources')) : [],
         user: localStorage.getItem('store.user') ? JSON.parse(localStorage.getItem('store.user')) : {},
