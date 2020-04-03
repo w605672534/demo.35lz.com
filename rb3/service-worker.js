@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.76daa4a984228263337ff273edcbccaf.js"
+  "precache-manifest.c5f3193ef4de274fa7b092deda518daf.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "rainbow-themes"});
